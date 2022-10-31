@@ -1,0 +1,162 @@
+$backgroundColor:#1B191D;
+$FirstColor:#C9308C;
+$whiteColor:#F1E8FA;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-decoration: none;
+	border: none;
+	outline: none;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    height: 100vh;
+    background-color: $backgroundColor;
+    section{
+        height: 80%;
+    }
+}
+header{
+    height: 12vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .logoHeader{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 20%;
+        img{
+            
+        }
+    }
+    .navbarHeader{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 75%;
+        justify-content: space-evenly;
+            button{
+                font-size: 16px;
+                background-color: transparent;
+                color: rgba(255, 255, 255, 0.74);
+                font-weight: 300;
+                &:hover{
+                    color: $whiteColor;
+                    transition: all .5s;
+                }
+            }
+            .navbarSelected{
+                font-weight: 500;
+                color: $whiteColor;
+            }
+    }
+}
+main{
+    .containerPalabras{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
+        .crearButton{
+            padding-inline: 20px;
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 75%;
+            height: 7vh;
+            background-color: $whiteColor;
+            color: $backgroundColor;
+            margin-bottom: 25px;
+            p{
+                font-weight: 500;
+            }
+        }
+    }
+    .inicioInfo{
+
+    
+        p{
+            font-size: 14px;
+            margin-inline: 20px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.33);
+        }
+    }
+
+}
+footer{
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    width: 100vw;
+    .resultFraseContainer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 10vh;
+        background-color: #4F203E;
+        p{  
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.45);
+        }
+    }
+    .playAndSaveContainer{
+        height: 100%;
+        background-color: $FirstColor;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 4%;
+        .playButton{
+            color: $FirstColor;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-inline: 7%;
+            height: 45%;
+            width: 50%;
+            cursor: pointer;
+            border-radius: 7px;
+            background-color: $whiteColor;
+        }
+        .saveButton{
+            border-radius: 7px;
+            background-color: $whiteColor;
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            height: 45%;
+            width: 15%;
+
+        }
+    }
+}
+.createToggle{
+    width: 100vw;
+    height: 100vw;
+    background-color: #4F203E;
+    position: fixed;
+    div{
+        p{
+            color: $whiteColor;
+        }
+        div{
+
+            input{
+
+            }
+            button{
+
+            }
+        }
+    }
+}

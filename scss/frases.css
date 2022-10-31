@@ -1,0 +1,140 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  height: 100vh;
+  background-color: #1B191D;
+}
+body section {
+  height: 80%;
+}
+
+header {
+  height: 12vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+header .logoHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+}
+header .navbarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 75%;
+  justify-content: space-evenly;
+}
+header .navbarHeader button {
+  font-size: 16px;
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.74);
+  font-weight: 300;
+}
+header .navbarHeader button:hover {
+  color: #F1E8FA;
+  transition: all 0.5s;
+}
+header .navbarHeader .navbarSelected {
+  font-weight: 500;
+  color: #F1E8FA;
+}
+
+main .containerPalabras {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+}
+main .containerPalabras .crearButton {
+  padding-inline: 20px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 75%;
+  height: 7vh;
+  background-color: #F1E8FA;
+  color: #1B191D;
+  margin-bottom: 25px;
+}
+main .containerPalabras .crearButton p {
+  font-weight: 500;
+}
+main .inicioInfo p {
+  font-size: 14px;
+  margin-inline: 20px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.33);
+}
+
+footer {
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  width: 100vw;
+}
+footer .resultFraseContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+  background-color: #4F203E;
+}
+footer .resultFraseContainer p {
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.45);
+}
+footer .playAndSaveContainer {
+  height: 100%;
+  background-color: #C9308C;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4%;
+}
+footer .playAndSaveContainer .playButton {
+  color: #C9308C;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 7%;
+  height: 45%;
+  width: 50%;
+  cursor: pointer;
+  border-radius: 7px;
+  background-color: #F1E8FA;
+}
+footer .playAndSaveContainer .saveButton {
+  border-radius: 7px;
+  background-color: #F1E8FA;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: 45%;
+  width: 15%;
+}
+
+.createToggle {
+  width: 100vw;
+  height: 100vw;
+  background-color: #4F203E;
+  position: fixed;
+}
+.createToggle div p {
+  color: #F1E8FA;
+}/*# sourceMappingURL=frases.css.map */

@@ -1,0 +1,284 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  font-family: 'Poppins', sans-serif; }
+
+body {
+  height: 100vh;
+  background-color: #1B191D; }
+  body section {
+    height: 80%; }
+
+header {
+  height: 12vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  header .logoHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%; }
+  header .navbarHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 75%;
+    justify-content: space-evenly; }
+    header .navbarHeader button {
+      font-size: 16px;
+      background-color: transparent;
+      color: rgba(255, 255, 255, 0.74);
+      font-weight: 300; }
+      header .navbarHeader button:hover {
+        color: #F1E8FA;
+        transition: all .5s; }
+    header .navbarHeader .navbarSelected {
+      font-weight: 500;
+      color: #F1E8FA; }
+
+main .containerPalabras {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap; }
+  main .containerPalabras .crearButton {
+    cursor: pointer;
+    transition: all .5s;
+    padding-inline: 20px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 75%;
+    height: 7vh;
+    background-color: #C9308C;
+    color: #F1E8FA;
+    margin-bottom: 25px; }
+    main .containerPalabras .crearButton:hover {
+      background-color: #A02A71; }
+    main .containerPalabras .crearButton p {
+      font-weight: 500; }
+  main .containerPalabras .optionWord {
+    cursor: pointer;
+    padding-inline: 20px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 75%;
+    height: 7vh;
+    background-color: #F1E8FA;
+    color: #1B191D;
+    margin-bottom: 25px;
+    transition: all .5s; }
+    main .containerPalabras .optionWord:hover p {
+      color: #C9308C; }
+    main .containerPalabras .optionWord p {
+      transition: all .5s;
+      color: #717171;
+      font-weight: 500; }
+
+main .inicioInfo p {
+  font-size: 14px;
+  margin-inline: 20px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.33); }
+
+footer {
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  width: 100vw; }
+  footer .resultFraseContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    background-color: #4F203E; }
+    footer .resultFraseContainer p {
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.45); }
+  footer .playAndSaveContainer {
+    height: 100%;
+    background-color: #C9308C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4%; }
+    footer .playAndSaveContainer .playButton {
+      color: #C9308C;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-inline: 7%;
+      height: 55%;
+      width: 50%;
+      cursor: pointer;
+      border-radius: 100px;
+      background-color: #F1E8FA; }
+    footer .playAndSaveContainer .saveButton {
+      border-radius: 100px;
+      background-color: #F1E8FA;
+      display: grid;
+      justify-content: center;
+      align-items: center;
+      height: 50%;
+      width: 15%; }
+
+.createToggleONBackground {
+  opacity: 100 !important;
+  pointer-events: all !important;
+  background-color: rgba(0, 0, 0, 0.41) !important; }
+
+.createToggle {
+  transition: all .5s;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  opacity: 0;
+  position: fixed;
+  z-index: 1; }
+  .createToggle div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 35%;
+    width: 100%;
+    background-color: #F1E8FA; }
+    .createToggle div p {
+      color: #1B191D;
+      font-size: 14px;
+      text-align: center;
+      margin-inline: 15%;
+      font-weight: 500; }
+    .createToggle div div {
+      margin-top: 15px;
+      margin-bottom: 15px;
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      justify-content: center; }
+      .createToggle div div input {
+        margin-inline: 10vw;
+        padding-inline: 15px;
+        background: rgba(16, 15, 17, 0.06);
+        border-radius: 7px 7px 0px 0px;
+        height: 20vh; }
+      .createToggle div div button {
+        cursor: pointer;
+        margin-inline: 10vw;
+        border-radius: 0px 0px 7px 7px;
+        background-color: #C9308C;
+        color: #F1E8FA;
+        font-weight: 500;
+        transition: all .5s;
+        height: 20vh; }
+        .createToggle div div button:hover {
+          background-color: #A02A71; }
+  .createToggle .cancelButton {
+    background-color: transparent;
+    font-weight: 500; }
+    .createToggle .cancelButton p {
+      transition: all .5s;
+      color: #1b191d68; }
+      .createToggle .cancelButton p:hover {
+        color: #1b191ddf; }
+
+.menuGenderBackgroundON {
+  opacity: 100 !important;
+  pointer-events: all !important;
+  background-color: rgba(0, 0, 0, 0.41) !important; }
+
+.menuGenderBackground {
+  transition: all .5s;
+  z-index: 2;
+  height: 100vh;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.41) !important;
+  pointer-events: none;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw; }
+
+.speakerVoice {
+  font-size: 14px;
+  color: #1B191D;
+  font-weight: 500;
+  text-align: center; }
+
+.container {
+  width: 100vw;
+  background-color: #F1E8FA;
+  margin: 40px auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-inline: 30px;
+  padding-block: 25px; }
+  .container button {
+    background-color: transparent;
+    color: #7F7A85;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer; }
+  .container ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; }
+    .container ul li {
+      cursor: pointer;
+      font-size: 14px;
+      background-color: #E4DBEC;
+      height: 8vh;
+      margin-block: 15px;
+      padding-inline: 20px;
+      font-weight: 500;
+      display: flex;
+      border-radius: 7px;
+      justify-content: space-between;
+      align-items: center; }
+      .container ul li label {
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center; }
+      .container ul li input[type='radio']:after {
+        width: 10px;
+        height: 10px;
+        border-radius: 15px;
+        cursor: pointer;
+        position: relative;
+        background-color: #C6BECD;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 2px solid #C6BECD; }
+      .container ul li input[type='radio']:checked:after {
+        width: 10px;
+        height: 10px;
+        border-radius: 15px;
+        cursor: pointer;
+        bottom: 1px;
+        position: relative;
+        background-color: #C9308C;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 3px solid #C6BECD; }

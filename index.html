@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="icon" type="image/png" href="assets/img/favicon.png"/>
+
+
+    <title>Speako</title>
+</head>
+<body>
+            <!-- menuGender -->
+            <div class="menuGenderBackground">
+                <div class="container">
+                    <div class="speakerVoice">
+                        <p>Quien quieres que diga la frase?</p>
+                    </div>
+                    <ul>
+                        <li>
+                            <label for="maleOption">Tomas</label>
+
+                            <div>
+                                <input type="radio" id="maleOption" 
+                                value="108" name="genderVoice" checked>
+                          
+                                <div class="check"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="femaleOption">Elena</label>
+                            <div>
+                                <input type="radio" id="femaleOption" 
+                                value="107"
+                                name="genderVoice">
+
+                          
+                          <div class="check"><div class="inside"></div></div>
+                            </div>
+                        </li>
+                      </ul>
+                      <button class="closeGenderSelector">Cerrar</button>
+                </div>
+
+            </div>
+            <!-- menuCreateButton -->
+            <div class="createToggle">
+                <div class="createMainContainer">
+                    <p>Escribe aqui la palabra que deseas
+                        agregar a la biblioteca.</p>
+                    <div>
+                        <input type="text" id="createWord">
+                        <button class="addButtonWord">Agregar</button>
+                    </div>
+                    <button class="cancelButton">
+                        <p>Cancelar</p>
+                    </button>
+                </div>
+            </div>
+        
+    <!-- code base -->
+    <section>
+        <header>
+            <div class="logoHeader">
+               <img src="./assets/svg/logo/responisveLogo.svg" alt="">
+            </div>
+            <div class="navbarHeader">
+   
+                   <button class="buttonPalabras navbarSelected">Palabras</button>
+                   <button class="buttonFrases">Frases</button>
+   
+            </div>
+       </header>
+       <main>
+            <div class="containerPalabras">
+               <div class="crearButton">
+                   <p>Crear</p>
+                   <img src="./assets/svg/icons/mas.svg" alt="">
+               </div>
+
+   
+               <div class="inicioInfo">
+                   <p>Crea tu biblioteca de palabras para poder formar oraciones y reproducirlas.</p>
+               </div>
+            </div>
+       </main>
+    </section>
+    <footer>
+        <div class="resultFraseContainer">
+            <p class="textPrevious">Tu frase aparecera aqui</p>
+        </div>
+        <div class="playAndSaveContainer">
+            <div class="playButton">
+                <p>Reproducir</p>
+                <img src="./assets/svg/icons/Polygon 1.svg" alt="">
+            </div>
+            <div class="saveButton">
+                <img src="./assets/svg/icons/save.svg" alt="">
+            </div>
+        </div>
+    </footer>
+    <script src="./js/main.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+</body>
+</html>
