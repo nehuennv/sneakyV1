@@ -5,6 +5,8 @@ let cancelButton = document.querySelector('.cancelButton')
 let addButtonWord = document.querySelector('.addButtonWord')
 let containerPalabras = document.querySelector('.containerPalabras')
 let inicioInfo = document.querySelector('.inicioInfo')
+let removeOption = document.querySelector('.removeOption')
+
 
 
 let optionsWords = []
@@ -18,6 +20,8 @@ vocesDisponibles = [];
 
   let posibleIndice = 0
 
+  const $voces = document.querySelector("#voces")
+
   const cargarVoces = () => {
     if (vocesDisponibles.length > 0) {
       console.log("No se cargan las voces porque ya existen: ", vocesDisponibles);
@@ -27,7 +31,17 @@ vocesDisponibles = [];
     console.log({ vocesDisponibles })
     posibleIndice = vocesDisponibles.findIndex(voz => IDIOMAS_PREFERIDOS.includes(voz.lang));
     if (posibleIndice === -1) posibleIndice = 0;
-
+    vocesDisponibles = speechSynthesis.getVoices();
+    console.log({ vocesDisponibles })
+    posibleIndice = vocesDisponibles.findIndex(voz => IDIOMAS_PREFERIDOS.includes(voz.lang));
+    if (posibleIndice === -1) posibleIndice = 0;
+    vocesDisponibles.forEach((voz, indice) => {
+      const opcion = document.createElement("option");
+      opcion.value = indice;
+      opcion.innerHTML = voz.name;
+      opcion.selected = indice === posibleIndice;
+      $voces.appendChild(opcion);
+    })
   };
 
 
@@ -59,27 +73,35 @@ crearButton.addEventListener("click", ()=>{
       createToggle.classList.remove('createToggleONBackground')
     })
     
+
+    
   })
 
 
   addButtonWord.addEventListener("click", ()=>{
     let wordForAdd = document.getElementById('createWord').value;
     
-    function duplicateWord (word){
-      optionsWords.forEach(el => {
-        if(el == word){
 
-          console.log(true);;
-          
-  
+    let duplicate = optionsWords.find(el=> el == wordForAdd)
+
+
+        if(duplicate){
+          Toastify({
+            text:'Esa palabra ya esta en biblioteca',
+            duration: 2500,
+            gravity: "top",
+            position: "center", 
+            stopOnFocus: true, 
+            style: {
+              cursor:"default",
+              fontSize:"14px",
+              background: "#C9308C",
+              borderRadius: "7px"
+            },
+            onClick: function(){} // Callback after click
+          }).showToast();
         }else{
-          console.log(false);
-  
-        }
-      });
-    }
-    duplicateWord(wordForAdd)
-
+          
 
     if (wordForAdd.length == 0){
       Toastify({
@@ -146,15 +168,23 @@ crearButton.addEventListener("click", ()=>{
 
       let wordSelected = document.querySelector('.optionWord'+ optionsWords[optionsWords.length - 1])
       wordSelected.addEventListener("click", ()=>{
-        let stringWordSelected = wordSelected.textContent
+        let stringWordSelected = wordSelected.textContent.replace(/\s+/g, '') 
+        
+
         addFinalText(stringWordSelected)
+
+
+
       })
       
-      
+
 
     }
-    
-  })
+
+  }
+
+})
+  
   function addFinalText (string){
     let previewText = document.querySelector('.resultFraseContainer')
     let textPrevious = document.querySelector('.textPrevious')
@@ -166,23 +196,31 @@ crearButton.addEventListener("click", ()=>{
       textPrevious.textContent= ""
     }
 
+
+
+      removeOption.addEventListener("click", ()=>{
+        textPrevious.textContent = "Tu frase aparecera aqui"
+        textPrevious.style.color ="rgba(255, 255, 255, 0.45)"
+        textPrevious.style.fontWeight ="300"
+      })
+      if(textPrevious.textContent.length == 0){
+        textPrevious.textContent = textPrevious.textContent + string
+      }else{
       textPrevious.textContent = textPrevious.textContent + " " + string
+      }
+
     
   }
   function playText(){
     let textPrevious = document.querySelector('.textPrevious')
 
-    let checked = document.getElementsByName('genderVoice')
+
 
     let message = new SpeechSynthesisUtterance();
-    checked.forEach(el => {
-      if(el.checked){
-      message.voice= window.speechSynthesis.getVoices()[parseInt(el.value)]
-        console.log(el.value)
-      }else{
-        return 108;
-      }
-    })
+
+    message.voice= window.speechSynthesis.getVoices()[$voces.value]
+
+    
     message.lang = 'es-AR'
 
     message.volume = 3;
@@ -200,6 +238,8 @@ crearButton.addEventListener("click", ()=>{
 
 
 playButton.addEventListener("click", ()=>{
+
+
 
   let textPrevious = document.querySelector('.textPrevious')
 
@@ -234,26 +274,14 @@ genderVoiceButton.addEventListener('click',()=>{
   closeGenderSelector.addEventListener('click', ()=>{
     menuGenderBackground.classList.remove('menuGenderBackgroundON')
   })
-  let checkedGender = document.getElementsByName('genderVoice')
-  checkedGender.forEach(el => {
 
-  });
 })
 
 
-  let checked = document.getElementsByName('genderVoice')
-  checked.forEach(el => {
-    if(el.checked){
-      voiceGender(el.value)
-    }else{
-      return;
-    }
-  });
 
 
-  function voiceGender(num){
-    return(num)
-  }
+
+
 
 
 

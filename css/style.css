@@ -104,8 +104,31 @@ footer {
     height: 10vh;
     background-color: #4F203E; }
     footer .resultFraseContainer p {
+      display: flex;
+      margin-top: 5px;
+      align-items: center;
+      height: 100%;
+      white-space: nowrap;
+      overflow-x: scroll;
+      padding-left: 5%;
+      width: 85%;
       font-weight: 300;
       color: rgba(255, 255, 255, 0.45); }
+      footer .resultFraseContainer p::-webkit-scrollbar {
+        height: 5px;
+        transition: all 1s; }
+      footer .resultFraseContainer p::-webkit-scrollbar-thumb {
+        background: #F1E8FA;
+        border-radius: 10px;
+        transition: all 1s; }
+        footer .resultFraseContainer p::-webkit-scrollbar-thumb:hover {
+          background: #f4e9ff9c; }
+    footer .resultFraseContainer button {
+      width: 15%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: transparent; }
   footer .playAndSaveContainer {
     height: 100%;
     background-color: #C9308C;
@@ -124,15 +147,22 @@ footer {
       width: 50%;
       cursor: pointer;
       border-radius: 100px;
-      background-color: #F1E8FA; }
+      background-color: #F1E8FA;
+      transition: all .5s; }
+      footer .playAndSaveContainer .playButton:hover {
+        background-color: #DBD3E3; }
     footer .playAndSaveContainer .saveButton {
+      cursor: pointer;
       border-radius: 100px;
       background-color: #F1E8FA;
       display: grid;
       justify-content: center;
       align-items: center;
       height: 50%;
-      width: 15%; }
+      width: 15%;
+      transition: all .5s; }
+      footer .playAndSaveContainer .saveButton:hover {
+        background-color: #DBD3E3; }
 
 .createToggleONBackground {
   opacity: 100 !important;
@@ -230,12 +260,38 @@ footer {
   justify-content: center;
   padding-inline: 30px;
   padding-block: 25px; }
+  .container div {
+    display: flex;
+    justify-content: center;
+    width: 100vw; }
+  .container select {
+    color: #C9308C;
+    font-weight: 600;
+    background-color: #E4DBEC;
+    padding-block: 2vh;
+    padding-left: 10px;
+    padding-right: 10%;
+    border-radius: 7px;
+    width: 90%;
+    margin-block: 15px;
+    background-image: url(../assets/svg/icons/Vector.svg);
+    background-repeat: no-repeat;
+    background-position: 96%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none; }
+  .container select::-ms-expand {
+    display: none; }
   .container button {
     background-color: transparent;
     color: #7F7A85;
     font-weight: 500;
     font-size: 14px;
-    cursor: pointer; }
+    cursor: default;
+    transition: all .5s; }
+    .container button:hover {
+      color: #1b191ddf; }
   .container ul {
     list-style: none;
     margin: 0;
@@ -259,26 +315,3 @@ footer {
         height: 100%;
         display: flex;
         align-items: center; }
-      .container ul li input[type='radio']:after {
-        width: 10px;
-        height: 10px;
-        border-radius: 15px;
-        cursor: pointer;
-        position: relative;
-        background-color: #C6BECD;
-        content: '';
-        display: inline-block;
-        visibility: visible;
-        border: 2px solid #C6BECD; }
-      .container ul li input[type='radio']:checked:after {
-        width: 10px;
-        height: 10px;
-        border-radius: 15px;
-        cursor: pointer;
-        bottom: 1px;
-        position: relative;
-        background-color: #C9308C;
-        content: '';
-        display: inline-block;
-        visibility: visible;
-        border: 3px solid #C6BECD; }

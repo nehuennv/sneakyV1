@@ -18,29 +18,13 @@
                     <div class="speakerVoice">
                         <p>Quien quieres que diga la frase?</p>
                     </div>
-                    <ul>
-                        <li>
-                            <label for="maleOption">Tomas</label>
+                    <div>
+                        <select name="" id="voces">
 
-                            <div>
-                                <input type="radio" id="maleOption" 
-                                value="108" name="genderVoice" checked>
-                          
-                                <div class="check"></div>
-                            </div>
-                        </li>
-                        <li>
-                            <label for="femaleOption">Elena</label>
-                            <div>
-                                <input type="radio" id="femaleOption" 
-                                value="107"
-                                name="genderVoice">
 
-                          
-                          <div class="check"><div class="inside"></div></div>
-                            </div>
-                        </li>
-                      </ul>
+                        </select>
+                    </div>
+                    
                       <button class="closeGenderSelector">Cerrar</button>
                 </div>
 
@@ -90,6 +74,7 @@
     <footer>
         <div class="resultFraseContainer">
             <p class="textPrevious">Tu frase aparecera aqui</p>
+            <button class="removeOption"><img src="./assets/svg/icons/trash.svg" alt=""></button>
         </div>
         <div class="playAndSaveContainer">
             <div class="playButton">

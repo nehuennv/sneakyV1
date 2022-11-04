@@ -133,8 +133,36 @@ footer{
         height: 10vh;
         background-color: #4F203E;
         p{  
+            display: flex;
+            margin-top: 5px;
+            align-items: center;
+            height: 100%;
+            white-space: nowrap;
+            overflow-x: scroll;
+            padding-left: 5%;
+            width: 85%;
             font-weight: 300;
             color: rgba(255, 255, 255, 0.45);
+            &::-webkit-scrollbar{
+
+                height: 5px;
+                transition: all 1s;
+            }
+            &::-webkit-scrollbar-thumb{
+                background: $whiteColor;
+                border-radius: 10px;
+                transition: all 1s;
+                &:hover{
+                    background: #f4e9ff9c;
+                }
+            }
+        }
+        button{
+            width: 15%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: transparent;
         }
     }
     .playAndSaveContainer{
@@ -156,8 +184,13 @@ footer{
             cursor: pointer;
             border-radius: 100px;
             background-color: $whiteColor;
+            transition: all .5s;
+            &:hover{
+                background-color: #DBD3E3;
+            }
         }
         .saveButton{
+            cursor: pointer;
             border-radius: 100px;
             background-color: $whiteColor;
             display: grid;
@@ -165,6 +198,10 @@ footer{
             align-items: center;
             height: 50%;
             width: 15%;
+            transition: all .5s;
+            &:hover{
+                background-color: #DBD3E3;
+            }
 
         }
     }
@@ -293,12 +330,44 @@ $color_5: #232323;
     justify-content: center;
 padding-inline: 30px;
 padding-block: 25px;
+
+    div{
+        display: flex;
+        justify-content: center;
+        width: 100vw;
+    }
+    select{
+        color: $FirstColor;
+        font-weight: 600;
+        background-color: #E4DBEC;
+        padding-block: 2vh;
+        padding-left: 10px;
+        padding-right: 10%;
+        border-radius: 7px;
+        width: 90%;
+        margin-block: 15px;
+        background-image: url(../assets/svg/icons/Vector.svg); 
+        background-repeat: no-repeat;
+        background-position: 96%;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -o-appearance: none;
+        appearance: none;
+        
+    }
+    select::-ms-expand {
+        display: none; 
+        }
     button{
         background-color: transparent;
         color: #7F7A85;
         font-weight: 500;
         font-size: 14px;
-        cursor: pointer;
+        cursor: default;
+        transition: all .5s;
+        &:hover{
+            color: #1b191ddf;
+        }
     }
 	ul {
 
@@ -328,34 +397,11 @@ padding-block: 25px;
             input{
                 
             }
-            input[type='radio']:after {
-                width: 10px;
-                height: 10px;
-                border-radius: 15px;
-                cursor: pointer;
 
-                position: relative;
-                background-color: #C6BECD;
-                content: '';
-                display: inline-block;
-                visibility: visible;
-                border: 2px solid #C6BECD;
-            }
         
-            input[type='radio']:checked:after {
-                width: 10px;
-                height: 10px;
-                border-radius: 15px;
-                cursor: pointer;
-                bottom: 1px;
-                position: relative;
-                background-color: $FirstColor;
-                content: '';
-                display: inline-block;
-                visibility: visible;
-                border: 3px solid #C6BECD;
-            }
+
         }
     }
     
 }
+
