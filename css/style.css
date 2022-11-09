@@ -32,6 +32,7 @@ header {
     width: 75%;
     justify-content: space-evenly; }
     header .navbarHeader button {
+      cursor: pointer;
       font-size: 16px;
       background-color: transparent;
       color: rgba(255, 255, 255, 0.74);
@@ -43,29 +44,22 @@ header {
       font-weight: 500;
       color: #F1E8FA; }
 
-main .containerPalabras {
+.containerFrasesOn {
+  transform: translateX(0vh) !important; }
+
+.containerFrases {
+  transition: all .5s;
+  background-color: #1B191D;
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex-wrap: wrap; }
-  main .containerPalabras .crearButton {
-    cursor: pointer;
-    transition: all .5s;
-    padding-inline: 20px;
-    border-radius: 7px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 75%;
-    height: 7vh;
-    background-color: #C9308C;
-    color: #F1E8FA;
-    margin-bottom: 25px; }
-    main .containerPalabras .crearButton:hover {
-      background-color: #A02A71; }
-    main .containerPalabras .crearButton p {
-      font-weight: 500; }
-  main .containerPalabras .optionWord {
+  height: 68vh;
+  width: 100vw;
+  position: fixed;
+  transform: translateX(100vh); }
+  .containerFrases p {
+    color: rgba(255, 255, 255, 0.33); }
+  .containerFrases .savedWord {
     cursor: pointer;
     padding-inline: 20px;
     border-radius: 7px;
@@ -73,29 +67,90 @@ main .containerPalabras {
     align-items: center;
     justify-content: space-between;
     width: 75%;
-    height: 7vh;
+    min-height: 7vh;
+    padding-block: 10px;
     background-color: #F1E8FA;
     color: #1B191D;
     margin-bottom: 25px;
     transition: all .5s; }
-    main .containerPalabras .optionWord:hover p {
+    .containerFrases .savedWord:hover p {
       color: #C9308C; }
-    main .containerPalabras .optionWord p {
+    .containerFrases .savedWord p {
+      max-width: 100%;
       transition: all .5s;
       color: #717171;
       font-weight: 500; }
 
-main .inicioInfo p {
-  font-size: 14px;
-  margin-inline: 20px;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.33); }
+main {
+  height: 68vh;
+  overflow-y: scroll;
+  overflow-x: hidden; }
+  main::-webkit-scrollbar {
+    width: 5px;
+    transition: all 1s; }
+  main::-webkit-scrollbar-thumb {
+    background: #C9308C;
+    border-radius: 10px;
+    transition: all 1s; }
+    main::-webkit-scrollbar-thumb:hover {
+      background: #A02A71; }
+  main .containerMain {
+    width: 100vh;
+    display: flex;
+    flex-direction: column; }
+    main .containerMain .containerPalabras {
+      width: 100vw;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap; }
+      main .containerMain .containerPalabras .crearButton {
+        cursor: pointer;
+        transition: all .5s;
+        padding-inline: 20px;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 75%;
+        height: 7vh;
+        background-color: #C9308C;
+        color: #F1E8FA;
+        margin-bottom: 25px; }
+        main .containerMain .containerPalabras .crearButton:hover {
+          background-color: #A02A71; }
+        main .containerMain .containerPalabras .crearButton p {
+          font-weight: 500; }
+      main .containerMain .containerPalabras .optionWord {
+        cursor: pointer;
+        padding-inline: 20px;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 75%;
+        height: 7vh;
+        background-color: #F1E8FA;
+        color: #1B191D;
+        margin-bottom: 25px;
+        transition: all .5s; }
+        main .containerMain .containerPalabras .optionWord:hover p {
+          color: #C9308C; }
+        main .containerMain .containerPalabras .optionWord p {
+          max-width: 100%;
+          transition: all .5s;
+          color: #717171;
+          font-weight: 500; }
+    main .containerMain .inicioInfo p {
+      font-size: 14px;
+      margin-inline: 20px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.33); }
 
 footer {
   height: 20%;
   display: flex;
   flex-direction: column;
-  position: fixed;
   width: 100vw; }
   footer .resultFraseContainer {
     display: flex;
@@ -103,6 +158,8 @@ footer {
     align-items: center;
     height: 10vh;
     background-color: #4F203E; }
+    footer .resultFraseContainer .saveButton {
+      position: relative; }
     footer .resultFraseContainer p {
       display: flex;
       margin-top: 5px;
@@ -115,7 +172,7 @@ footer {
       font-weight: 300;
       color: rgba(255, 255, 255, 0.45); }
       footer .resultFraseContainer p::-webkit-scrollbar {
-        height: 5px;
+        height: 7px;
         transition: all 1s; }
       footer .resultFraseContainer p::-webkit-scrollbar-thumb {
         background: #F1E8FA;
@@ -124,11 +181,13 @@ footer {
         footer .resultFraseContainer p::-webkit-scrollbar-thumb:hover {
           background: #f4e9ff9c; }
     footer .resultFraseContainer button {
-      width: 15%;
+      width: 10%;
+      margin-inline: 2%;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: transparent; }
+      background: transparent;
+      cursor: pointer; }
   footer .playAndSaveContainer {
     height: 100%;
     background-color: #C9308C;
@@ -151,7 +210,7 @@ footer {
       transition: all .5s; }
       footer .playAndSaveContainer .playButton:hover {
         background-color: #DBD3E3; }
-    footer .playAndSaveContainer .saveButton {
+    footer .playAndSaveContainer .voiceButton {
       cursor: pointer;
       border-radius: 100px;
       background-color: #F1E8FA;
@@ -161,7 +220,7 @@ footer {
       height: 50%;
       width: 15%;
       transition: all .5s; }
-      footer .playAndSaveContainer .saveButton:hover {
+      footer .playAndSaveContainer .voiceButton:hover {
         background-color: #DBD3E3; }
 
 .createToggleONBackground {

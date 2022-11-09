@@ -97,16 +97,21 @@ footer{
     flex-direction: column;
     position: fixed;
     width: 100vw;
+
     .resultFraseContainer{
+        
         display: flex;
         justify-content: center;
         align-items: center;
         height: 10vh;
         background-color: #4F203E;
+
         p{  
             font-weight: 300;
             color: rgba(255, 255, 255, 0.45);
-        }
+        }        
+
+
     }
     .playAndSaveContainer{
         height: 100%;
@@ -128,7 +133,7 @@ footer{
             border-radius: 7px;
             background-color: $whiteColor;
         }
-        .saveButton{
+        .voiceButton{
             border-radius: 7px;
             background-color: $whiteColor;
             display: grid;
@@ -138,6 +143,7 @@ footer{
             width: 15%;
 
         }
+        
     }
 }
 .createToggle{

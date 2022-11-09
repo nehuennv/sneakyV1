@@ -42,6 +42,7 @@ header{
         width: 75%;
         justify-content: space-evenly;
             button{
+                cursor: pointer;
                 font-size: 16px;
                 background-color: transparent;
                 color: rgba(255, 255, 255, 0.74);
@@ -57,65 +58,141 @@ header{
             }
     }
 }
-main{
-    .containerPalabras{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        flex-wrap: wrap;
-        .crearButton{
-            cursor: pointer;
-            transition: all .5s;
-            padding-inline: 20px;
-            border-radius: 7px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 75%;
-            height: 7vh;
-            background-color: $FirstColor;
-            color: $whiteColor;
-            margin-bottom: 25px;
-            &:hover{
-                background-color: #A02A71;
-            }
-            p{
-                font-weight: 500;
-            }
-        }
-        .optionWord{
-            cursor: pointer;
-            padding-inline: 20px;
-            border-radius: 7px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 75%;
-            height: 7vh;
-            background-color: $whiteColor;
-            color: $backgroundColor;
-            margin-bottom: 25px;
-            transition: all .5s;
-            &:hover{
-                p{
-                color: $FirstColor;
-            }}
-            p{  
-                transition: all .5s;
-                color: #717171;
-                font-weight: 500;
+.containerFrasesOn{
+    transform: translateX(0vh) !important;
+}
+.containerFrases{
+    transition: all .5s;
+    background-color: $backgroundColor;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 68vh;
+    width: 100vw;
+    position: fixed;
+    transform: translateX(100vh);
 
-            }
+    p{
+        color: rgba(255, 255, 255, 0.33);
+    }
+
+    .savedWord{
+        cursor: pointer;
+        padding-inline: 20px;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 75%;
+        min-height: 7vh;
+        padding-block: 10px;
+        background-color: #F1E8FA;
+        color: #1B191D;
+        margin-bottom: 25px;
+        transition: all .5s;
+        &:hover{
+            p{
+            color: $FirstColor;
+        }}
+        p{  
+            
+            max-width: 100%;
+            transition: all .5s;
+            color: #717171;
+            font-weight: 500;
+
         }
     }
-    .inicioInfo{
+}
+main{
+    height: 68vh;
 
+    overflow-y: scroll;
+    overflow-x: hidden;
+    &::-webkit-scrollbar{
+
+        width: 5px;
+        transition: all 1s;
+    }
+    &::-webkit-scrollbar-thumb{
+        background: $FirstColor;
+        border-radius: 10px;
+        transition: all 1s;
+        &:hover{
+            background: #A02A71;
+        }
+    }
+    .containerMain{
+        width: 100vh;
+        display: flex;
+        flex-direction: column;
+
+
+
+
+
+        .containerPalabras{
+            width: 100vw;
+            justify-content: center ;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            .crearButton{
+                cursor: pointer;
+                transition: all .5s;
+                padding-inline: 20px;
+                border-radius: 7px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 75%;
+                height: 7vh;
+                background-color: $FirstColor;
+                color: $whiteColor;
+                margin-bottom: 25px;
+                &:hover{
+                    background-color: #A02A71;
+                }
+                p{
+                    font-weight: 500;
+                }
+            }
+            .optionWord{
+                cursor: pointer;
+                padding-inline: 20px;
+                border-radius: 7px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 75%;
+                height: 7vh;
+                background-color: $whiteColor;
+                color: $backgroundColor;
+                margin-bottom: 25px;
+                transition: all .5s;
+                &:hover{
+                    p{
+                    color: $FirstColor;
+                }}
+                p{  
+                    
+                    max-width: 100%;
+                    transition: all .5s;
+                    color: #717171;
+                    font-weight: 500;
     
-        p{
-            font-size: 14px;
-            margin-inline: 20px;
-            text-align: center;
-            color: rgba(255, 255, 255, 0.33);
+                }
+            }
+        }
+        .inicioInfo{
+    
+        
+            p{
+                font-size: 14px;
+                margin-inline: 20px;
+                text-align: center;
+                color: rgba(255, 255, 255, 0.33);
+            }
         }
     }
 
@@ -124,7 +201,7 @@ footer{
     height: 20%;
     display: flex;
     flex-direction: column;
-    position: fixed;
+    // position: fixed;
     width: 100vw;
     .resultFraseContainer{
         display: flex;
@@ -132,6 +209,11 @@ footer{
         align-items: center;
         height: 10vh;
         background-color: #4F203E;
+        .saveButton{
+            position: relative;
+
+            
+        }
         p{  
             display: flex;
             margin-top: 5px;
@@ -145,7 +227,7 @@ footer{
             color: rgba(255, 255, 255, 0.45);
             &::-webkit-scrollbar{
 
-                height: 5px;
+                height: 7px;
                 transition: all 1s;
             }
             &::-webkit-scrollbar-thumb{
@@ -158,11 +240,14 @@ footer{
             }
         }
         button{
-            width: 15%;
+            
+            width: 10%;
+            margin-inline: 2%;
             display: flex;
             justify-content: center;
             align-items: center;
             background: transparent;
+            cursor: pointer;
         }
     }
     .playAndSaveContainer{
@@ -189,7 +274,7 @@ footer{
                 background-color: #DBD3E3;
             }
         }
-        .saveButton{
+        .voiceButton{
             cursor: pointer;
             border-radius: 100px;
             background-color: $whiteColor;

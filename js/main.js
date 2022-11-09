@@ -6,6 +6,10 @@ let addButtonWord = document.querySelector('.addButtonWord')
 let containerPalabras = document.querySelector('.containerPalabras')
 let inicioInfo = document.querySelector('.inicioInfo')
 let removeOption = document.querySelector('.removeOption')
+let saveButton = document.querySelector('.saveButton')
+let buttonFrases = document.querySelector('.buttonFrases')
+let containerFrases = document.querySelector('.containerFrases')
+let buttonPalabras = document.querySelector('.buttonPalabras')
 
 
 
@@ -256,7 +260,7 @@ playButton.addEventListener("click", ()=>{
         background: "#C9308C",
         borderRadius: "7px"
       },
-      onClick: function(){} // Callback after click
+      onClick: function(){} 
     }).showToast();
   }else{
     playText()
@@ -265,7 +269,7 @@ playButton.addEventListener("click", ()=>{
 
 })
 
-let genderVoiceButton = document.querySelector('.saveButton')
+let genderVoiceButton = document.querySelector('.voiceButton')
 let menuGenderBackground = document.querySelector('.menuGenderBackground')
 let closeGenderSelector = document.querySelector('.closeGenderSelector')
 
@@ -277,23 +281,104 @@ genderVoiceButton.addEventListener('click',()=>{
 
 })
 
+/////////////////////////////////logica Frases Guardadas////////////////////////////////
+saveButton.addEventListener("click",()=>{
+  
+  let textPrevious = document.querySelector('.textPrevious')
+
+  if(textPrevious.textContent == 'Tu frase aparecera aqui'){
+    Toastify({
+      text:'Recuerda ingresar una palabra',
+      duration: 2500,
+      gravity: "top",
+      position: "center", 
+      stopOnFocus: true, 
+      style: {
+        cursor:"default",
+        fontSize:"14px",
+        background: "#C9308C",
+        borderRadius: "7px"
+      },
+      onClick: function(){} // Callback after click
+    }).showToast();
+  }else{
+    addFrases(textPrevious.textContent)
+  }
+})
+function addFrases(string) {
+  let textFrases = document.querySelector('.textFrases')
+  if(!textFrases.textContent.length == 0){
+    textFrases.textContent = ""
+  }
+  let newDiv = document.createElement("div")
+
+  let classSaved = string.split(" ")
 
 
+  newDiv.className = "savedWord savedWord" + "-" +   classSaved.join('-')
 
+  newDiv.innerHTML=
+  `
+  <p>${string}</p>
+  `
+  containerFrases.appendChild(newDiv)
 
+  let savedOption = document.querySelector('.savedWord' + "-" +   classSaved.join('-'))
 
+  savedOption.addEventListener("click",()=>{
+    
+    let textPrevious = document.querySelector('.textPrevious')
+    textPrevious.style.color ="#fff"
+    textPrevious.style.fontWeight ="500"
+    textPrevious.textContent = savedOption.textContent
+  })
 
+  Toastify({
+    text:'Agregada a frases',
+    duration: 2500,
+    gravity: "top",
+    position: "center", 
+    stopOnFocus: true, 
+    style: {
+      cursor:"default",
+      fontSize:"14px",
+      background: "#46B990",
+      borderRadius: "7px"
+    },
+    onClick: function(){} 
+  }).showToast();
+}
+buttonFrases.addEventListener("click",()=>{
+  saveButton.style.opacity="0"
+  saveButton.style.pointerEvents="none"
+  containerFrases.classList.add('containerFrasesOn')
+  buttonFrases.classList.add('navbarSelected')
+  buttonPalabras.classList.remove('navbarSelected')
+  let textPrevious = document.querySelector('.textPrevious')
 
+  textPrevious.textContent = "Tu frase aparecera aqui"
+  textPrevious.style.color ="rgba(255, 255, 255, 0.45)"
+  textPrevious.style.fontWeight ="300"
 
-  // function CreteOptions(){
-  //   let lastOption = optionsWords[optionsWords.length - 1]
-  //   lastOption.forEach(el => {
-  //     let newDiv = document.createElement("div")
-  //     newDiv.className = "optionWord"
-  //     newDiv.innerHTML=
-  //     `
-  //     <p>${el}</p>
-  //     `
-  //     containerPalabras.appendChild(newDiv)
-  //   });
-  // };
+  if(textPrevious.textContent != "Tu frase aparecera aqui"){
+    textPrevious.textContent= ""
+  }
+})
+buttonPalabras.addEventListener("click",()=>{
+  saveButton.style.opacity="1"
+  saveButton.style.pointerEvents="all"
+  containerFrases.classList.remove('containerFrasesOn')
+  buttonFrases.classList.remove('navbarSelected')
+  buttonPalabras.classList.add('navbarSelected')
+
+  let textPrevious = document.querySelector('.textPrevious')
+
+  textPrevious.textContent = "Tu frase aparecera aqui"
+  textPrevious.style.color ="rgba(255, 255, 255, 0.45)"
+  textPrevious.style.fontWeight ="300"
+
+  if(textPrevious.textContent != "Tu frase aparecera aqui"){
+    textPrevious.textContent= ""
+  }
+
+})
