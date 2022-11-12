@@ -13,16 +13,32 @@ $whiteColor:#F1E8FA;
 	outline: none;
     font-family: 'Poppins', sans-serif;
 }
+
+
 body{
-    height: 100vh;
+    height: 100vh ;
+    width: 100vw;
     background-color: $backgroundColor;
+    overflow: hidden;
     section{
         height: 80%;
     }
 }
+.headerPalabrasOn{
+    background-image: url(../assets/svg/icons/createHeader.svg) !important;
+}
+.headerPalabrasOff{
+    background-image: url(../assets/svg/icons/createHeaderOff.svg) !important;
+}
+.headerFrasesOn{
+    background-image: url(../assets/svg/icons/saveHeaderOn.svg) !important;
+}
+.headerFrasesOff{
+    background-image: url(../assets/svg/icons/saveHeaderOff.svg) !important;
+}
 header{
     height: 12vh;
-    width: 100%;
+    width: 100vw;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30,17 +46,38 @@ header{
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 20%;
-        img{
-            
-        }
+
+
     }
     .navbarHeader{
         display: flex;
         align-items: center;
-        justify-content: center;
-        width: 75%;
-        justify-content: space-evenly;
+        justify-content: flex-end;
+        width: 50%;
+
+
+        .buttonPalabras{
+            width: 20px;
+            height: 20px;
+            transition: all .5s;
+            background-image: url(../assets/svg/icons/createHeaderOff.svg);
+            &:hover{
+                background-image: url(../assets/svg/icons/createHeader.svg);
+
+            }
+        }
+        .buttonFrases{
+            margin-left: 30px;
+            height: 20px;
+            width: 17px;
+            transition: all .5s;
+            background-repeat: no-repeat;
+            background-image: url(../assets/svg/icons/saveHeaderOff.svg);
+            &:hover{
+                background-image: url(../assets/svg/icons/saveHeaderOn.svg);
+
+            }
+        }
             button{
                 cursor: pointer;
                 font-size: 16px;
@@ -59,56 +96,22 @@ header{
     }
 }
 .containerFrasesOn{
-    transform: translateX(0vh) !important;
+    transform: translateX(-100vw) !important;
 }
-.containerFrases{
-    transition: all .5s;
-    background-color: $backgroundColor;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 68vh;
-    width: 100vw;
-    position: fixed;
-    transform: translateX(100vh);
-
-    p{
-        color: rgba(255, 255, 255, 0.33);
-    }
-
-    .savedWord{
-        cursor: pointer;
-        padding-inline: 20px;
-        border-radius: 7px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 75%;
-        min-height: 7vh;
-        padding-block: 10px;
-        background-color: #F1E8FA;
-        color: #1B191D;
-        margin-bottom: 25px;
-        transition: all .5s;
-        &:hover{
-            p{
-            color: $FirstColor;
-        }}
-        p{  
-            
-            max-width: 100%;
-            transition: all .5s;
-            color: #717171;
-            font-weight: 500;
-
-        }
-    }
+.overYHidden{
+    overflow-y: hidden !important;
 }
+
 main{
-    height: 68vh;
+    height: max-content;
+    width: 200vw;
+    display: flex;
 
-    overflow-y: scroll;
-    overflow-x: hidden;
+    flex-direction: row;
+    transition: .6s;
+
+
+
     &::-webkit-scrollbar{
 
         width: 5px;
@@ -122,21 +125,17 @@ main{
             background: #A02A71;
         }
     }
-    .containerMain{
-        width: 100vh;
-        display: flex;
-        flex-direction: column;
-
-
-
-
-
         .containerPalabras{
             width: 100vw;
-            justify-content: center ;
+            justify-content: center;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             flex-wrap: wrap;
+            height: 68vh;
+            overflow-y: scroll !important;
+            align-content: flex-start;
+
+
             .crearButton{
                 cursor: pointer;
                 transition: all .5s;
@@ -184,6 +183,48 @@ main{
                 }
             }
         }
+        .containerFrases{
+            transition: all .5s;
+            background-color: $backgroundColor;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: max-content;
+            width: 100vw;
+            overflow-y: scroll;
+
+        
+            p{
+                color: rgba(255, 255, 255, 0.33);
+            }
+        
+            .savedWord{
+                cursor: pointer;
+                padding-inline: 20px;
+                border-radius: 7px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 75%;
+                height: 7vh;
+                background-color: $whiteColor;
+                color: $backgroundColor;
+                margin-bottom: 25px;
+                transition: all .5s;
+                &:hover{
+                    p{
+                    color: $FirstColor;
+                }}
+                p{  
+                    
+                    max-width: 100%;
+                    transition: all .5s;
+                    color: #717171;
+                    font-weight: 500;
+    
+                }
+            }
+        }
         .inicioInfo{
     
         
@@ -194,7 +235,7 @@ main{
                 color: rgba(255, 255, 255, 0.33);
             }
         }
-    }
+    
 
 }
 footer{
@@ -203,6 +244,7 @@ footer{
     flex-direction: column;
     // position: fixed;
     width: 100vw;
+    z-index: 100;
     .resultFraseContainer{
         display: flex;
         justify-content: center;

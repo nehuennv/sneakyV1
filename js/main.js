@@ -9,7 +9,9 @@ let removeOption = document.querySelector('.removeOption')
 let saveButton = document.querySelector('.saveButton')
 let buttonFrases = document.querySelector('.buttonFrases')
 let containerFrases = document.querySelector('.containerFrases')
+let containerMain = document.querySelector('.containerMain')
 let buttonPalabras = document.querySelector('.buttonPalabras')
+let main = document.querySelector('main')
 
 
 
@@ -17,6 +19,7 @@ let optionsWords = []
 
 ////////////cargar voces
 
+buttonPalabras.classList.add('headerPalabrasOn')
 
 const IDIOMAS_PREFERIDOS = ["es-MX", "es-US", "es-ES", "es_US", "es_ES"];
 
@@ -349,11 +352,25 @@ function addFrases(string) {
   }).showToast();
 }
 buttonFrases.addEventListener("click",()=>{
+
+  // let heightPalabras = window.getComputedStyle(containerPalabras);
+  // let containerPalabrasHeight = heightPalabras.getPropertyValue('height');
+  // main.style.height = "max-content"
+
+  // let heightFrases = window.getComputedStyle(containerFrases);
+  // let containerFrasesHeight = heightFrases.getPropertyValue('height');
+  // console.log(containerFrasesHeight);
+
+  // containerFrases.style.height = containerFrasesHeight
+
+  buttonFrases.classList.add('headerFrasesOn')
+  buttonPalabras.classList.remove('headerPalabrasOn')
   saveButton.style.opacity="0"
   saveButton.style.pointerEvents="none"
-  containerFrases.classList.add('containerFrasesOn')
-  buttonFrases.classList.add('navbarSelected')
-  buttonPalabras.classList.remove('navbarSelected')
+  main.classList.add('containerFrasesOn')
+  containerFrases.classList.remove('overYHidden')
+  containerPalabras.classList.add('overYHidden')
+
   let textPrevious = document.querySelector('.textPrevious')
 
   textPrevious.textContent = "Tu frase aparecera aqui"
@@ -365,11 +382,26 @@ buttonFrases.addEventListener("click",()=>{
   }
 })
 buttonPalabras.addEventListener("click",()=>{
+
+
+  // let heightFrases = window.getComputedStyle(containerFrases);
+  // let containerFrasesHeight = heightFrases.getPropertyValue('height');
+  // console.log(containerFrasesHeight);
+
+  // main.style.height = "max-content"
+
+  // let heightPalabras = window.getComputedStyle(containerPalabras);
+  // let containerPalabrasHeight = heightPalabras.getPropertyValue('height');
+  // containerPalabras.style.height = containerPalabrasHeight
+  buttonFrases.classList.remove('headerFrasesOn')
+  buttonPalabras.classList.add('headerPalabrasOn')
   saveButton.style.opacity="1"
   saveButton.style.pointerEvents="all"
-  containerFrases.classList.remove('containerFrasesOn')
-  buttonFrases.classList.remove('navbarSelected')
-  buttonPalabras.classList.add('navbarSelected')
+  main.classList.remove('containerFrasesOn')
+  containerFrases.classList.add('overYHidden')
+  containerPalabras.classList.remove('overYHidden')
+
+
 
   let textPrevious = document.querySelector('.textPrevious')
 

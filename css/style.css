@@ -10,27 +10,55 @@
 
 body {
   height: 100vh;
-  background-color: #1B191D; }
+  width: 100vw;
+  background-color: #1B191D;
+  overflow: hidden; }
   body section {
     height: 80%; }
 
+.headerPalabrasOn {
+  background-image: url(../assets/svg/icons/createHeader.svg) !important; }
+
+.headerPalabrasOff {
+  background-image: url(../assets/svg/icons/createHeaderOff.svg) !important; }
+
+.headerFrasesOn {
+  background-image: url(../assets/svg/icons/saveHeaderOn.svg) !important; }
+
+.headerFrasesOff {
+  background-image: url(../assets/svg/icons/saveHeaderOff.svg) !important; }
+
 header {
   height: 12vh;
-  width: 100%;
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center; }
   header .logoHeader {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 20%; }
+    justify-content: center; }
   header .navbarHeader {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 75%;
-    justify-content: space-evenly; }
+    justify-content: flex-end;
+    width: 50%; }
+    header .navbarHeader .buttonPalabras {
+      width: 20px;
+      height: 20px;
+      transition: all .5s;
+      background-image: url(../assets/svg/icons/createHeaderOff.svg); }
+      header .navbarHeader .buttonPalabras:hover {
+        background-image: url(../assets/svg/icons/createHeader.svg); }
+    header .navbarHeader .buttonFrases {
+      margin-left: 30px;
+      height: 20px;
+      width: 17px;
+      transition: all .5s;
+      background-repeat: no-repeat;
+      background-image: url(../assets/svg/icons/saveHeaderOff.svg); }
+      header .navbarHeader .buttonFrases:hover {
+        background-image: url(../assets/svg/icons/saveHeaderOn.svg); }
     header .navbarHeader button {
       cursor: pointer;
       font-size: 16px;
@@ -45,46 +73,17 @@ header {
       color: #F1E8FA; }
 
 .containerFrasesOn {
-  transform: translateX(0vh) !important; }
+  transform: translateX(-100vw) !important; }
 
-.containerFrases {
-  transition: all .5s;
-  background-color: #1B191D;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 68vh;
-  width: 100vw;
-  position: fixed;
-  transform: translateX(100vh); }
-  .containerFrases p {
-    color: rgba(255, 255, 255, 0.33); }
-  .containerFrases .savedWord {
-    cursor: pointer;
-    padding-inline: 20px;
-    border-radius: 7px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 75%;
-    min-height: 7vh;
-    padding-block: 10px;
-    background-color: #F1E8FA;
-    color: #1B191D;
-    margin-bottom: 25px;
-    transition: all .5s; }
-    .containerFrases .savedWord:hover p {
-      color: #C9308C; }
-    .containerFrases .savedWord p {
-      max-width: 100%;
-      transition: all .5s;
-      color: #717171;
-      font-weight: 500; }
+.overYHidden {
+  overflow-y: hidden !important; }
 
 main {
-  height: 68vh;
-  overflow-y: scroll;
-  overflow-x: hidden; }
+  height: max-content;
+  width: 200vw;
+  display: flex;
+  flex-direction: row;
+  transition: .6s; }
   main::-webkit-scrollbar {
     width: 5px;
     transition: all 1s; }
@@ -94,64 +93,95 @@ main {
     transition: all 1s; }
     main::-webkit-scrollbar-thumb:hover {
       background: #A02A71; }
-  main .containerMain {
-    width: 100vh;
+  main .containerPalabras {
+    width: 100vw;
+    justify-content: center;
     display: flex;
-    flex-direction: column; }
-    main .containerMain .containerPalabras {
-      width: 100vw;
-      justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    height: 68vh;
+    overflow-y: scroll !important;
+    align-content: flex-start; }
+    main .containerPalabras .crearButton {
+      cursor: pointer;
+      transition: all .5s;
+      padding-inline: 20px;
+      border-radius: 7px;
       display: flex;
       align-items: center;
-      flex-wrap: wrap; }
-      main .containerMain .containerPalabras .crearButton {
-        cursor: pointer;
+      justify-content: space-between;
+      width: 75%;
+      height: 7vh;
+      background-color: #C9308C;
+      color: #F1E8FA;
+      margin-bottom: 25px; }
+      main .containerPalabras .crearButton:hover {
+        background-color: #A02A71; }
+      main .containerPalabras .crearButton p {
+        font-weight: 500; }
+    main .containerPalabras .optionWord {
+      cursor: pointer;
+      padding-inline: 20px;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 75%;
+      height: 7vh;
+      background-color: #F1E8FA;
+      color: #1B191D;
+      margin-bottom: 25px;
+      transition: all .5s; }
+      main .containerPalabras .optionWord:hover p {
+        color: #C9308C; }
+      main .containerPalabras .optionWord p {
+        max-width: 100%;
         transition: all .5s;
-        padding-inline: 20px;
-        border-radius: 7px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 75%;
-        height: 7vh;
-        background-color: #C9308C;
-        color: #F1E8FA;
-        margin-bottom: 25px; }
-        main .containerMain .containerPalabras .crearButton:hover {
-          background-color: #A02A71; }
-        main .containerMain .containerPalabras .crearButton p {
-          font-weight: 500; }
-      main .containerMain .containerPalabras .optionWord {
-        cursor: pointer;
-        padding-inline: 20px;
-        border-radius: 7px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 75%;
-        height: 7vh;
-        background-color: #F1E8FA;
-        color: #1B191D;
-        margin-bottom: 25px;
-        transition: all .5s; }
-        main .containerMain .containerPalabras .optionWord:hover p {
-          color: #C9308C; }
-        main .containerMain .containerPalabras .optionWord p {
-          max-width: 100%;
-          transition: all .5s;
-          color: #717171;
-          font-weight: 500; }
-    main .containerMain .inicioInfo p {
-      font-size: 14px;
-      margin-inline: 20px;
-      text-align: center;
+        color: #717171;
+        font-weight: 500; }
+  main .containerFrases {
+    transition: all .5s;
+    background-color: #1B191D;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: max-content;
+    width: 100vw;
+    overflow-y: scroll; }
+    main .containerFrases p {
       color: rgba(255, 255, 255, 0.33); }
+    main .containerFrases .savedWord {
+      cursor: pointer;
+      padding-inline: 20px;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 75%;
+      height: 7vh;
+      background-color: #F1E8FA;
+      color: #1B191D;
+      margin-bottom: 25px;
+      transition: all .5s; }
+      main .containerFrases .savedWord:hover p {
+        color: #C9308C; }
+      main .containerFrases .savedWord p {
+        max-width: 100%;
+        transition: all .5s;
+        color: #717171;
+        font-weight: 500; }
+  main .inicioInfo p {
+    font-size: 14px;
+    margin-inline: 20px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.33); }
 
 footer {
   height: 20%;
   display: flex;
   flex-direction: column;
-  width: 100vw; }
+  width: 100vw;
+  z-index: 100; }
   footer .resultFraseContainer {
     display: flex;
     justify-content: center;
