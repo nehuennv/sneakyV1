@@ -367,9 +367,9 @@ buttonFrases.addEventListener("click",()=>{
   buttonPalabras.classList.remove('headerPalabrasOn')
   saveButton.style.opacity="0"
   saveButton.style.pointerEvents="none"
-  main.classList.add('containerFrasesOn')
-  containerFrases.classList.remove('overYHidden')
-  containerPalabras.classList.add('overYHidden')
+  containerFrases.classList.add('containerFrasesOn')
+  containerPalabras.classList.add('containerPalabrasOn')
+
 
   let textPrevious = document.querySelector('.textPrevious')
 
@@ -397,9 +397,9 @@ buttonPalabras.addEventListener("click",()=>{
   buttonPalabras.classList.add('headerPalabrasOn')
   saveButton.style.opacity="1"
   saveButton.style.pointerEvents="all"
-  main.classList.remove('containerFrasesOn')
-  containerFrases.classList.add('overYHidden')
-  containerPalabras.classList.remove('overYHidden')
+  containerFrases.classList.remove('containerFrasesOn')
+  containerPalabras.classList.remove('containerPalabrasOn')
+
 
 
 

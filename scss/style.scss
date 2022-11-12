@@ -19,25 +19,28 @@ body{
     height: 100vh ;
     width: 100vw;
     background-color: $backgroundColor;
-    overflow: hidden;
+    overflow-y: hidden;
+
     section{
         height: 80%;
+        width: 100vw;
+    }
+    footer{
+        height: 20%;
+        width: 100vw;
     }
 }
 .headerPalabrasOn{
     background-image: url(../assets/svg/icons/createHeader.svg) !important;
 }
-.headerPalabrasOff{
-    background-image: url(../assets/svg/icons/createHeaderOff.svg) !important;
-}
+
 .headerFrasesOn{
     background-image: url(../assets/svg/icons/saveHeaderOn.svg) !important;
 }
-.headerFrasesOff{
-    background-image: url(../assets/svg/icons/saveHeaderOff.svg) !important;
-}
+
+
 header{
-    height: 12vh;
+    height: 15%;
     width: 100vw;
     display: flex;
     align-items: center;
@@ -95,46 +98,51 @@ header{
             }
     }
 }
+.containerPalabrasOn{
+    transform: translateX(-100vh) !important;
+}
 .containerFrasesOn{
-    transform: translateX(-100vw) !important;
+    transform: translateX(0vw) !important;
 }
 .overYHidden{
-    overflow-y: hidden !important;
+    overflow: hidden !important;
 }
 
-main{
-    height: max-content;
-    width: 200vw;
+.main{
+    height: 85%;
+    width: 100vw;
     display: flex;
-
-    flex-direction: row;
-    transition: .6s;
-
-
-
+    overflow-y: hidden;
     &::-webkit-scrollbar{
+        display: none;
+    }
 
-        width: 5px;
-        transition: all 1s;
-    }
-    &::-webkit-scrollbar-thumb{
-        background: $FirstColor;
-        border-radius: 10px;
-        transition: all 1s;
-        &:hover{
-            background: #A02A71;
-        }
-    }
+
+
         .containerPalabras{
-            width: 100vw;
+            position: absolute;
+            width: 100%;
             justify-content: center;
+            transition: .6s;
             display: flex;
             align-items: flex-start;
             flex-wrap: wrap;
-            height: 68vh;
+            height: 100%;
             overflow-y: scroll !important;
             align-content: flex-start;
+            &::-webkit-scrollbar{
 
+                width: 5px;
+                transition: all 1s;
+            }
+            &::-webkit-scrollbar-thumb{
+                background: $FirstColor;
+                border-radius: 10px;
+                transition: all 1s;
+                &:hover{
+                    background: #A02A71;
+                }
+            }
 
             .crearButton{
                 cursor: pointer;
@@ -164,7 +172,7 @@ main{
                 align-items: center;
                 justify-content: space-between;
                 width: 75%;
-                height: 7vh;
+                padding-block: 2vh;
                 background-color: $whiteColor;
                 color: $backgroundColor;
                 margin-bottom: 25px;
@@ -184,16 +192,30 @@ main{
             }
         }
         .containerFrases{
-            transition: all .5s;
+            height: 100%;
+            width: 100%;
+            position:relative;
+            transition: .6s;            
             background-color: $backgroundColor;
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: max-content;
-            width: 100vw;
-            overflow-y: scroll;
+            transform: translateX(100vh);
+            overflow-y: scroll !important;
 
-        
+            &::-webkit-scrollbar{
+
+                width: 5px;
+                transition: all 1s;
+            }
+            &::-webkit-scrollbar-thumb{
+                background: $FirstColor;
+                border-radius: 10px;
+                transition: all 1s;
+                &:hover{
+                    background: #A02A71;
+                }
+            }
             p{
                 color: rgba(255, 255, 255, 0.33);
             }
@@ -206,7 +228,7 @@ main{
                 align-items: center;
                 justify-content: space-between;
                 width: 75%;
-                height: 7vh;
+                padding-block: 2vh;
                 background-color: $whiteColor;
                 color: $backgroundColor;
                 margin-bottom: 25px;
@@ -239,7 +261,7 @@ main{
 
 }
 footer{
-    height: 20%;
+
     display: flex;
     flex-direction: column;
     // position: fixed;

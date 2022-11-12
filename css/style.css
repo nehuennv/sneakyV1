@@ -12,24 +12,22 @@ body {
   height: 100vh;
   width: 100vw;
   background-color: #1B191D;
-  overflow: hidden; }
+  overflow-y: hidden; }
   body section {
-    height: 80%; }
+    height: 80%;
+    width: 100vw; }
+  body footer {
+    height: 20%;
+    width: 100vw; }
 
 .headerPalabrasOn {
   background-image: url(../assets/svg/icons/createHeader.svg) !important; }
 
-.headerPalabrasOff {
-  background-image: url(../assets/svg/icons/createHeaderOff.svg) !important; }
-
 .headerFrasesOn {
   background-image: url(../assets/svg/icons/saveHeaderOn.svg) !important; }
 
-.headerFrasesOff {
-  background-image: url(../assets/svg/icons/saveHeaderOff.svg) !important; }
-
 header {
-  height: 12vh;
+  height: 15%;
   width: 100vw;
   display: flex;
   align-items: center;
@@ -72,37 +70,43 @@ header {
       font-weight: 500;
       color: #F1E8FA; }
 
+.containerPalabrasOn {
+  transform: translateX(-100vh) !important; }
+
 .containerFrasesOn {
-  transform: translateX(-100vw) !important; }
+  transform: translateX(0vw) !important; }
 
 .overYHidden {
-  overflow-y: hidden !important; }
+  overflow: hidden !important; }
 
-main {
-  height: max-content;
-  width: 200vw;
+.main {
+  height: 85%;
+  width: 100vw;
   display: flex;
-  flex-direction: row;
-  transition: .6s; }
-  main::-webkit-scrollbar {
-    width: 5px;
-    transition: all 1s; }
-  main::-webkit-scrollbar-thumb {
-    background: #C9308C;
-    border-radius: 10px;
-    transition: all 1s; }
-    main::-webkit-scrollbar-thumb:hover {
-      background: #A02A71; }
-  main .containerPalabras {
-    width: 100vw;
+  overflow-y: hidden; }
+  .main::-webkit-scrollbar {
+    display: none; }
+  .main .containerPalabras {
+    position: absolute;
+    width: 100%;
     justify-content: center;
+    transition: .6s;
     display: flex;
     align-items: flex-start;
     flex-wrap: wrap;
-    height: 68vh;
+    height: 100%;
     overflow-y: scroll !important;
     align-content: flex-start; }
-    main .containerPalabras .crearButton {
+    .main .containerPalabras::-webkit-scrollbar {
+      width: 5px;
+      transition: all 1s; }
+    .main .containerPalabras::-webkit-scrollbar-thumb {
+      background: #C9308C;
+      border-radius: 10px;
+      transition: all 1s; }
+      .main .containerPalabras::-webkit-scrollbar-thumb:hover {
+        background: #A02A71; }
+    .main .containerPalabras .crearButton {
       cursor: pointer;
       transition: all .5s;
       padding-inline: 20px;
@@ -115,11 +119,11 @@ main {
       background-color: #C9308C;
       color: #F1E8FA;
       margin-bottom: 25px; }
-      main .containerPalabras .crearButton:hover {
+      .main .containerPalabras .crearButton:hover {
         background-color: #A02A71; }
-      main .containerPalabras .crearButton p {
+      .main .containerPalabras .crearButton p {
         font-weight: 500; }
-    main .containerPalabras .optionWord {
+    .main .containerPalabras .optionWord {
       cursor: pointer;
       padding-inline: 20px;
       border-radius: 7px;
@@ -127,30 +131,41 @@ main {
       align-items: center;
       justify-content: space-between;
       width: 75%;
-      height: 7vh;
+      padding-block: 2vh;
       background-color: #F1E8FA;
       color: #1B191D;
       margin-bottom: 25px;
       transition: all .5s; }
-      main .containerPalabras .optionWord:hover p {
+      .main .containerPalabras .optionWord:hover p {
         color: #C9308C; }
-      main .containerPalabras .optionWord p {
+      .main .containerPalabras .optionWord p {
         max-width: 100%;
         transition: all .5s;
         color: #717171;
         font-weight: 500; }
-  main .containerFrases {
-    transition: all .5s;
+  .main .containerFrases {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    transition: .6s;
     background-color: #1B191D;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: max-content;
-    width: 100vw;
-    overflow-y: scroll; }
-    main .containerFrases p {
+    transform: translateX(100vh);
+    overflow-y: scroll !important; }
+    .main .containerFrases::-webkit-scrollbar {
+      width: 5px;
+      transition: all 1s; }
+    .main .containerFrases::-webkit-scrollbar-thumb {
+      background: #C9308C;
+      border-radius: 10px;
+      transition: all 1s; }
+      .main .containerFrases::-webkit-scrollbar-thumb:hover {
+        background: #A02A71; }
+    .main .containerFrases p {
       color: rgba(255, 255, 255, 0.33); }
-    main .containerFrases .savedWord {
+    .main .containerFrases .savedWord {
       cursor: pointer;
       padding-inline: 20px;
       border-radius: 7px;
@@ -158,26 +173,25 @@ main {
       align-items: center;
       justify-content: space-between;
       width: 75%;
-      height: 7vh;
+      padding-block: 2vh;
       background-color: #F1E8FA;
       color: #1B191D;
       margin-bottom: 25px;
       transition: all .5s; }
-      main .containerFrases .savedWord:hover p {
+      .main .containerFrases .savedWord:hover p {
         color: #C9308C; }
-      main .containerFrases .savedWord p {
+      .main .containerFrases .savedWord p {
         max-width: 100%;
         transition: all .5s;
         color: #717171;
         font-weight: 500; }
-  main .inicioInfo p {
+  .main .inicioInfo p {
     font-size: 14px;
     margin-inline: 20px;
     text-align: center;
     color: rgba(255, 255, 255, 0.33); }
 
 footer {
-  height: 20%;
   display: flex;
   flex-direction: column;
   width: 100vw;
