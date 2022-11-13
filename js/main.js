@@ -12,12 +12,20 @@ let buttonFrases = document.querySelector('.buttonFrases')
 let containerFrases = document.querySelector('.containerFrases')
 let containerMain = document.querySelector('.containerMain')
 let buttonPalabras = document.querySelector('.buttonPalabras')
+let voiceButton = document.querySelector('.voiceButton')
 let main = document.querySelector('main')
 let searcher = document.querySelector('.searcher')
+let logoHeader = document.querySelector('.logoHeader')
+let welcomeSpeako = document.querySelector('.welcomeSpeako')
+let acceptWelcome = document.querySelector('.acceptWelcome')
 let rangeVoice = document.querySelector('#rate')
 
-
-
+logoHeader.addEventListener('click',()=>{
+  welcomeSpeako.classList.add('welcomeSpeakoOn')
+  acceptWelcome.addEventListener('click', ()=>{
+    welcomeSpeako.classList.remove('welcomeSpeakoOn')
+  })
+})
 
 
 let optionsWords = []
@@ -161,7 +169,9 @@ crearButton.addEventListener("click", ()=>{
 
 
   addButtonWord.addEventListener("click", ()=>{
+     
     let wordForAdd = document.getElementById('createWord').value;
+    document.getElementById('createWord').value = ""
     
 
     let duplicate = optionsWords.find(el=> el == wordForAdd)
@@ -183,7 +193,7 @@ crearButton.addEventListener("click", ()=>{
             onClick: function(){} // Callback after click
           }).showToast();
         }else{
-          
+
 
     if (wordForAdd.length == 0){
       Toastify({
@@ -234,8 +244,9 @@ crearButton.addEventListener("click", ()=>{
         onClick: function(){} 
       }).showToast();
 
+      inicioInfo = document.querySelector('.inicioInfo')
 
-
+      inicioInfo.innerHTML = ``
 
       
       optionsWords.push(wordForAdd)
@@ -274,7 +285,7 @@ crearButton.addEventListener("click", ()=>{
       `
       <p>${wordForAdd}</p>
       `
-      containerPalabras.appendChild(newDiv)
+      containerOptions.appendChild(newDiv)
 
       let wordSelected = document.querySelector('.optionWord'+ wordForAdd)
       wordSelected.addEventListener("click", ()=>{
@@ -380,10 +391,8 @@ let menuGenderBackground = document.querySelector('.menuGenderBackground')
 let closeGenderSelector = document.querySelector('.closeGenderSelector')
 
 genderVoiceButton.addEventListener('click',()=>{
-  menuGenderBackground.classList.add('menuGenderBackgroundON')
-  closeGenderSelector.addEventListener('click', ()=>{
-    menuGenderBackground.classList.remove('menuGenderBackgroundON')
-  })
+  menuGenderBackground.classList.toggle('menuGenderBackgroundON')
+  voiceButton.classList.toggle('voiceButtonClose')
 
 })
 
@@ -537,8 +546,12 @@ function createOptions(array){
       let optionsLS = JSON.parse(localStorage.getItem('allOptions'))
       let optionsSearch = optionsLS.filter(el => el.includes(searcher.value))
       console.log(optionsSearch)
+      containerOptions = document.querySelector('.containerOptions')
+
   
       containerOptions.innerHTML = ``
+
+      if(optionsSearch.length > 0){
   
       optionsSearch.forEach(el => {
         inicioInfo.style.display = 'none';
@@ -564,6 +577,13 @@ function createOptions(array){
         })
       })
     }else{
+      containerOptions = document.querySelector('.containerOptions')
+
+      containerOptions.innerHTML = `
+      <p class = "noResult" >No se encontraron resultados</p>
+      `
+    }
+    }else{
       Toastify({
         text:'Crea tu primer palabra',
         duration: 2500,
@@ -578,20 +598,116 @@ function createOptions(array){
         },
         onClick: function(){} // Callback after click
       }).showToast();
+      // containerOptions.innerHTML = ``
+      // let div = document.createElement("div")
+      // div.className = "crearButton"
+      // div.innerHTML = `
+      // <p>Crear</p>
+      // <img src="./assets/svg/icons/mas.svg" alt="">
+      // `
+      // let div2 = document.createElement("div")
+      // div2.className = 'inicioInfo'
+      // div2.innerHTML = `
+      // <p>Crea tu biblioteca de palabras para poder formar oraciones y reproducirlas.</p>
+      // `
+
+      // containerOptions.appendChild(div)
+      // containerOptions.appendChild(div2)
+
+      // let crearButton = document.querySelector('.crearButton')
+
+      // crearButton.addEventListener("click", ()=>{
+      //   createToggle.classList.add('createToggleON')
+      //   createToggle.classList.add('createToggleONBackground')
+    
+      //   cancelButton.addEventListener("click",()=>{
+      //     createToggle.classList.remove('createToggleON')
+      //     createToggle.classList.remove('createToggleONBackground')
+      //   })
+        
+    
+        
+      // })
+    }
+  }
+
+  else{
+    containerOptions = document.querySelector('.containerOptions')
+  
+    containerOptions.innerHTML = ``
+    if(JSON.parse(localStorage.getItem('allOptions'))){
+      let optionsLS = JSON.parse(localStorage.getItem('allOptions'))
+      let optionsSearch = optionsLS.filter(el => el.includes(searcher.value))
+      console.log(optionsSearch)
+
+      containerOptions = document.querySelector('.containerOptions')
+  
       containerOptions.innerHTML = ``
+
+      if(!optionsSearch.length <= 0){
+        let div = document.createElement("div")
+        div.className = "crearButton"
+        div.innerHTML = `
+        <p>Crear</p>
+        <img src="./assets/svg/icons/mas.svg" alt="">
+        `
+        containerOptions.appendChild(div)
+        let pushedLS = JSON.parse(localStorage.getItem('allOptions'))
+        pushedLS.forEach(el => {
+          inicioInfo.style.display = 'none';
+    
+          let newDiv = document.createElement("div")
+          newDiv.className = "optionWord optionWord" + el
+    
+          newDiv.innerHTML=
+          `
+          <p>${el}</p>
+          `
+          containerOptions.appendChild(newDiv)
+  
+          let crearButton = document.querySelector('.crearButton')
+  
+          crearButton.addEventListener("click", ()=>{
+            createToggle.classList.add('createToggleON')
+            createToggle.classList.add('createToggleONBackground')
+        
+            cancelButton.addEventListener("click",()=>{
+              createToggle.classList.remove('createToggleON')
+              createToggle.classList.remove('createToggleONBackground')
+            })
+            
+        
+            
+          })
+    
+          let wordSelected = document.querySelector('.optionWord'+ el)
+          wordSelected.addEventListener("click", ()=>{
+            let stringWordSelected = wordSelected.textContent.replace(/\s+/g, '') 
+            
+    
+            addFinalText(stringWordSelected)
+    
+    
+    
+          })
+        })
+      }else{
+        containerOptions = document.querySelector('.containerOptions')
+
+        containerOptions.innerHTML  = ``
+
       let div = document.createElement("div")
       div.className = "crearButton"
       div.innerHTML = `
       <p>Crear</p>
       <img src="./assets/svg/icons/mas.svg" alt="">
       `
+      containerOptions.appendChild(div)
       let div2 = document.createElement("div")
       div2.className = 'inicioInfo'
       div2.innerHTML = `
       <p>Crea tu biblioteca de palabras para poder formar oraciones y reproducirlas.</p>
       `
-
-      containerOptions.appendChild(div)
       containerOptions.appendChild(div2)
 
       let crearButton = document.querySelector('.crearButton')
@@ -608,59 +724,12 @@ function createOptions(array){
     
         
       })
-    }
-  }
-  else{
-    if(JSON.parse(localStorage.getItem('allOptions'))){
-      
-      containerOptions.innerHTML = ``
-      let div = document.createElement("div")
-      div.className = "crearButton"
-      div.innerHTML = `
-      <p>Crear</p>
-      <img src="./assets/svg/icons/mas.svg" alt="">
-      `
-      containerOptions.appendChild(div)
-      let pushedLS = JSON.parse(localStorage.getItem('allOptions'))
-      pushedLS.forEach(el => {
-        inicioInfo.style.display = 'none';
-  
-        let newDiv = document.createElement("div")
-        newDiv.className = "optionWord optionWord" + el
-  
-        newDiv.innerHTML=
-        `
-        <p>${el}</p>
-        `
-        containerOptions.appendChild(newDiv)
+      }
 
-        let crearButton = document.querySelector('.crearButton')
 
-        crearButton.addEventListener("click", ()=>{
-          createToggle.classList.add('createToggleON')
-          createToggle.classList.add('createToggleONBackground')
-      
-          cancelButton.addEventListener("click",()=>{
-            createToggle.classList.remove('createToggleON')
-            createToggle.classList.remove('createToggleONBackground')
-          })
-          
-      
-          
-        })
-  
-        let wordSelected = document.querySelector('.optionWord'+ el)
-        wordSelected.addEventListener("click", ()=>{
-          let stringWordSelected = wordSelected.textContent.replace(/\s+/g, '') 
-          
-  
-          addFinalText(stringWordSelected)
-  
-  
-  
-        })
-      })
     }else{
+
+      containerOptions = document.querySelector('.containerOptions')
 
     
     containerOptions.innerHTML  = ``

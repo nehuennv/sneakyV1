@@ -30,6 +30,50 @@ body{
         width: 100vw;
     }
 }
+.welcomeSpeakoOn{
+    transform: translateY(0vh) !important;
+}
+.welcomeSpeako{
+    position: fixed;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    z-index: 99;
+    background-color: #262329;
+    transition: all .7s;
+    transform: translateY(-100vh);
+    img{
+        width: 40vw;
+    }
+    p{
+        text-align: center;
+        color: $whiteColor;
+        margin-block: 4vh;
+        font-size: 14px;
+        margin-inline: 8vw;
+        strong{
+            color: $FirstColor;
+            font-size: 400;
+        }
+    }
+    button{
+        background-color: $FirstColor;
+        font-size: 16px;
+        width: 60%;
+        max-width: 250px;
+        border-radius:100px;
+        height: 6.5%;
+        color:  $whiteColor;
+
+    }
+    a{
+        margin-top: 15px;
+        color: #7E7C7F;
+    }
+}
 .headerPalabrasOn{
     background-image: url(../assets/svg/icons/createHeader.svg) !important;
 }
@@ -242,7 +286,22 @@ header{
             align-items: center;
             transform: translateX(100vw);
             overflow-y: scroll !important;
-
+            .frasesTitle{
+                p{
+                    font-size: 20px;
+                    color: $FirstColor;
+                    font-weight: 500;
+                    margin-bottom: 10px;
+                }
+            }
+            .textFrases{
+                display: flex;
+                color: #929193;
+                align-items: center;
+                img{
+                   margin-inline: 4px;
+                }
+            }
             &::-webkit-scrollbar{
 
                 width: 5px;
@@ -312,7 +371,7 @@ footer{
     flex-direction: column;
     position: absolute;
     width: 100vw;
-    z-index: 100;
+    z-index: 10;
     .resultFraseContainer{
         display: flex;
         justify-content: center;
@@ -365,7 +424,7 @@ footer{
         }
     }
     .playAndSaveContainer{
-        height: 100%;
+        height: 17vh;
         background-color: $FirstColor;
         display: flex;
         justify-content: center;
@@ -399,6 +458,10 @@ footer{
             width: 15%;
             max-width: 60px;
             transition: all .5s;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: all .5s;
+            background-image: url(../assets/svg/icons/save.svg);
             &:hover{
                 transform: scale(1.03);
             }
@@ -406,9 +469,14 @@ footer{
         }
     }
 }
+.voiceButtonClose{
+    background-image: url(../assets/svg/icons/closeGender.svg) !important;
+}
 .createToggleONBackground{
     opacity: 100 !important;
+
     pointer-events: all !important;
+    z-index: 100 !important;
     background-color: rgba(0, 0, 0, 0.41) !important;
 }
 // .createToggleON{
@@ -419,6 +487,7 @@ footer{
     transition: all .5s;
     width: 100vw;
     height: 100vh;
+    background-color: #1B191D;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -433,9 +502,9 @@ footer{
 
         height: 35%;
         width: 100%;
-        background-color: $whiteColor;
+        background-color: #262329;
         p{
-            color: #1B191D;
+            color: $whiteColor;
             font-size: 14px;
             text-align: center;
             margin-inline: 15%;
@@ -451,9 +520,10 @@ footer{
             justify-content: center;
 
             input{
+                color: $whiteColor;
                 margin-inline: 10vw;
                 padding-inline: 15px;
-                background: rgba(16, 15, 17, 0.06);
+                background: #1F1C21;
                 border-radius: 7px 7px 0px 0px;
                 height: 20vh;
             }
@@ -479,9 +549,9 @@ footer{
 
         p{
             transition: all .5s;
-            color:#1b191d68 ;
+            color:#767478 ;
             &:hover{
-                color:#1b191ddf;
+                color:#CDCCCD;
             }
         }
     }
@@ -495,7 +565,9 @@ $color_5: #232323;
 
 
 .menuGenderBackgroundON{
+    
     opacity: 100 !important;
+
     pointer-events: all !important;
     background-color: rgba(0, 0, 0, 0.41) !important;
 }
@@ -514,20 +586,21 @@ $color_5: #232323;
     width: 100vw;
 }
 .speakerVoice{
-    font-size: 14px;
-    color: $backgroundColor;
-    font-weight: 500;
+    font-size: 18px;
+    color: $FirstColor;
+    font-weight: 600;
     text-align: center;
+    margin-top: 15px;
 
 }
 .container {
     width: 100vw;
-    background-color: $whiteColor;
+    background-color: #262329;
 	margin: 40px auto;
 	height: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center;align-items: center;
 padding-inline: 30px;
 padding-block: 25px;
 
@@ -537,24 +610,38 @@ padding-block: 25px;
         width: 100vw;
     }
     .containerConfig{
+        margin-block: 15px;
             display: flex;
+            height: 20vh;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            width: 100%;
+            width: 90%;
+            background-color: #1E1C21;
+            border-radius: 7px;
             .containerRange{
-                margin-bottom: 2vh;
-                width: 90%;
+                height: 50%;
+                background-color: transparent;
+
+                width: 85%;
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
                 align-items: center;
-                p{  
-                    color: $FirstColor;
-                    font-weight: 600;
-                    padding-right: 10px;
-                    font-size: 13.3px;
+                transition: all .5s;
+                &:hover{
+                    p{
+                        color: $FirstColor;
+                    }
                 }
+                p{  
+                    margin-right: 10px;
+                    color: $whiteColor;
+                    font-size: 14px;
+                    font-weight: 500;
+                    transition: all .5s;
+                }
+                
             #rate{
 
                 width:inherit;
@@ -571,15 +658,16 @@ padding-block: 25px;
             }
 
     select{
-        color: $FirstColor;
-        font-weight: 600;
-        background-color: #E4DBEC;
-        padding-block: 2vh;
+        color: $whiteColor;
+        font-size: 14px;
+        height: 50%;
+        font-weight: 500;
+        background-color: transparent;        padding-block: 2vh;
         padding-left: 10px;
         padding-right: 10%;
         border-radius: 7px;
         width: 90%;
-        margin-block: 15px;
+
         background-image: url(../assets/svg/icons/Vector.svg); 
         background-repeat: no-repeat;
         background-position: 96%;
@@ -587,7 +675,16 @@ padding-block: 25px;
         -moz-appearance: none;
         -o-appearance: none;
         appearance: none;
-        
+        transition: all .5s;
+        &:hover{
+            color: $FirstColor;
+        }
+        option{
+            background-color: #1B191D;
+            &:hover{
+                color: $whiteColor;
+            }
+        }
     }
     select::-ms-expand {
         display: none; 
@@ -642,5 +739,19 @@ padding-block: 25px;
     }
 }
 .closeGenderSelector{
-    background-color: $whiteColor;
+    color: #7F7A85;
+    background: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all .5s;
+    &:hover{
+        color: white;
+    }
+}
+.noResult{
+    color: #7F7A85;
+    transition: all .5s;
+    &:hover{
+        color: $whiteColor;
+    }
 }

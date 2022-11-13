@@ -20,6 +20,44 @@ body {
     height: 20%;
     width: 100vw; }
 
+.welcomeSpeakoOn {
+  transform: translateY(0vh) !important; }
+
+.welcomeSpeako {
+  position: fixed;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  z-index: 99;
+  background-color: #262329;
+  transition: all .7s;
+  transform: translateY(-100vh); }
+  .welcomeSpeako img {
+    width: 40vw; }
+  .welcomeSpeako p {
+    text-align: center;
+    color: #F1E8FA;
+    margin-block: 4vh;
+    font-size: 14px;
+    margin-inline: 8vw; }
+    .welcomeSpeako p strong {
+      color: #C9308C;
+      font-size: 400; }
+  .welcomeSpeako button {
+    background-color: #C9308C;
+    font-size: 16px;
+    width: 60%;
+    max-width: 250px;
+    border-radius: 100px;
+    height: 6.5%;
+    color: #F1E8FA; }
+  .welcomeSpeako a {
+    margin-top: 15px;
+    color: #7E7C7F; }
+
 .headerPalabrasOn {
   background-image: url(../assets/svg/icons/createHeader.svg) !important; }
 
@@ -182,6 +220,17 @@ header {
     align-items: center;
     transform: translateX(100vw);
     overflow-y: scroll !important; }
+    .main .containerFrases .frasesTitle p {
+      font-size: 20px;
+      color: #C9308C;
+      font-weight: 500;
+      margin-bottom: 10px; }
+    .main .containerFrases .textFrases {
+      display: flex;
+      color: #929193;
+      align-items: center; }
+      .main .containerFrases .textFrases img {
+        margin-inline: 4px; }
     .main .containerFrases::-webkit-scrollbar {
       width: 5px;
       transition: all 1s; }
@@ -228,7 +277,7 @@ footer {
   flex-direction: column;
   position: absolute;
   width: 100vw;
-  z-index: 100; }
+  z-index: 10; }
   footer .resultFraseContainer {
     display: flex;
     justify-content: center;
@@ -270,7 +319,7 @@ footer {
       background: transparent;
       cursor: pointer; }
   footer .playAndSaveContainer {
-    height: 100%;
+    height: 17vh;
     background-color: #C9308C;
     display: flex;
     justify-content: center;
@@ -302,19 +351,28 @@ footer {
       height: 50%;
       width: 15%;
       max-width: 60px;
-      transition: all .5s; }
+      transition: all .5s;
+      background-repeat: no-repeat;
+      background-position: center;
+      transition: all .5s;
+      background-image: url(../assets/svg/icons/save.svg); }
       footer .playAndSaveContainer .voiceButton:hover {
         transform: scale(1.03); }
+
+.voiceButtonClose {
+  background-image: url(../assets/svg/icons/closeGender.svg) !important; }
 
 .createToggleONBackground {
   opacity: 100 !important;
   pointer-events: all !important;
+  z-index: 100 !important;
   background-color: rgba(0, 0, 0, 0.41) !important; }
 
 .createToggle {
   transition: all .5s;
   width: 100vw;
   height: 100vh;
+  background-color: #1B191D;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -328,9 +386,9 @@ footer {
     justify-content: center;
     height: 35%;
     width: 100%;
-    background-color: #F1E8FA; }
+    background-color: #262329; }
     .createToggle div p {
-      color: #1B191D;
+      color: #F1E8FA;
       font-size: 14px;
       text-align: center;
       margin-inline: 15%;
@@ -343,9 +401,10 @@ footer {
       align-content: center;
       justify-content: center; }
       .createToggle div div input {
+        color: #F1E8FA;
         margin-inline: 10vw;
         padding-inline: 15px;
-        background: rgba(16, 15, 17, 0.06);
+        background: #1F1C21;
         border-radius: 7px 7px 0px 0px;
         height: 20vh; }
       .createToggle div div button {
@@ -364,9 +423,9 @@ footer {
     font-weight: 500; }
     .createToggle .cancelButton p {
       transition: all .5s;
-      color: #1b191d68; }
+      color: #767478; }
       .createToggle .cancelButton p:hover {
-        color: #1b191ddf; }
+        color: #CDCCCD; }
 
 .menuGenderBackgroundON {
   opacity: 100 !important;
@@ -387,19 +446,21 @@ footer {
   width: 100vw; }
 
 .speakerVoice {
-  font-size: 14px;
-  color: #1B191D;
-  font-weight: 500;
-  text-align: center; }
+  font-size: 18px;
+  color: #C9308C;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 15px; }
 
 .container {
   width: 100vw;
-  background-color: #F1E8FA;
+  background-color: #262329;
   margin: 40px auto;
   height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding-inline: 30px;
   padding-block: 25px; }
   .container div {
@@ -407,23 +468,32 @@ footer {
     justify-content: center;
     width: 100vw; }
   .container .containerConfig {
+    margin-block: 15px;
     display: flex;
+    height: 20vh;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%; }
+    width: 90%;
+    background-color: #1E1C21;
+    border-radius: 7px; }
     .container .containerConfig .containerRange {
-      margin-bottom: 2vh;
-      width: 90%;
+      height: 50%;
+      background-color: transparent;
+      width: 85%;
       display: flex;
       flex-direction: row;
       justify-content: center;
-      align-items: center; }
+      align-items: center;
+      transition: all .5s; }
+      .container .containerConfig .containerRange:hover p {
+        color: #C9308C; }
       .container .containerConfig .containerRange p {
-        color: #C9308C;
-        font-weight: 600;
-        padding-right: 10px;
-        font-size: 13.3px; }
+        margin-right: 10px;
+        color: #F1E8FA;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all .5s; }
       .container .containerConfig .containerRange #rate {
         width: inherit;
         border-radius: 30px;
@@ -439,22 +509,30 @@ footer {
         /* 0.2 seconds transition on hover */
         transition: opacity .2s; }
     .container .containerConfig select {
-      color: #C9308C;
-      font-weight: 600;
-      background-color: #E4DBEC;
+      color: #F1E8FA;
+      font-size: 14px;
+      height: 50%;
+      font-weight: 500;
+      background-color: transparent;
       padding-block: 2vh;
       padding-left: 10px;
       padding-right: 10%;
       border-radius: 7px;
       width: 90%;
-      margin-block: 15px;
       background-image: url(../assets/svg/icons/Vector.svg);
       background-repeat: no-repeat;
       background-position: 96%;
       -webkit-appearance: none;
       -moz-appearance: none;
       -o-appearance: none;
-      appearance: none; }
+      appearance: none;
+      transition: all .5s; }
+      .container .containerConfig select:hover {
+        color: #C9308C; }
+      .container .containerConfig select option {
+        background-color: #1B191D; }
+        .container .containerConfig select option:hover {
+          color: #F1E8FA; }
     .container .containerConfig select::-ms-expand {
       display: none; }
     .container .containerConfig button {
@@ -490,4 +568,16 @@ footer {
           align-items: center; }
 
 .closeGenderSelector {
-  background-color: #F1E8FA; }
+  color: #7F7A85;
+  background: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all .5s; }
+  .closeGenderSelector:hover {
+    color: white; }
+
+.noResult {
+  color: #7F7A85;
+  transition: all .5s; }
+  .noResult:hover {
+    color: #F1E8FA; }

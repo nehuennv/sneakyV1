@@ -16,25 +16,40 @@
 </head>
 <body>
     <!-- code base -->
-
+                            <!-- bienvenida -->
+                    <div class="welcomeSpeako">
+                        <img class="imgWelcome" src="./assets/svg/logo/speakoLogo.svg" alt="">
+                        <p>
+                            Bienvenido a <strong>speako</strong>, una pagina web desarrollada con el fin de ayudar a personas con problemas a la hora de comunicarse. <br><br>
+Aqui podras crear frases de manera intuitiva y reproducirlas las veces que desees.
+<br><br>
+Esperamos que te sea de utlidad y que tengas una buena experiencia de usuario.
+                        </p>
+                        <button class="acceptWelcome">
+                            Aceptar
+                        </button>
+                        <a target="_blank" href="https://www.instagram.com/nehuennv/">Contacto</a>
+                    </div>
                     <!-- menuGender -->
                     <div class="menuGenderBackground">
                         <div class="container">
                             <div class="speakerVoice">
-                                <p>Quien quieres que diga la frase?</p>
+                                <p>Configuracion de voz</p>
                             </div>
+
                             <div class="containerConfig">
-                                <select name="" id="voces">
-                                </select>
                                 <div class="containerRange">
                                     <p>Velocidad</p>
                                     <input type="range" min="0" max="2" value="1" step="0.1" id="rate" />
-
+    
                                 </div>
+                                <select name="" id="voces">
+                                </select>
+
 
                             </div>
                             
-                              <button class="closeGenderSelector">Cerrar</button>
+
                         </div>
         
                     </div>
@@ -85,7 +100,10 @@
                 </div>
             </div>
             <div class="containerFrases">
-                <p class="textFrases">Aún no tienes frases guardadas!</p>
+                <div class="frasesTitle">
+                    <p>Frases guardadas</p>
+                </div>
+                <p class="textFrases">Usa <img src="assets/svg/icons/saveFrases.svg" alt="">para agregar una frase.</p>
             </div>
 
             
@@ -104,7 +122,7 @@
                 <img src="./assets/svg/icons/Polygon 1.svg" alt="">
             </div>
             <div class="voiceButton">
-                <img src="./assets/svg/icons/save.svg" alt="">
+                
             </div>
         </div>
     </footer>
