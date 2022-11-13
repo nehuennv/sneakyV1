@@ -1,4 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+input {
+  font-size: 16px !important; }
+  input:active, input:focus, input:focus-within, input:hover, input:visited {
+    font-size: 16px !important; }
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  select:focus, textarea:focus, input:focus {
+    font-size: 16px; } }
+
 * {
   margin: 0;
   padding: 0;
@@ -41,22 +50,30 @@ body {
     text-align: center;
     color: #F1E8FA;
     margin-block: 4vh;
-    font-size: 14px;
-    margin-inline: 8vw; }
+    font-size: 16px;
+    margin-inline: 5vw; }
     .welcomeSpeako p strong {
       color: #C9308C;
       font-size: 400; }
   .welcomeSpeako button {
+    cursor: pointer;
     background-color: #C9308C;
     font-size: 16px;
     width: 60%;
     max-width: 250px;
     border-radius: 100px;
     height: 6.5%;
+    transition: all .5s;
     color: #F1E8FA; }
+    .welcomeSpeako button:hover {
+      background-color: #A02A71; }
   .welcomeSpeako a {
     margin-top: 15px;
+    cursor: pointer;
+    transition: all .5s;
     color: #7E7C7F; }
+    .welcomeSpeako a:hover {
+      color: #F1E8FA; }
 
 .headerPalabrasOn {
   background-image: url(../assets/svg/icons/createHeader.svg) !important; }
@@ -74,6 +91,8 @@ header {
     display: flex;
     align-items: center;
     width: 50%; }
+    header .logoHeader img {
+      cursor: pointer; }
   header .navbarHeader {
     display: flex;
     align-items: center;
@@ -450,7 +469,7 @@ footer {
   color: #C9308C;
   font-weight: 600;
   text-align: center;
-  margin-top: 15px; }
+  margin: 15px; }
 
 .container {
   width: 100vw;
@@ -495,6 +514,7 @@ footer {
         font-weight: 500;
         transition: all .5s; }
       .container .containerConfig .containerRange #rate {
+        cursor: grab;
         width: inherit;
         border-radius: 30px;
         height: 10px;
@@ -508,6 +528,8 @@ footer {
         -webkit-transition: .2s;
         /* 0.2 seconds transition on hover */
         transition: opacity .2s; }
+        .container .containerConfig .containerRange #rate:active {
+          cursor: grabbing; }
     .container .containerConfig select {
       color: #F1E8FA;
       font-size: 14px;

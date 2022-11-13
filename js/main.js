@@ -20,10 +20,31 @@ let welcomeSpeako = document.querySelector('.welcomeSpeako')
 let acceptWelcome = document.querySelector('.acceptWelcome')
 let rangeVoice = document.querySelector('#rate')
 
+let newUser 
+
+if(JSON.parse(localStorage.getItem('user'))){
+  newUser = false
+}else{
+  newUser = true
+}
+
+if(newUser == true){
+  welcomeSpeako.classList.add('welcomeSpeakoOn')
+  acceptWelcome.addEventListener('click', ()=>{
+    welcomeSpeako.classList.remove('welcomeSpeakoOn')
+    newUser = false
+    localStorage.setItem('user', true)
+
+
+  })
+}
+
 logoHeader.addEventListener('click',()=>{
   welcomeSpeako.classList.add('welcomeSpeakoOn')
   acceptWelcome.addEventListener('click', ()=>{
     welcomeSpeako.classList.remove('welcomeSpeakoOn')
+
+
   })
 })
 
@@ -31,6 +52,7 @@ logoHeader.addEventListener('click',()=>{
 let optionsWords = []
 
 let optionFrases = []
+
 
 
 if(JSON.parse(localStorage.getItem('allOptions'))){
@@ -538,6 +560,24 @@ function createOptions(array){
   });
 }
 
+  searcher.addEventListener("click",()=>{
+    if(!JSON.parse(localStorage.getItem('allOptions'))){
+      Toastify({
+        text:'Primero crea una palabra',
+        duration: 2500,
+        gravity: "top",
+        position: "center", 
+        stopOnFocus: true, 
+        style: {
+          cursor:"default",
+          fontSize:"14px",
+          background: "#C9308C",
+          borderRadius: "7px"
+        },
+        onClick: function(){} // Callback after click
+      }).showToast();
+    }
+  })
 
   searcher.addEventListener ("input", () =>{
 
@@ -584,50 +624,8 @@ function createOptions(array){
       `
     }
     }else{
-      Toastify({
-        text:'Crea tu primer palabra',
-        duration: 2500,
-        gravity: "top",
-        position: "center", 
-        stopOnFocus: true, 
-        style: {
-          cursor:"default",
-          fontSize:"14px",
-          background: "#C9308C",
-          borderRadius: "7px"
-        },
-        onClick: function(){} // Callback after click
-      }).showToast();
-      // containerOptions.innerHTML = ``
-      // let div = document.createElement("div")
-      // div.className = "crearButton"
-      // div.innerHTML = `
-      // <p>Crear</p>
-      // <img src="./assets/svg/icons/mas.svg" alt="">
-      // `
-      // let div2 = document.createElement("div")
-      // div2.className = 'inicioInfo'
-      // div2.innerHTML = `
-      // <p>Crea tu biblioteca de palabras para poder formar oraciones y reproducirlas.</p>
-      // `
+      return;
 
-      // containerOptions.appendChild(div)
-      // containerOptions.appendChild(div2)
-
-      // let crearButton = document.querySelector('.crearButton')
-
-      // crearButton.addEventListener("click", ()=>{
-      //   createToggle.classList.add('createToggleON')
-      //   createToggle.classList.add('createToggleONBackground')
-    
-      //   cancelButton.addEventListener("click",()=>{
-      //     createToggle.classList.remove('createToggleON')
-      //     createToggle.classList.remove('createToggleONBackground')
-      //   })
-        
-    
-        
-      // })
     }
   }
 

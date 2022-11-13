@@ -4,6 +4,20 @@ $whiteColor:#F1E8FA;
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
+input {
+    font-size: 16px !important;
+  
+    &:active, &:focus, &:focus-within, &:hover, &:visited {
+      font-size: 16px !important;
+    }
+  }
+
+  @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    select:focus, textarea:focus, input:focus {
+      font-size: 16px;
+    }
+  }
+
 *{
 	margin: 0;
 	padding: 0;
@@ -52,26 +66,35 @@ body{
         text-align: center;
         color: $whiteColor;
         margin-block: 4vh;
-        font-size: 14px;
-        margin-inline: 8vw;
+        font-size: 16px;
+        margin-inline: 5vw;
         strong{
             color: $FirstColor;
             font-size: 400;
         }
     }
     button{
+        cursor: pointer;
         background-color: $FirstColor;
         font-size: 16px;
         width: 60%;
         max-width: 250px;
         border-radius:100px;
         height: 6.5%;
+        transition: all .5s;
         color:  $whiteColor;
-
+        &:hover{
+            background-color: #A02A71;
+        }
     }
     a{
         margin-top: 15px;
+        cursor: pointer;
+        transition: all .5s;
         color: #7E7C7F;
+        &:hover{
+            color: $whiteColor;
+        }
     }
 }
 .headerPalabrasOn{
@@ -95,6 +118,9 @@ header{
         align-items: center;
 
         width: 50%;
+        img{
+            cursor: pointer;
+        }
 
     }
     .navbarHeader{
@@ -590,7 +616,7 @@ $color_5: #232323;
     color: $FirstColor;
     font-weight: 600;
     text-align: center;
-    margin-top: 15px;
+    margin: 15px;
 
 }
 .container {
@@ -643,7 +669,7 @@ padding-block: 25px;
                 }
                 
             #rate{
-
+                cursor: grab;
                 width:inherit;
                 border-radius: 30px;
                 height: 10px; /* Specified height */
@@ -652,7 +678,9 @@ padding-block: 25px;
                 opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
                 -webkit-transition: .2s; /* 0.2 seconds transition on hover */
                 transition: opacity .2s;
-            
+                &:active{
+                    cursor: grabbing;
+                }
         
     } 
             }
