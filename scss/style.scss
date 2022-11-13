@@ -33,7 +33,7 @@ body{
     height: 100vh ;
     width: 100vw;
     background-color: $backgroundColor;
-    overflow-y: hidden;
+    overflow-y: hidden !important;
 
     section{
         height: 80%;
