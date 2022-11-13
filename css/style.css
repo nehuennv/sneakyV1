@@ -28,14 +28,14 @@ body {
 
 header {
   height: 15%;
-  width: 100vw;
+  justify-content: space-between;
   display: flex;
   align-items: center;
-  justify-content: center; }
+  padding-inline: 8%; }
   header .logoHeader {
     display: flex;
     align-items: center;
-    justify-content: center; }
+    width: 50%; }
   header .navbarHeader {
     display: flex;
     align-items: center;
@@ -94,9 +94,17 @@ header {
     display: flex;
     align-items: flex-start;
     flex-wrap: wrap;
-    height: 100%;
+    height: 68vh;
     overflow-y: scroll !important;
     align-content: flex-start; }
+    .main .containerPalabras .containerOptions {
+      width: 100%;
+      justify-content: center;
+      transition: .6s;
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      align-content: flex-start; }
     .main .containerPalabras::-webkit-scrollbar {
       width: 5px;
       transition: all 1s; }
@@ -106,6 +114,21 @@ header {
       transition: all 1s; }
       .main .containerPalabras::-webkit-scrollbar-thumb:hover {
         background: #A02A71; }
+    .main .containerPalabras .searchContainer {
+      background-color: #373439;
+      width: 75%;
+      display: flex;
+      justify-content: space-between;
+      border-radius: 7px;
+      padding-inline: 20px;
+      margin-bottom: 25px; }
+      .main .containerPalabras .searchContainer .searcher {
+        color: #F1E8FA;
+        font-size: 16px;
+        padding-block: 2vh;
+        background-color: transparent;
+        font-weight: 500;
+        width: 95%; }
     .main .containerPalabras .crearButton {
       cursor: pointer;
       transition: all .5s;
@@ -136,15 +159,20 @@ header {
       color: #1B191D;
       margin-bottom: 25px;
       transition: all .5s; }
-      .main .containerPalabras .optionWord:hover p {
-        color: #C9308C; }
+      .main .containerPalabras .optionWord:active {
+        background-color: #F1E8FA; }
+      .main .containerPalabras .optionWord:hover {
+        box-shadow: 0px 0px 0px 4px #C9308C; }
+        .main .containerPalabras .optionWord:hover p {
+          color: #C9308C; }
       .main .containerPalabras .optionWord p {
         max-width: 100%;
         transition: all .5s;
         color: #717171;
         font-weight: 500; }
   .main .containerFrases {
-    height: 100%;
+    height: 68vh;
+    padding-top: 4px;
     width: 100%;
     position: relative;
     transition: .6s;
@@ -152,7 +180,7 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    transform: translateX(100vh);
+    transform: translateX(100vw);
     overflow-y: scroll !important; }
     .main .containerFrases::-webkit-scrollbar {
       width: 5px;
@@ -178,8 +206,12 @@ header {
       color: #1B191D;
       margin-bottom: 25px;
       transition: all .5s; }
-      .main .containerFrases .savedWord:hover p {
-        color: #C9308C; }
+      .main .containerFrases .savedWord:active {
+        background-color: #F1E8FA; }
+      .main .containerFrases .savedWord:hover {
+        box-shadow: 0px 0px 0px 4px #C9308C; }
+        .main .containerFrases .savedWord:hover p {
+          color: #C9308C; }
       .main .containerFrases .savedWord p {
         max-width: 100%;
         transition: all .5s;
@@ -194,6 +226,7 @@ header {
 footer {
   display: flex;
   flex-direction: column;
+  position: absolute;
   width: 100vw;
   z-index: 100; }
   footer .resultFraseContainer {
@@ -203,7 +236,11 @@ footer {
     height: 10vh;
     background-color: #4F203E; }
     footer .resultFraseContainer .saveButton {
-      position: relative; }
+      position: relative;
+      margin-top: 2px;
+      margin-right: 3%; }
+    footer .resultFraseContainer .removeOption {
+      margin-right: 2%; }
     footer .resultFraseContainer p {
       display: flex;
       margin-top: 5px;
@@ -225,8 +262,8 @@ footer {
         footer .resultFraseContainer p::-webkit-scrollbar-thumb:hover {
           background: #f4e9ff9c; }
     footer .resultFraseContainer button {
+      position: relative;
       width: 10%;
-      margin-inline: 2%;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -238,7 +275,8 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 4%; }
+    position: relative;
+    gap: 2.5%; }
     footer .playAndSaveContainer .playButton {
       color: #C9308C;
       font-weight: 500;
@@ -249,23 +287,24 @@ footer {
       height: 55%;
       width: 50%;
       cursor: pointer;
-      border-radius: 100px;
+      border-radius: 400px;
       background-color: #F1E8FA;
       transition: all .5s; }
       footer .playAndSaveContainer .playButton:hover {
-        background-color: #DBD3E3; }
+        transform: scale(1.02); }
     footer .playAndSaveContainer .voiceButton {
       cursor: pointer;
-      border-radius: 100px;
+      border-radius: 400px;
       background-color: #F1E8FA;
       display: grid;
       justify-content: center;
       align-items: center;
       height: 50%;
       width: 15%;
+      max-width: 60px;
       transition: all .5s; }
       footer .playAndSaveContainer .voiceButton:hover {
-        background-color: #DBD3E3; }
+        transform: scale(1.03); }
 
 .createToggleONBackground {
   opacity: 100 !important;
@@ -367,54 +406,88 @@ footer {
     display: flex;
     justify-content: center;
     width: 100vw; }
-  .container select {
-    color: #C9308C;
-    font-weight: 600;
-    background-color: #E4DBEC;
-    padding-block: 2vh;
-    padding-left: 10px;
-    padding-right: 10%;
-    border-radius: 7px;
-    width: 90%;
-    margin-block: 15px;
-    background-image: url(../assets/svg/icons/Vector.svg);
-    background-repeat: no-repeat;
-    background-position: 96%;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -o-appearance: none;
-    appearance: none; }
-  .container select::-ms-expand {
-    display: none; }
-  .container button {
-    background-color: transparent;
-    color: #7F7A85;
-    font-weight: 500;
-    font-size: 14px;
-    cursor: default;
-    transition: all .5s; }
-    .container button:hover {
-      color: #1b191ddf; }
-  .container ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden; }
-    .container ul li {
-      cursor: pointer;
-      font-size: 14px;
-      background-color: #E4DBEC;
-      height: 8vh;
-      margin-block: 15px;
-      padding-inline: 20px;
-      font-weight: 500;
+  .container .containerConfig {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%; }
+    .container .containerConfig .containerRange {
+      margin-bottom: 2vh;
+      width: 90%;
       display: flex;
-      border-radius: 7px;
-      justify-content: space-between;
+      flex-direction: row;
+      justify-content: center;
       align-items: center; }
-      .container ul li label {
+      .container .containerConfig .containerRange p {
+        color: #C9308C;
+        font-weight: 600;
+        padding-right: 10px;
+        font-size: 13.3px; }
+      .container .containerConfig .containerRange #rate {
+        width: inherit;
+        border-radius: 30px;
+        height: 10px;
+        /* Specified height */
+        background: #424242;
+        /* Grey background */
+        outline: none;
+        /* Remove outline */
+        opacity: 0.7;
+        /* Set transparency (for mouse-over effects on hover) */
+        -webkit-transition: .2s;
+        /* 0.2 seconds transition on hover */
+        transition: opacity .2s; }
+    .container .containerConfig select {
+      color: #C9308C;
+      font-weight: 600;
+      background-color: #E4DBEC;
+      padding-block: 2vh;
+      padding-left: 10px;
+      padding-right: 10%;
+      border-radius: 7px;
+      width: 90%;
+      margin-block: 15px;
+      background-image: url(../assets/svg/icons/Vector.svg);
+      background-repeat: no-repeat;
+      background-position: 96%;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      -o-appearance: none;
+      appearance: none; }
+    .container .containerConfig select::-ms-expand {
+      display: none; }
+    .container .containerConfig button {
+      color: #7F7A85;
+      font-weight: 500;
+      font-size: 14px;
+      cursor: default;
+      transition: all .5s; }
+      .container .containerConfig button:hover {
+        color: #1b191ddf; }
+    .container .containerConfig ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden; }
+      .container .containerConfig ul li {
         cursor: pointer;
-        width: 100%;
-        height: 100%;
+        font-size: 14px;
+        background-color: #E4DBEC;
+        height: 8vh;
+        margin-block: 15px;
+        padding-inline: 20px;
+        font-weight: 500;
         display: flex;
+        border-radius: 7px;
+        justify-content: space-between;
         align-items: center; }
+        .container .containerConfig ul li label {
+          cursor: pointer;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center; }
+
+.closeGenderSelector {
+  background-color: #F1E8FA; }

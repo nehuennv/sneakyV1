@@ -4,6 +4,7 @@ let createToggle = document.querySelector('.createToggle')
 let cancelButton = document.querySelector('.cancelButton')
 let addButtonWord = document.querySelector('.addButtonWord')
 let containerPalabras = document.querySelector('.containerPalabras')
+let containerOptions = document.querySelector('.containerOptions')
 let inicioInfo = document.querySelector('.inicioInfo')
 let removeOption = document.querySelector('.removeOption')
 let saveButton = document.querySelector('.saveButton')
@@ -12,10 +13,88 @@ let containerFrases = document.querySelector('.containerFrases')
 let containerMain = document.querySelector('.containerMain')
 let buttonPalabras = document.querySelector('.buttonPalabras')
 let main = document.querySelector('main')
+let searcher = document.querySelector('.searcher')
+let rangeVoice = document.querySelector('#rate')
+
+
 
 
 
 let optionsWords = []
+
+let optionFrases = []
+
+
+if(JSON.parse(localStorage.getItem('allOptions'))){
+
+  let pushedLS = JSON.parse(localStorage.getItem('allOptions'))
+  if(Array.isArray(pushedLS)){
+    pushedLS.forEach(el => {
+      inicioInfo.style.display = 'none';
+
+      let newDiv = document.createElement("div")
+      newDiv.className = "optionWord optionWord" + el
+
+      newDiv.innerHTML=
+      `
+      <p>${el}</p>
+      `
+      containerOptions.appendChild(newDiv)
+
+      let wordSelected = document.querySelector('.optionWord'+ el)
+      wordSelected.addEventListener("click", ()=>{
+        let stringWordSelected = wordSelected.textContent.replace(/\s+/g, '') 
+        
+
+        addFinalText(stringWordSelected)
+
+
+
+      })
+    });
+
+  }
+
+}else{
+  
+}
+
+if(JSON.parse(localStorage.getItem('allFrases'))){
+
+  let frasesLS = JSON.parse(localStorage.getItem('allFrases'))
+  if(Array.isArray(frasesLS)){
+    frasesLS.forEach(el => {
+
+      let textFrases = document.querySelector('.textFrases')
+      if(!textFrases.textContent.length == 0){
+        textFrases.textContent = ""
+      }
+      let newDiv = document.createElement("div")
+    
+      let classSaved = el.split(" ")
+
+      newDiv.className = "savedWord savedWord" + "-" +   classSaved.join('-')
+
+      newDiv.innerHTML=
+      `
+      <p>${el}</p>
+      `
+      containerFrases.appendChild(newDiv)
+    
+      let savedOption = document.querySelector('.savedWord' + "-" +   classSaved.join('-'))
+    
+      savedOption.addEventListener("click",()=>{
+        
+        let textPrevious = document.querySelector('.textPrevious')
+        textPrevious.style.color ="#fff"
+        textPrevious.style.fontWeight ="500"
+        textPrevious.textContent = savedOption.textContent
+      })
+    });
+
+  }
+
+}
 
 ////////////cargar voces
 
@@ -62,11 +141,7 @@ vocesDisponibles = [];
 
 
 
-//////////////////////buscar localstorage y crear opciones
-//optionsWords.forEach(el => {
- // console.log(el)
-//});
-////////////////////////prueba speacher
+
 
 
 
@@ -158,22 +233,50 @@ crearButton.addEventListener("click", ()=>{
         },
         onClick: function(){} 
       }).showToast();
+
+
+
+
+      
       optionsWords.push(wordForAdd)
-      JSON.stringify(localStorage.setItem('allOptions',optionsWords))
+
+      if(JSON.parse(localStorage.getItem('allOptions'))){
+        let pushedLS = JSON.parse(localStorage.getItem('allOptions'))
+        if(Array.isArray(pushedLS)){
+
+          pushedLS.forEach(el => {
+
+            optionsWords.push(el)
+          
+        });
+
+          let optionsFilter = optionsWords.filter((item, index)=>{
+            return optionsWords.indexOf(item)=== index;
+          })
+          optionsWords = optionsFilter
+          localStorage.setItem('allOptions',JSON.stringify(optionsWords))
+        }
+      }else{
+              localStorage.setItem('allOptions',JSON.stringify(optionsWords))
+      }
+
+
+
+
 
 
       inicioInfo.style.display = 'none';
 
       let newDiv = document.createElement("div")
-      newDiv.className = "optionWord optionWord" + optionsWords[optionsWords.length - 1]
+      newDiv.className = "optionWord optionWord" + wordForAdd
 
       newDiv.innerHTML=
       `
-      <p>${optionsWords[optionsWords.length - 1]}</p>
+      <p>${wordForAdd}</p>
       `
       containerPalabras.appendChild(newDiv)
 
-      let wordSelected = document.querySelector('.optionWord'+ optionsWords[optionsWords.length - 1])
+      let wordSelected = document.querySelector('.optionWord'+ wordForAdd)
       wordSelected.addEventListener("click", ()=>{
         let stringWordSelected = wordSelected.textContent.replace(/\s+/g, '') 
         
@@ -231,7 +334,7 @@ crearButton.addEventListener("click", ()=>{
     message.lang = 'es-AR'
 
     message.volume = 3;
-    message.rate = 1;
+    message.rate = rangeVoice.value;
     message.text = textPrevious.textContent.replace(/(\r\n|\n|\r)/gm, "")
     message.pitch = 1;
 
@@ -306,6 +409,29 @@ saveButton.addEventListener("click",()=>{
     }).showToast();
   }else{
     addFrases(textPrevious.textContent)
+    optionFrases.push(textPrevious.textContent)
+
+
+      if(JSON.parse(localStorage.getItem('allFrases'))){
+        let frasesLS = JSON.parse(localStorage.getItem('allFrases'))
+        if(Array.isArray(frasesLS)){
+
+          frasesLS.forEach(el => {
+
+            optionFrases.push(el)
+          
+        });
+
+          let frasesFilter = optionFrases.filter((item, index)=>{
+            return optionFrases.indexOf(item)=== index;
+          })
+          optionFrases = frasesFilter
+          localStorage.setItem('allFrases',JSON.stringify(optionFrases))
+        }
+      }else{
+              localStorage.setItem('allFrases',JSON.stringify(optionFrases))
+      }
+
   }
 })
 function addFrases(string) {
@@ -353,15 +479,6 @@ function addFrases(string) {
 }
 buttonFrases.addEventListener("click",()=>{
 
-  // let heightPalabras = window.getComputedStyle(containerPalabras);
-  // let containerPalabrasHeight = heightPalabras.getPropertyValue('height');
-  // main.style.height = "max-content"
-
-  // let heightFrases = window.getComputedStyle(containerFrases);
-  // let containerFrasesHeight = heightFrases.getPropertyValue('height');
-  // console.log(containerFrasesHeight);
-
-  // containerFrases.style.height = containerFrasesHeight
 
   buttonFrases.classList.add('headerFrasesOn')
   buttonPalabras.classList.remove('headerPalabrasOn')
@@ -383,16 +500,6 @@ buttonFrases.addEventListener("click",()=>{
 })
 buttonPalabras.addEventListener("click",()=>{
 
-
-  // let heightFrases = window.getComputedStyle(containerFrases);
-  // let containerFrasesHeight = heightFrases.getPropertyValue('height');
-  // console.log(containerFrasesHeight);
-
-  // main.style.height = "max-content"
-
-  // let heightPalabras = window.getComputedStyle(containerPalabras);
-  // let containerPalabrasHeight = heightPalabras.getPropertyValue('height');
-  // containerPalabras.style.height = containerPalabrasHeight
   buttonFrases.classList.remove('headerFrasesOn')
   buttonPalabras.classList.add('headerPalabrasOn')
   saveButton.style.opacity="1"
@@ -414,3 +521,186 @@ buttonPalabras.addEventListener("click",()=>{
   }
 
 })
+
+///////////////////logica Buscador
+function createOptions(array){
+  array.forEach(el => {
+    addFrases(el)
+  });
+}
+
+
+  searcher.addEventListener ("input", () =>{
+
+  if (!searcher.value == ""){
+    if(JSON.parse(localStorage.getItem('allOptions'))){
+      let optionsLS = JSON.parse(localStorage.getItem('allOptions'))
+      let optionsSearch = optionsLS.filter(el => el.includes(searcher.value))
+      console.log(optionsSearch)
+  
+      containerOptions.innerHTML = ``
+  
+      optionsSearch.forEach(el => {
+        inicioInfo.style.display = 'none';
+  
+        let newDiv = document.createElement("div")
+        newDiv.className = "optionWord optionWord" + el
+  
+        newDiv.innerHTML=
+        `
+        <p>${el}</p>
+        `
+        containerOptions.appendChild(newDiv)
+  
+        let wordSelected = document.querySelector('.optionWord'+ el)
+        wordSelected.addEventListener("click", ()=>{
+          let stringWordSelected = wordSelected.textContent.replace(/\s+/g, '') 
+          
+  
+          addFinalText(stringWordSelected)
+  
+  
+  
+        })
+      })
+    }else{
+      Toastify({
+        text:'Crea tu primer palabra',
+        duration: 2500,
+        gravity: "top",
+        position: "center", 
+        stopOnFocus: true, 
+        style: {
+          cursor:"default",
+          fontSize:"14px",
+          background: "#C9308C",
+          borderRadius: "7px"
+        },
+        onClick: function(){} // Callback after click
+      }).showToast();
+      containerOptions.innerHTML = ``
+      let div = document.createElement("div")
+      div.className = "crearButton"
+      div.innerHTML = `
+      <p>Crear</p>
+      <img src="./assets/svg/icons/mas.svg" alt="">
+      `
+      let div2 = document.createElement("div")
+      div2.className = 'inicioInfo'
+      div2.innerHTML = `
+      <p>Crea tu biblioteca de palabras para poder formar oraciones y reproducirlas.</p>
+      `
+
+      containerOptions.appendChild(div)
+      containerOptions.appendChild(div2)
+
+      let crearButton = document.querySelector('.crearButton')
+
+      crearButton.addEventListener("click", ()=>{
+        createToggle.classList.add('createToggleON')
+        createToggle.classList.add('createToggleONBackground')
+    
+        cancelButton.addEventListener("click",()=>{
+          createToggle.classList.remove('createToggleON')
+          createToggle.classList.remove('createToggleONBackground')
+        })
+        
+    
+        
+      })
+    }
+  }
+  else{
+    if(JSON.parse(localStorage.getItem('allOptions'))){
+      
+      containerOptions.innerHTML = ``
+      let div = document.createElement("div")
+      div.className = "crearButton"
+      div.innerHTML = `
+      <p>Crear</p>
+      <img src="./assets/svg/icons/mas.svg" alt="">
+      `
+      containerOptions.appendChild(div)
+      let pushedLS = JSON.parse(localStorage.getItem('allOptions'))
+      pushedLS.forEach(el => {
+        inicioInfo.style.display = 'none';
+  
+        let newDiv = document.createElement("div")
+        newDiv.className = "optionWord optionWord" + el
+  
+        newDiv.innerHTML=
+        `
+        <p>${el}</p>
+        `
+        containerOptions.appendChild(newDiv)
+
+        let crearButton = document.querySelector('.crearButton')
+
+        crearButton.addEventListener("click", ()=>{
+          createToggle.classList.add('createToggleON')
+          createToggle.classList.add('createToggleONBackground')
+      
+          cancelButton.addEventListener("click",()=>{
+            createToggle.classList.remove('createToggleON')
+            createToggle.classList.remove('createToggleONBackground')
+          })
+          
+      
+          
+        })
+  
+        let wordSelected = document.querySelector('.optionWord'+ el)
+        wordSelected.addEventListener("click", ()=>{
+          let stringWordSelected = wordSelected.textContent.replace(/\s+/g, '') 
+          
+  
+          addFinalText(stringWordSelected)
+  
+  
+  
+        })
+      })
+    }else{
+
+    
+    containerOptions.innerHTML  = ``
+
+      let div = document.createElement("div")
+      div.className = "crearButton"
+      div.innerHTML = `
+      <p>Crear</p>
+      <img src="./assets/svg/icons/mas.svg" alt="">
+      `
+      containerOptions.appendChild(div)
+      let div2 = document.createElement("div")
+      div2.className = 'inicioInfo'
+      div2.innerHTML = `
+      <p>Crea tu biblioteca de palabras para poder formar oraciones y reproducirlas.</p>
+      `
+      containerOptions.appendChild(div2)
+
+      let crearButton = document.querySelector('.crearButton')
+
+      crearButton.addEventListener("click", ()=>{
+        createToggle.classList.add('createToggleON')
+        createToggle.classList.add('createToggleONBackground')
+    
+        cancelButton.addEventListener("click",()=>{
+          createToggle.classList.remove('createToggleON')
+          createToggle.classList.remove('createToggleONBackground')
+        })
+        
+    
+        
+      })
+
+
+  
+    
+    
+}}
+
+  
+
+  })
+

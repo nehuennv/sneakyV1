@@ -41,15 +41,16 @@ body{
 
 header{
     height: 15%;
-    width: 100vw;
+    justify-content: space-between;
     display: flex;
     align-items: center;
-    justify-content: center;
+
+    padding-inline: 8%;
     .logoHeader{
         display: flex;
         align-items: center;
-        justify-content: center;
 
+        width: 50%;
 
     }
     .navbarHeader{
@@ -120,6 +121,7 @@ header{
 
 
         .containerPalabras{
+
             position: absolute;
             width: 100%;
             justify-content: center;
@@ -127,9 +129,23 @@ header{
             display: flex;
             align-items: flex-start;
             flex-wrap: wrap;
-            height: 100%;
+            height: 68vh;
             overflow-y: scroll !important;
+
             align-content: flex-start;
+            .containerOptions{
+
+
+                width: 100%;
+                justify-content: center;
+                transition: .6s;
+
+                display: flex;
+                align-items: flex-start;
+                flex-wrap: wrap;
+
+                align-content: flex-start;
+            }
             &::-webkit-scrollbar{
 
                 width: 5px;
@@ -141,6 +157,25 @@ header{
                 transition: all 1s;
                 &:hover{
                     background: #A02A71;
+                }
+            }
+            .searchContainer{
+                background-color: #373439;
+                width: 75%;
+                display: flex;
+                justify-content: space-between;
+                border-radius: 7px;
+                padding-inline: 20px;
+                margin-bottom: 25px;
+                
+                .searcher{
+                    color: $whiteColor;
+                    font-size: 16px;
+                    padding-block: 2vh;
+                    background-color: transparent;
+                    font-weight: 500;
+                    width: 95%;
+
                 }
             }
 
@@ -177,7 +212,11 @@ header{
                 color: $backgroundColor;
                 margin-bottom: 25px;
                 transition: all .5s;
+                &:active{
+                    background-color: #F1E8FA;
+                }
                 &:hover{
+                    box-shadow: 0px 0px 0px 4px #C9308C;
                     p{
                     color: $FirstColor;
                 }}
@@ -192,7 +231,8 @@ header{
             }
         }
         .containerFrases{
-            height: 100%;
+            height: 68vh;
+            padding-top: 4px;
             width: 100%;
             position:relative;
             transition: .6s;            
@@ -200,7 +240,7 @@ header{
             display: flex;
             flex-direction: column;
             align-items: center;
-            transform: translateX(100vh);
+            transform: translateX(100vw);
             overflow-y: scroll !important;
 
             &::-webkit-scrollbar{
@@ -233,10 +273,16 @@ header{
                 color: $backgroundColor;
                 margin-bottom: 25px;
                 transition: all .5s;
+                &:active{
+                    background-color: #F1E8FA;
+                }
                 &:hover{
+                    box-shadow: 0px 0px 0px 4px #C9308C;
                     p{
                     color: $FirstColor;
+                    
                 }}
+
                 p{  
                     
                     max-width: 100%;
@@ -264,7 +310,7 @@ footer{
 
     display: flex;
     flex-direction: column;
-    // position: fixed;
+    position: absolute;
     width: 100vw;
     z-index: 100;
     .resultFraseContainer{
@@ -275,8 +321,12 @@ footer{
         background-color: #4F203E;
         .saveButton{
             position: relative;
-
+            margin-top: 2px;
+            margin-right: 3%;
             
+        }
+        .removeOption{
+            margin-right: 2%;
         }
         p{  
             display: flex;
@@ -304,9 +354,9 @@ footer{
             }
         }
         button{
-            
+            position: relative;
             width: 10%;
-            margin-inline: 2%;
+
             display: flex;
             justify-content: center;
             align-items: center;
@@ -320,7 +370,8 @@ footer{
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 4%;
+        position: relative;
+        gap: 2.5%;
         .playButton{
             color: $FirstColor;
             font-weight: 500;
@@ -331,25 +382,25 @@ footer{
             height: 55%;
             width: 50%;
             cursor: pointer;
-            border-radius: 100px;
+            border-radius: 400px;
             background-color: $whiteColor;
             transition: all .5s;
             &:hover{
-                background-color: #DBD3E3;
+                transform: scale(1.02);
             }
         }
         .voiceButton{
             cursor: pointer;
-            border-radius: 100px;
-            background-color: $whiteColor;
+            border-radius: 400px;            background-color: $whiteColor;
             display: grid;
             justify-content: center;
             align-items: center;
             height: 50%;
             width: 15%;
+            max-width: 60px;
             transition: all .5s;
             &:hover{
-                background-color: #DBD3E3;
+                transform: scale(1.03);
             }
 
         }
@@ -485,6 +536,40 @@ padding-block: 25px;
         justify-content: center;
         width: 100vw;
     }
+    .containerConfig{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            .containerRange{
+                margin-bottom: 2vh;
+                width: 90%;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                p{  
+                    color: $FirstColor;
+                    font-weight: 600;
+                    padding-right: 10px;
+                    font-size: 13.3px;
+                }
+            #rate{
+
+                width:inherit;
+                border-radius: 30px;
+                height: 10px; /* Specified height */
+                background: #424242; /* Grey background */
+                outline: none; /* Remove outline */
+                opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+                -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+                transition: opacity .2s;
+            
+        
+    } 
+            }
+
     select{
         color: $FirstColor;
         font-weight: 600;
@@ -507,8 +592,10 @@ padding-block: 25px;
     select::-ms-expand {
         display: none; 
         }
+        
+
     button{
-        background-color: transparent;
+
         color: #7F7A85;
         font-weight: 500;
         font-size: 14px;
@@ -552,5 +639,8 @@ padding-block: 25px;
         }
     }
     
+    }
 }
-
+.closeGenderSelector{
+    background-color: $whiteColor;
+}
