@@ -4,6 +4,7 @@ let createToggle = document.querySelector('.createToggle')
 let cancelButton = document.querySelector('.cancelButton')
 let addButtonWord = document.querySelector('.addButtonWord')
 let containerPalabras = document.querySelector('.containerPalabras')
+let container = document.querySelector('.container')
 let containerOptions = document.querySelector('.containerOptions')
 let inicioInfo = document.querySelector('.inicioInfo')
 let removeOption = document.querySelector('.removeOption')
@@ -14,6 +15,7 @@ let containerMain = document.querySelector('.containerMain')
 let buttonPalabras = document.querySelector('.buttonPalabras')
 let voiceButton = document.querySelector('.voiceButton')
 let main = document.querySelector('main')
+let body = document.querySelector('body')
 let searcher = document.querySelector('.searcher')
 let logoHeader = document.querySelector('.logoHeader')
 let welcomeSpeako = document.querySelector('.welcomeSpeako')
@@ -179,8 +181,9 @@ vocesDisponibles = [];
 crearButton.addEventListener("click", ()=>{
     createToggle.classList.add('createToggleON')
     createToggle.classList.add('createToggleONBackground')
-
+    body.classList.add('.noScroll')
     cancelButton.addEventListener("click",()=>{
+      body.classList.remove('.noScroll')
       createToggle.classList.remove('createToggleON')
       createToggle.classList.remove('createToggleONBackground')
     })
@@ -413,6 +416,8 @@ let menuGenderBackground = document.querySelector('.menuGenderBackground')
 let closeGenderSelector = document.querySelector('.closeGenderSelector')
 
 genderVoiceButton.addEventListener('click',()=>{
+  body.classList.toggle('noScroll')
+  container.classList.toggle('menuGenderToggle')
   menuGenderBackground.classList.toggle('menuGenderBackgroundON')
   voiceButton.classList.toggle('voiceButtonClose')
 

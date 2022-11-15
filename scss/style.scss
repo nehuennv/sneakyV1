@@ -201,7 +201,7 @@ header{
             display: flex;
             align-items: flex-start;
             flex-wrap: wrap;
-            height: 68vh;
+            height: 68%;
             overflow-y: scroll !important;
 
             align-content: flex-start;
@@ -303,7 +303,7 @@ header{
             }
         }
         .containerFrases{
-            height: 68vh;
+            height: 68%;
             padding-top: 4px;
             width: 100%;
             position:relative;
@@ -552,6 +552,7 @@ footer{
                 margin-inline: 10vw;
                 padding-inline: 15px;
                 background: #1F1C21;
+                font-size: 14px !important;
                 border-radius: 7px 7px 0px 0px;
                 height: 20vh;
             }
@@ -602,15 +603,15 @@ $color_5: #232323;
 .menuGenderBackground{
     transition: all .5s;
     z-index: 2;
-    height: 100%;
+    height: 80%;
     opacity: 0;
     background-color: rgba(0, 0, 0, 0.41) !important;
-
+    overflow: hidden;
     pointer-events: none;
     position: fixed;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     width: 100vw;
 }
 .speakerVoice{
@@ -624,8 +625,9 @@ $color_5: #232323;
 .container {
     width: 100vw;
     background-color: #262329;
-	margin: 40px auto;
 	height: auto;
+    transform: translateY(100vh);
+    transition: all 1s;
     display: flex;
     flex-direction: column;
     justify-content: center;align-items: center;
@@ -784,4 +786,12 @@ padding-block: 25px;
     &:hover{
         color: $whiteColor;
     }
+}
+.noScroll{
+    overflow: hidden;
+    transition: all 1s;
+
+}
+.menuGenderToggle{
+    transform: translateY(0vh) !important;
 }
