@@ -266,9 +266,9 @@ crearButton.addEventListener("click", ()=>{
         onClick: function(){} 
       }).showToast();
 
-      inicioInfo = document.querySelector('.inicioInfo')
+      // inicioInfo = document.querySelector('.inicioInfo')
 
-      inicioInfo.innerHTML = ``
+      // inicioInfo.innerHTML = ``
 
       
       optionsWords.push(wordForAdd)
