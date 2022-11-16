@@ -21,6 +21,7 @@ let searcher = document.querySelector('.searcher')
 let logoHeader = document.querySelector('.logoHeader')
 let welcomeSpeako = document.querySelector('.welcomeSpeako')
 let acceptWelcome = document.querySelector('.acceptWelcome')
+let searcherImage = document.querySelector('.searcherImage')
 let rangeVoice = document.querySelector('#rate')
 
 let newUser 
@@ -379,7 +380,7 @@ crearButton.addEventListener("click", ()=>{
     message.pitch = 1;
 
 
-    console.log(message.text)
+
 
 
     speechSynthesis.speak(message)
@@ -589,12 +590,35 @@ function createOptions(array){
   })
 
   searcher.addEventListener ("input", () =>{
+    
+    if(!searcher.value == ""){
+      searcherImage.classList.add('searcherImageClean')
+      searcherImage.addEventListener("click", ()=>{
+        searcher.value = ""
+        checkSearcher()
+      })
+    }
+    checkSearcher()
+  }
+  )
+  function Numeros(string){//solo letras y numeros
+    var out = '';
+    //Se añaden las letras validas
+    var filtro = 'abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890';//Caracteres validos
+	
+    for (var i=0; i<string.length; i++)
+       if (filtro.indexOf(string.charAt(i)) != -1) 
+	     out += string.charAt(i);
+    return out;
+}
 
+function checkSearcher(){
   if (!searcher.value == ""){
+    
     if(JSON.parse(localStorage.getItem('allOptions'))){
       let optionsLS = JSON.parse(localStorage.getItem('allOptions'))
       let optionsSearch = optionsLS.filter(el => el.includes(searcher.value))
-      console.log(optionsSearch)
+
       containerOptions = document.querySelector('.containerOptions')
 
   
@@ -639,13 +663,14 @@ function createOptions(array){
   }
 
   else{
+    searcherImage.classList.remove('searcherImageClean')
     containerOptions = document.querySelector('.containerOptions')
   
     containerOptions.innerHTML = ``
     if(JSON.parse(localStorage.getItem('allOptions'))){
       let optionsLS = JSON.parse(localStorage.getItem('allOptions'))
       let optionsSearch = optionsLS.filter(el => el.includes(searcher.value))
-      console.log(optionsSearch)
+
 
       containerOptions = document.querySelector('.containerOptions')
   
@@ -778,5 +803,4 @@ function createOptions(array){
 
   
 
-  })
-
+  }

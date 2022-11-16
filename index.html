@@ -58,7 +58,7 @@ Esperamos que te sea de utlidad y que tengas una buena experiencia de usuario.
                             <p>Escribe aqui la palabra que deseas
                                 agregar a la biblioteca.</p>
                             <div>
-                                <input type="text" id="createWord">
+                                <input type="text" onkeyup="this.value=Numeros(this.value)" id="createWord">
                                 <button class="addButtonWord">Agregar</button>
                             </div>
                             <button class="cancelButton">
@@ -85,8 +85,8 @@ Esperamos que te sea de utlidad y que tengas una buena experiencia de usuario.
 
             <div class="containerPalabras">
                 <div class="searchContainer">
-                    <input type="text" name="" class="searcher" placeholder="Que palabra Buscas?">
-                    <img src="./assets/svg/icons/search.svg" alt="">
+                    <input type="text" name="" class="searcher" placeholder="Que palabra buscas?">
+                    <div class="searcherImage" "></div>
                 </div>
                 <div class="containerOptions">
                     <div class="crearButton">
@@ -111,8 +111,8 @@ Esperamos que te sea de utlidad y que tengas una buena experiencia de usuario.
     <footer>
         <div class="resultFraseContainer">
             <p class="textPrevious">Tu frase aparecera aqui</p>
-            <button class="saveButton"><img src="./assets/svg/icons/saveButton.svg" alt=""></button>
-            <button class="removeOption"><img src="./assets/svg/icons/trash.svg" alt=""></button>
+            <button class="saveButton"></button>
+            <button class="removeOption"></button>
             
         </div>
         <div class="playAndSaveContainer">
