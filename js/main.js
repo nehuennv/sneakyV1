@@ -64,7 +64,11 @@ if(JSON.parse(localStorage.getItem('allOptions'))){
   let pushedLS = JSON.parse(localStorage.getItem('allOptions'))
   if(Array.isArray(pushedLS)){
     pushedLS.forEach(el => {
-      inicioInfo.style.display = 'none';
+      inicioInfo = document.querySelector('.inicioInfo')
+
+      if(inicioInfo){
+        inicioInfo.innerHTML = ``;
+      }
 
       let newDiv = document.createElement("div")
       newDiv.className = "optionWord optionWord" + el
@@ -199,6 +203,8 @@ crearButton.addEventListener("click", ()=>{
 
 
   addButtonWord.addEventListener("click", ()=>{
+
+    inicioInfo = document.querySelector('.incioInfo')
      
     let wordForAdd = document.getElementById('createWord').value;
     document.getElementById('createWord').value = ""
@@ -302,11 +308,13 @@ crearButton.addEventListener("click", ()=>{
       }
 
 
+      inicioInfo = document.querySelector('.inicioInfo')
 
 
 
-
-      inicioInfo.style.display = 'none';
+      if(inicioInfo){
+        inicioInfo.innerHTML= ``;
+      }
 
       let newDiv = document.createElement("div")
       newDiv.className = "optionWord optionWord" + wordForAdd
@@ -630,7 +638,12 @@ function checkSearcher(){
       if(optionsSearch.length > 0){
   
       optionsSearch.forEach(el => {
-        inicioInfo.style.display = 'none';
+
+        inicioInfo = document.querySelector('.inicioInfo')
+
+        if(inicioInfo){
+          inicioInfo.innerHTML = ``;
+        }
   
         let newDiv = document.createElement("div")
         newDiv.className = "optionWord optionWord" + el
@@ -689,7 +702,11 @@ function checkSearcher(){
         containerOptions.appendChild(div)
         let pushedLS = JSON.parse(localStorage.getItem('allOptions'))
         pushedLS.forEach(el => {
-          inicioInfo.style.display = 'none';
+          inicioInfo = document.querySelector('.inicioInfo')
+
+          if(inicioInfo){
+            inicioInfo.innerHTML = ``;
+          }
     
           let newDiv = document.createElement("div")
           newDiv.className = "optionWord optionWord" + el
