@@ -350,9 +350,12 @@ crearButton.addEventListener("click", ()=>{
 
 
       removeOption.addEventListener("click", ()=>{
+        
         textPrevious.textContent = "Tu frase aparecera aqui"
         textPrevious.style.color ="rgba(255, 255, 255, 0.45)"
         textPrevious.style.fontWeight ="300"
+
+
       })
       if(textPrevious.textContent.length == 0){
         textPrevious.textContent = textPrevious.textContent + string
@@ -372,7 +375,7 @@ crearButton.addEventListener("click", ()=>{
     message.voice= window.speechSynthesis.getVoices()[$voces.value]
 
     
-    message.lang = 'es-AR'
+    message.lang = 'es-ES'
 
     message.volume = 3;
     message.rate = rangeVoice.value;
@@ -698,12 +701,16 @@ function checkSearcher(){
           containerOptions.appendChild(newDiv)
   
           let crearButton = document.querySelector('.crearButton')
-  
+
           crearButton.addEventListener("click", ()=>{
             createToggle.classList.add('createToggleON')
             createToggle.classList.add('createToggleONBackground')
-        
+            body.classList.add('.noScroll')
+            createMainContainer.classList.add('mainContainerSmooth')
             cancelButton.addEventListener("click",()=>{
+              body.classList.remove('.noScroll')
+              createMainContainer.classList.remove('mainContainerSmooth')
+        
               createToggle.classList.remove('createToggleON')
               createToggle.classList.remove('createToggleONBackground')
             })
@@ -747,12 +754,15 @@ function checkSearcher(){
       crearButton.addEventListener("click", ()=>{
         createToggle.classList.add('createToggleON')
         createToggle.classList.add('createToggleONBackground')
-    
+        body.classList.add('.noScroll')
+        createMainContainer.classList.add('mainContainerSmooth')
         cancelButton.addEventListener("click",()=>{
+          body.classList.remove('.noScroll')
+          createMainContainer.classList.remove('mainContainerSmooth')
+    
           createToggle.classList.remove('createToggleON')
           createToggle.classList.remove('createToggleONBackground')
         })
-        
     
         
       })
@@ -785,8 +795,12 @@ function checkSearcher(){
       crearButton.addEventListener("click", ()=>{
         createToggle.classList.add('createToggleON')
         createToggle.classList.add('createToggleONBackground')
-    
+        body.classList.add('.noScroll')
+        createMainContainer.classList.add('mainContainerSmooth')
         cancelButton.addEventListener("click",()=>{
+          body.classList.remove('.noScroll')
+          createMainContainer.classList.remove('mainContainerSmooth')
+    
           createToggle.classList.remove('createToggleON')
           createToggle.classList.remove('createToggleONBackground')
         })
@@ -804,3 +818,24 @@ function checkSearcher(){
   
 
   }
+  let textPrevious = document.querySelector('.textPrevious')
+  removeOption.addEventListener('click',()=>{
+
+    if(textPrevious.textContent == 'Tu frase aparecera aqui'){
+      Toastify({
+        text:'Nada para limpiar' ,
+        duration: 2500,
+        gravity: "top",
+        position: "center", 
+        stopOnFocus: true, 
+        style: {
+          cursor:"default",
+          fontSize:"14px",
+          background: "#C9308C",
+          borderRadius: "7px"
+        },
+        onClick: function(){} // Callback after click
+      }).showToast();
+    }
+  
+  })
