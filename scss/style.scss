@@ -35,7 +35,7 @@ body{
     height: 100% ;
     width: 100vw;
     background-color: $backgroundColor;
-    overflow-y: scroll !important;
+    overflow-y: hidden !important;
 
     section{
         height: 80%;
@@ -523,6 +523,10 @@ footer{
     opacity: 0;
     position: fixed;
     z-index: 1;
+    .createMainContainer{
+        transform: translateY(-100vh);
+        transition: all 1s;
+    }
     div{
         display: flex;
         flex-direction: column;
@@ -793,5 +797,8 @@ padding-block: 25px;
 
 }
 .menuGenderToggle{
+    transform: translateY(0vh) !important;
+}
+.mainContainerSmooth{
     transform: translateY(0vh) !important;
 }

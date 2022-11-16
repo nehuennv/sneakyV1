@@ -1,6 +1,7 @@
 let crearButton = document.querySelector('.crearButton')
 let playButton = document.querySelector('.playButton')
 let createToggle = document.querySelector('.createToggle')
+let createMainContainer = document.querySelector('.createMainContainer')
 let cancelButton = document.querySelector('.cancelButton')
 let addButtonWord = document.querySelector('.addButtonWord')
 let containerPalabras = document.querySelector('.containerPalabras')
@@ -182,8 +183,11 @@ crearButton.addEventListener("click", ()=>{
     createToggle.classList.add('createToggleON')
     createToggle.classList.add('createToggleONBackground')
     body.classList.add('.noScroll')
+    createMainContainer.classList.add('mainContainerSmooth')
     cancelButton.addEventListener("click",()=>{
       body.classList.remove('.noScroll')
+      createMainContainer.classList.remove('mainContainerSmooth')
+
       createToggle.classList.remove('createToggleON')
       createToggle.classList.remove('createToggleONBackground')
     })

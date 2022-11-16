@@ -24,7 +24,7 @@ body {
   height: 100%;
   width: 100vw;
   background-color: #1B191D;
-  overflow-y: scroll !important; }
+  overflow-y: hidden !important; }
   body section {
     height: 80%;
     width: 100vw; }
@@ -402,6 +402,9 @@ footer {
   opacity: 0;
   position: fixed;
   z-index: 1; }
+  .createToggle .createMainContainer {
+    transform: translateY(-100vh);
+    transition: all 1s; }
   .createToggle div {
     display: flex;
     flex-direction: column;
@@ -615,4 +618,7 @@ footer {
   transition: all 1s; }
 
 .menuGenderToggle {
+  transform: translateY(0vh) !important; }
+
+.mainContainerSmooth {
   transform: translateY(0vh) !important; }
