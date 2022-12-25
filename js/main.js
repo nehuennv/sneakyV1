@@ -1,858 +1,1787 @@
-let crearButton = document.querySelector('.crearButton')
-let playButton = document.querySelector('.playButton')
-let createToggle = document.querySelector('.createToggle')
-let createMainContainer = document.querySelector('.createMainContainer')
-let cancelButton = document.querySelector('.cancelButton')
-let addButtonWord = document.querySelector('.addButtonWord')
-let containerPalabras = document.querySelector('.containerPalabras')
-let container = document.querySelector('.container')
-let containerOptions = document.querySelector('.containerOptions')
-let inicioInfo = document.querySelector('.inicioInfo')
-let removeOption = document.querySelector('.removeOption')
-let saveButton = document.querySelector('.saveButton')
-let buttonFrases = document.querySelector('.buttonFrases')
-let containerFrases = document.querySelector('.containerFrases')
-let containerMain = document.querySelector('.containerMain')
-let buttonPalabras = document.querySelector('.buttonPalabras')
-let voiceButton = document.querySelector('.voiceButton')
-let main = document.querySelector('main')
-let body = document.querySelector('body')
-let searcher = document.querySelector('.searcher')
+let sneakersPopularContainer = document.querySelector('.sneakersPopularContainer')
+let sneakerSelected = document.querySelector('.sneakerSelected')
+let closeSneakerCard = document.querySelector('.closeSneakerCard')
 let logoHeader = document.querySelector('.logoHeader')
-let welcomeSpeako = document.querySelector('.welcomeSpeako')
-let acceptWelcome = document.querySelector('.acceptWelcome')
-let searcherImage = document.querySelector('.searcherImage')
-let rangeVoice = document.querySelector('#rate')
-
-let newUser 
-
-if(JSON.parse(localStorage.getItem('user'))){
-  newUser = false
-}else{
-  newUser = true
-}
-
-if(newUser == true){
-  welcomeSpeako.classList.add('welcomeSpeakoOn')
-  acceptWelcome.addEventListener('click', ()=>{
-    welcomeSpeako.classList.remove('welcomeSpeakoOn')
-    newUser = false
-    localStorage.setItem('user', true)
+let myCartButton = document.querySelector(".myCartButton")
+let sectionCart = document.querySelector(".sectionCart")
+let allSneakersCon = document.querySelector('.allSneakers')
+let homeButton = document.querySelector('.homeButton')
+let catalogButton = document.querySelector('.catalogButton')
+let mainSneakers = document.querySelector('.mainSneakers')
+let body = document.querySelector('.body')
+let main = document.querySelector('.main')
+let clearButton = document.querySelector('.clearButton')
+let purSecondStp = document.querySelector('.buttonPurchase-SecondStep')
+let sectionCartSecondStep = document.querySelector('.sectionCartSecondStep')
+let buttonBTSSecondStep = document.querySelector('.buttonBTS-SecondStep')
+let buttonDiscount = document.querySelector('.buttonDiscount')
+let priceAndCart = document.querySelector('.priceAndCart')
+let buttonPurchase = document.querySelector('.buttonPurchase')
+let navBarMobile = document.querySelector('.navBarMobile')
 
 
-  })
-}
+if (window.matchMedia("(max-width: 600px)").matches) {
+    homeButton = document.querySelector('.homeButtonMobile')
+    catalogButton = document.querySelector('.sneakerSectionMobile')
+    myCartButton = document.querySelector('.myCartMobile')
+    
+  }
 
-logoHeader.addEventListener('click',()=>{
-  welcomeSpeako.classList.add('welcomeSpeakoOn')
-  acceptWelcome.addEventListener('click', ()=>{
-    welcomeSpeako.classList.remove('welcomeSpeakoOn')
+let cart = []
 
-
-  })
-})
-
-
-let optionsWords = []
-
-let optionFrases = []
-
-
-
-if(JSON.parse(localStorage.getItem('allOptions'))){
-
-  let pushedLS = JSON.parse(localStorage.getItem('allOptions'))
-  if(Array.isArray(pushedLS)){
-    pushedLS.forEach(el => {
-      inicioInfo = document.querySelector('.inicioInfo')
-
-      if(inicioInfo){
-        inicioInfo.innerHTML = ``;
-      }
-
-      let newDiv = document.createElement("div")
-      newDiv.className = "optionWord optionWord" + el
-
-      newDiv.innerHTML=
-      `
-      <p>${el}</p>
-      `
-      containerOptions.appendChild(newDiv)
-
-      let wordSelected = document.querySelector('.optionWord'+ el)
-      wordSelected.addEventListener("click", ()=>{
-        let stringWordSelected = wordSelected.textContent.replace(/\s+/g, '') 
+clearButton.addEventListener("click", ()=>{
+    if(JSON.parse(localStorage.getItem('cartAdd'))){
         
-
-        addFinalText(stringWordSelected)
-
-
-
-      })
-    });
-
-  }
-
-}else{
-  
-}
-
-if(JSON.parse(localStorage.getItem('allFrases'))){
-
-  let frasesLS = JSON.parse(localStorage.getItem('allFrases'))
-  if(Array.isArray(frasesLS)){
-    frasesLS.forEach(el => {
-
-      let textFrases = document.querySelector('.textFrases')
-      if(!textFrases.textContent.length == 0){
-        textFrases.textContent = ""
-      }
-      let newDiv = document.createElement("div")
-    
-      let classSaved = el.split(" ")
-
-      newDiv.className = "savedWord savedWord" + "-" +   classSaved.join('-')
-
-      newDiv.innerHTML=
-      `
-      <p>${el}</p>
-      `
-      containerFrases.appendChild(newDiv)
-    
-      let savedOption = document.querySelector('.savedWord' + "-" +   classSaved.join('-'))
-    
-      savedOption.addEventListener("click",()=>{
         
-        let textPrevious = document.querySelector('.textPrevious')
-        textPrevious.style.color ="#fff"
-        textPrevious.style.fontWeight ="500"
-        textPrevious.textContent = savedOption.textContent
-      })
-    });
+        if (JSON.parse(localStorage.getItem('cartAdd')).length > 0 ){
+            Toastify({
+                text: "Cart successfully emptied",
+                duration: 1500,
+                position: "center",
+                stopOnFocus: true, 
+                style: {
+                  background: "#5E5E5E",
+                  borderRadius: "15px",
+                  color: "#DDDDDD",
+                  fontSize: "15px",
+                  zIndex: "101",
+                  fontWeight: "500",
+                  paddingInline: "30px",
+                  boxShadow: "0px 0px 0px 0px"
+                },
+                onClick: function(){} 
+              }).showToast();
+              localStorage.setItem('cartAdd',JSON.stringify([]))
+              let MyCartObjets = document.querySelector('.MyCartObjets')
 
-  }
+              MyCartObjets.innerHTML = `
+              <p style="text-align: center; position: relative; top: 40%; color: #aaa;">The cart is empty</p>
+              `
 
-}
-
-////////////cargar voces
-
-buttonPalabras.classList.add('headerPalabrasOn')
-
-const IDIOMAS_PREFERIDOS = ["es-MX", "es-US", "es-ES", "es_US", "es_ES"];
-
-vocesDisponibles = [];
-
-  let posibleIndice = 0
-
-  const $voces = document.querySelector("#voces")
-
-  const cargarVoces = () => {
-    if (vocesDisponibles.length > 0) {
-      console.log("No se cargan las voces porque ya existen: ", vocesDisponibles);
-      return;
-    }
-    vocesDisponibles = speechSynthesis.getVoices();
-    console.log({ vocesDisponibles })
-    posibleIndice = vocesDisponibles.findIndex(voz => IDIOMAS_PREFERIDOS.includes(voz.lang));
-    if (posibleIndice === -1) posibleIndice = 0;
-    vocesDisponibles = speechSynthesis.getVoices();
-    console.log({ vocesDisponibles })
-    posibleIndice = vocesDisponibles.findIndex(voz => IDIOMAS_PREFERIDOS.includes(voz.lang));
-    if (posibleIndice === -1) posibleIndice = 0;
-    vocesDisponibles.forEach((voz, indice) => {
-      const opcion = document.createElement("option");
-      opcion.value = indice;
-      opcion.innerHTML = voz.name;
-      opcion.selected = indice === posibleIndice;
-      $voces.appendChild(opcion);
-    })
-  };
-
-
-  cargarVoces();
-  if ('onvoiceschanged' in speechSynthesis) {
-    speechSynthesis.onvoiceschanged = function () {
-      cargarVoces();
-    };
-  }
-
-
-
-
-
-
-
-
-//////////////////logica crear boton
-crearButton.addEventListener("click", ()=>{
-    createToggle.classList.add('createToggleON')
-    createToggle.classList.add('createToggleONBackground')
-    body.classList.add('.noScroll')
-    createMainContainer.classList.add('mainContainerSmooth')
-    cancelButton.addEventListener("click",()=>{
-      body.classList.remove('.noScroll')
-      createMainContainer.classList.remove('mainContainerSmooth')
-
-      createToggle.classList.remove('createToggleON')
-      createToggle.classList.remove('createToggleONBackground')
-    })
+        }else{
+            Toastify({
+                text: "There is nothing to clean",
+                duration: 1500,
     
+                position: "center",
+                stopOnFocus: true, 
+                style: {
+                  background: "#5E5E5E",
+                  borderRadius: "15px",
+                  color: "#DDDDDD",
+                  fontSize: "15px",
+                  zIndex: "101",
+                  fontWeight: "500",
+                  paddingInline: "30px",
+                  boxShadow: "0px 0px 0px 0px"
 
+                },
     
-  })
+                onClick: function(){} 
+              }).showToast();
 
+            localStorage.setItem('cartAdd',JSON.stringify([]))
+            let MyCartObjets = document.querySelector('.MyCartObjets')
 
-  addButtonWord.addEventListener("click", ()=>{
+            MyCartObjets.innerHTML = `
+            <p style="text-align: center; position: relative; top: 40%; color: #aaa;">The cart is empty</p>
+            `
+        }
 
-    inicioInfo = document.querySelector('.incioInfo')
-     
-    let wordForAdd = document.getElementById('createWord').value;
-    document.getElementById('createWord').value = ""
+        
+    }else if (JSON.parse(localStorage.getItem('cartAdd')) == []){
+            Toastify({
+                text: "There is nothing to clean",
+                duration: 1500,
     
+                position: "center",
+                stopOnFocus: true, 
+                style: {
+                  background: "#5E5E5E",
+                  borderRadius: "15px",
+                  color: "#DDDDDD",
+                  fontSize: "15px",
+                  zIndex: "101",
+                  fontWeight: "500",
+                  paddingInline: "30px",
+                  boxShadow: "0px 0px 0px 0px"
 
-    let duplicate = optionsWords.find(el=> el == wordForAdd)
+                },
+    
+                onClick: function(){} 
+              }).showToast();
+              let MyCartObjets = document.querySelector('.MyCartObjets')
 
+              MyCartObjets.innerHTML = `
+              <p style="text-align: center; position: relative; top: 40%; color: #aaa;">The cart is empty</p>
+              `
+        
+    }else{
+        let MyCartObjets = document.querySelector('.MyCartObjets')
 
-        if(duplicate){
-          Toastify({
-            text:'Esa palabra ya esta en biblioteca',
-            duration: 2500,
-            gravity: "top",
-            position: "center", 
+        MyCartObjets.innerHTML = `
+        <p style="text-align: center; position: relative; top: 40%; color: #aaa;">The cart is empty</p>
+        `
+        Toastify({
+            text: "There is nothing to clean",
+            duration: 1500,
+
+            position: "center",
             stopOnFocus: true, 
             style: {
-              cursor:"default",
-              fontSize:"14px",
-              background: "#C9308C",
-              borderRadius: "7px"
+              background: "#5E5E5E",
+              borderRadius: "15px",
+              color: "#DDDDDD",
+              fontSize: "15px",
+              zIndex: "101",
+              fontWeight: "500",
+              paddingInline: "30px",
+              boxShadow: "0px 0px 0px 0px"
+
             },
-            onClick: function(){} // Callback after click
+
+            onClick: function(){} 
           }).showToast();
+    }
+
+})
+    setInterval(() => {
+
+        if(JSON.parse(localStorage.getItem('cartAdd'))){
+        let cartCompleteLS = JSON.parse(localStorage.getItem('cartAdd'))
+        
+        let MyCartObjets = document.querySelector('.MyCartObjets')
+        let totalText = document.querySelector('.totalText')
+        
+        MyCartObjets.innerHTML = ``
+            if (JSON.parse(localStorage.getItem('cartAdd')).length == 0){
+                MyCartObjets.innerHTML = `
+                <p style="text-align: center; position: relative; top: 40%; color: #aaa;">The cart is empty</p>
+                `
+            }
+
+        let totalPrice = 0;
+
+
+        cartCompleteLS.forEach(el => {
+            let newDiv = document.createElement("div")
+            newDiv.className = "sneakerObjet"
+
+            newDiv.innerHTML = `
+            <div class="sneakerDataCart">
+            <div class="imageSneakerCart">
+                <img src="${el.img}" alt="">
+            </div>   
+            <div class="sneakerCartName">
+                <h3>${el.name}</h3>
+                <p>${el.model}</p>
+            </div>
+        </div>
+        <div class="ObjectDataCart">
+            <div class="dataCart">
+                <p>Quantity</p>
+                <p class="dataBold">${el.amount}</p>
+            </div>
+            <div class="dataCart">
+                <p>Price</p>
+                <p class="dataBold">$${Number(`${(el.price)}`).toLocaleString()}.00</p>
+            </div>
+            <div class="dataCart">
+                <p>Total</p>
+                <p class="dataBoldYellow">$${(el.price * el.amount).toLocaleString()}.00</p>
+            </div>
+        </div>
+            `
+            MyCartObjets.appendChild(newDiv)
+
+            totalPrice += Number(`${el.price * el.amount}`);
+            totalProduct(totalPrice)
+
+        });
+        totalText.textContent ='$' + totalPrice.toLocaleString() + '.00'
+
+    }else{
+        let MyCartObjets = document.querySelector('.MyCartObjets')
+
+        MyCartObjets.innerHTML = `
+        <p style="text-align: center; position: relative; top: 40%; color: #aaa;">The cart is empty</p>
+        `
+    }
+
+      }, 000);
+
+let totalProductSummary = ""      
+
+function totalProduct(total){
+    totalProductSummary = parseInt(total)
+}  
+
+window.addEventListener("scroll", function(){
+    let header = document.querySelector(".header")
+    let liNavbar = document.querySelectorAll(".liNavbar")
+    let myCartButton = document.querySelector(".myCartButton")
+    let catalogButton = document.querySelector(".catalogButton")
+    let homeButton = document.querySelector(".homeButton")
+    let logoContainer = document.querySelector(".logoContainer")
+
+
+    if (window.scrollY>50){
+        if (window.matchMedia("(max-width: 600px)").matches) {
+            homeButton = document.querySelector('.homeButtonMobile')
+            catalogButton = document.querySelector('.sneakerSectionMobile')
+            myCartButton = document.querySelector('.myCartMobile')
+            navBarMobile.classList.add('navBarMobileON')
+            header.classList.add('hideHeader')
+
+            logoContainer.innerHTML = `
+            <div class="closeSneakerCard"></div>
+    
+            <img class="logoHeader" src="./assets/svg/logo/yellowSneaky.svg" alt="">
+            `
+            myCartButton.innerHTML= `
+            <img src="./assets/svg/icons/cartWhite.svg" alt="">
+            `
+          }else{        
+            logoContainer.innerHTML = `
+            <div class="closeSneakerCard"></div>
+    
+            <img class="logoHeader" src="./assets/svg/logo/yellowSneaky.svg" alt="">
+            `
+            myCartButton.innerHTML= `
+            My Cart 
+            `
+}
+    }
+    if (window.scrollY>100) {
+        if (window.matchMedia("(max-width: 600px)").matches) {
+            setTimeout(()=>{
+                header.style.backgroundColor="#1E1E1E";
+                header.style.boxShadow=" 0px 2px 10px rgba(0, 0, 0, 0.1)";
+                catalogButton.style.color="#fff"
+                homeButton.style.color="#fff"
+                liNavbar.forEach(el => {
+                    el.style.color="#fff";
+                });
+            },1000)
+
         }else{
 
+            header.style.backgroundColor="#1E1E1E";
+            header.style.boxShadow=" 0px 2px 10px rgba(0, 0, 0, 0.1)";
+            catalogButton.style.color="#fff"
+            homeButton.style.color="#fff"
+            liNavbar.forEach(el => {
+                el.style.color="#fff";
+            });
+        }
 
-    if (wordForAdd.length == 0){
-      Toastify({
-        text:'Ingresa una palabra',
-        duration: 2500,
-        gravity: "top",
-        position: "center", 
-        stopOnFocus: true, 
-        style: {
-          cursor:"default",
-          fontSize:"14px",
-          background: "#C9308C",
-          borderRadius: "7px"
-        },
-        onClick: function(){} // Callback after click
-      }).showToast();
-      
-    }else if(/\s/.test(wordForAdd)){
-      Toastify({
-        text:'Ingresa una sola palabra',
-        duration: 2500,
-        gravity: "top",
-        position: "center", 
-        stopOnFocus: true, 
-        style: {
-          cursor:"default",
-          fontSize:"14px",
-          background: "#C9308C",
-          borderRadius: "7px"
-        },
-        onClick: function(){} // Callback after click
-      }).showToast();
-     }
 
-    else{
-      Toastify({
-        text:'"' + wordForAdd +'" añadida',
-        duration: 2500,
-        gravity: "top",
-        position: "center", 
-        stopOnFocus: true, 
-        style: {
-          cursor:"default",
-          fontSize:"14px",
-          background: "#C9308C",
-          borderRadius: "7px"
-        },
-        onClick: function(){} 
-      }).showToast();
+    }else{
+        if (window.matchMedia("(max-width: 600px)").matches) {
+            header.style.backgroundColor="#FCEA1C";
+            header.style.boxShadow=" 0px 4px 10px rgba(0, 0, 0, 0.0)";
+            liNavbar.forEach(el => {
+                el.style.color="#373737";
+            });
+            catalogButton.style.color="#373737"
+            homeButton.style.color="#373737"
+    
+            logoContainer.innerHTML = `
+            <div class="closeSneakerCard"></div>
+    
+            <img class="logoHeader" src="./assets/svg/logo/sneakyLogo.svg" alt="">
+            `
 
-      // inicioInfo = document.querySelector('.inicioInfo')
+        }else{
+            header.style.backgroundColor="#FCEA1C";
+            header.style.boxShadow=" 0px 4px 10px rgba(0, 0, 0, 0.0)";
+            liNavbar.forEach(el => {
+                el.style.color="#373737";
+            });
+            catalogButton.style.color="#373737"
+            homeButton.style.color="#373737"
+    
+            myCartButton.innerHTML= `
+            My Cart 
+            `
+            logoContainer.innerHTML = `
+            <div class="closeSneakerCard"></div>
+    
+            <img class="logoHeader" src="./assets/svg/logo/sneakyLogo.svg" alt="">
+            `
 
-      // inicioInfo.innerHTML = ``
+        }
 
-      
-      optionsWords.push(wordForAdd)
 
-      if(JSON.parse(localStorage.getItem('allOptions'))){
-        let pushedLS = JSON.parse(localStorage.getItem('allOptions'))
-        if(Array.isArray(pushedLS)){
+    }
+})
+homeButton.addEventListener("click", ()=>{
+    let header = document.querySelector(".header")
+    let liNavbar = document.querySelectorAll(".liNavbar")
+    let myCartButton = document.querySelector(".myCartButton")
+    let catalogButton = document.querySelector(".catalogButton")
+    let homeButton = document.querySelector(".homeButton")
+    let logoContainer = document.querySelector(".logoContainer")
+    let sneakerSelectedRemove = document.querySelector(".sneakerSelected")
 
-          pushedLS.forEach(el => {
 
-            optionsWords.push(el)
-          
+
+    if(sneakerSelectedRemove.classList.contains("showSneakerSelected")){
+        body.style.overflowY='auto'
+        sneakerSelectedRemove.classList.remove("showSneakerSelected")
+
+    }
+        header.style.backgroundColor="#1E1E1E";
+        header.style.boxShadow=" 0px 2px 10px rgba(0, 0, 0, 0.1)";
+        catalogButton.style.color="#fff"
+        homeButton.style.color="#fff"
+        liNavbar.forEach(el => {
+            el.style.color="#fff";
         });
+        if (window.matchMedia("(max-width: 600px)").matches) {
+            homeButton = document.querySelector('.homeButtonMobile')
+            catalogButton = document.querySelector('.sneakerSectionMobile')
+            myCartButton = document.querySelector('.myCartMobile')
 
-          let optionsFilter = optionsWords.filter((item, index)=>{
-            return optionsWords.indexOf(item)=== index;
-          })
-          optionsWords = optionsFilter
-          localStorage.setItem('allOptions',JSON.stringify(optionsWords))
+            logoContainer.innerHTML = `
+            <div class="closeSneakerCard"></div>
+    
+            <img class="logoHeader" src="./assets/svg/logo/yellowSneaky.svg" alt="">
+            `
+            myCartButton.innerHTML= `
+            <img src="./assets/svg/icons/cartWhite.svg" alt="">
+            `
+        }else{        
+            logoContainer.innerHTML = `
+            <div class="closeSneakerCard"></div>
+    
+            <img class="logoHeader" src="./assets/svg/logo/yellowSneaky.svg" alt="">
+            `
+            myCartButton.innerHTML= `
+            My Cart 
+            `
+}
+
+        mainSneakers.classList.add('mainSneakersOn')
+        main.classList.add('mainOn')
+        body.style.overflowY='hidden'
+
+    homeButton.addEventListener("click", ()=>{
+        let sneakerSelectedRemove = document.querySelector(".sneakerSelected")
+
+        mainSneakers.classList.remove('mainSneakersOn')
+        body.style.overflowY='auto'
+        main.classList.remove('mainOn')
+        if(!sneakerSelectedRemove.classList.contains("showSneakerSelected")){
+
+            body.style.overflowY='auto'
+            sneakerSelectedRemove.classList.remove("showSneakerSelected")
+    
         }
-      }else{
-              localStorage.setItem('allOptions',JSON.stringify(optionsWords))
-      }
 
-
-      inicioInfo = document.querySelector('.inicioInfo')
-
-
-
-      if(inicioInfo){
-        inicioInfo.innerHTML= ``;
-      }
-
-      let newDiv = document.createElement("div")
-      newDiv.className = "optionWord optionWord" + wordForAdd
-
-      newDiv.innerHTML=
-      `
-      <p>${wordForAdd}</p>
-      `
-      containerOptions.appendChild(newDiv)
-
-      let wordSelected = document.querySelector('.optionWord'+ wordForAdd)
-      wordSelected.addEventListener("click", ()=>{
-        let stringWordSelected = wordSelected.textContent.replace(/\s+/g, '') 
+        if (window.scrollY>100) {
+            header.style.backgroundColor="#1E1E1E";
+            header.style.boxShadow=" 0px 2px 10px rgba(0, 0, 0, 0.1)";
+            catalogButton.style.color="#fff"
+            homeButton.style.color="#fff"
+            liNavbar.forEach(el => {
+                el.style.color="#fff";
+            });
+            if (window.matchMedia("(max-width: 600px)").matches) {
+                homeButton = document.querySelector('.homeButtonMobile')
+                catalogButton = document.querySelector('.sneakerSectionMobile')
+                myCartButton = document.querySelector('.myCartMobile')
+    
+                logoContainer.innerHTML = `
+                <div class="closeSneakerCard"></div>
         
+                <img class="logoHeader" src="./assets/svg/logo/yellowSneaky.svg" alt="">
+                `
+                myCartButton.innerHTML= `
+                <img src="./assets/svg/icons/cartWhite.svg" alt="">
+                `
+            }else{        
+                logoContainer.innerHTML = `
+                <div class="closeSneakerCard"></div>
+        
+                <img class="logoHeader" src="./assets/svg/logo/yellowSneaky.svg" alt="">
+                `
+                myCartButton.innerHTML= `
+                My Cart 
+                `
+    }
+        }else{
+            header.style.backgroundColor="#FCEA1C";
+            header.style.boxShadow=" 0px 4px 10px rgba(0, 0, 0, 0.0)";
+            liNavbar.forEach(el => {
+                el.style.color="#373737";
+            });
+            catalogButton.style.color="#373737"
+            homeButton.style.color="#373737"
+    
+            if (window.matchMedia("(max-width: 600px)").matches) {
+                homeButton = document.querySelector('.homeButtonMobile')
+                catalogButton = document.querySelector('.sneakerSectionMobile')
+                myCartButton = document.querySelector('.myCartMobile')
+    
+                logoContainer.innerHTML = `
+                <div class="closeSneakerCard"></div>
+        
+                <img class="logoHeader" src="./assets/svg/logo/yellowSneaky.svg" alt="">
+                `
+                myCartButton.innerHTML= `
+                <img src="./assets/svg/icons/cartWhite.svg" alt="">
+                `
+            }else{        
+                logoContainer.innerHTML = `
+                <div class="closeSneakerCard"></div>
+        
+                <img class="logoHeader" src="./assets/svg/logo/yellowSneaky.svg" alt="">
+                `
+                myCartButton.innerHTML= `
+                My Cart 
+                `
+    }
+        }
+        })
 
-        addFinalText(stringWordSelected)
+})
+catalogButton.addEventListener("click", ()=>{
+    let header = document.querySelector(".header")
+    let liNavbar = document.querySelectorAll(".liNavbar")
+    let myCartButton = document.querySelector(".myCartButton")
+    let catalogButton = document.querySelector(".catalogButton")
+    let homeButton = document.querySelector(".homeButton")
+    let logoContainer = document.querySelector(".logoContainer")
+    let sneakerSelectedRemove = document.querySelector(".sneakerSelected")
 
+    if (window.matchMedia("(max-width: 600px)").matches) {
+        homeButton = document.querySelector('.homeButtonMobile')
+        catalogButton = document.querySelector('.sneakerSectionMobile')
+        myCartButton = document.querySelector('.myCartMobile')
+      }
 
-
-      })
-      
-
+    if(sneakerSelectedRemove.classList.contains("showSneakerSelected")){
+        body.style.overflowY='auto'
+        sneakerSelectedRemove.classList.remove("showSneakerSelected")
 
     }
-
-  }
-
-})
-  
-  function addFinalText (string){
-    let previewText = document.querySelector('.resultFraseContainer')
-    let textPrevious = document.querySelector('.textPrevious')
-
-    textPrevious.style.color ="#fff"
-    textPrevious.style.fontWeight ="500"
-
-    if(textPrevious.textContent == "Tu frase aparecera aqui"){
-      textPrevious.textContent= ""
-    }
-
-
-
-      removeOption.addEventListener("click", ()=>{
-        
-        textPrevious.textContent = "Tu frase aparecera aqui"
-        textPrevious.style.color ="rgba(255, 255, 255, 0.45)"
-        textPrevious.style.fontWeight ="300"
-
-
-      })
-      if(textPrevious.textContent.length == 0){
-        textPrevious.textContent = textPrevious.textContent + string
-      }else{
-      textPrevious.textContent = textPrevious.textContent + " " + string
-      }
-
-    
-  }
-  function playText(){
-    let textPrevious = document.querySelector('.textPrevious')
-
-
-
-    let message = new SpeechSynthesisUtterance();
-
-    message.voice= window.speechSynthesis.getVoices()[$voces.value]
-
-    
-    message.lang = 'es-ES'
-
-    message.volume = 3;
-    message.rate = rangeVoice.value;
-    message.text = textPrevious.textContent.replace(/(\r\n|\n|\r)/gm, "")
-    message.pitch = 1;
-
-
-
-
-
-    speechSynthesis.speak(message)
-  }
-
-
-
-playButton.addEventListener("click", ()=>{
-
-
-
-  let textPrevious = document.querySelector('.textPrevious')
-
-  if(textPrevious.textContent == 'Tu frase aparecera aqui'){
-    Toastify({
-      text:'Recuerda ingresar una palabra',
-      duration: 2500,
-      gravity: "top",
-      position: "center", 
-      stopOnFocus: true, 
-      style: {
-        cursor:"default",
-        fontSize:"14px",
-        background: "#C9308C",
-        borderRadius: "7px"
-      },
-      onClick: function(){} 
-    }).showToast();
-  }else{
-    playText()
-  }
-
-
-})
-
-let genderVoiceButton = document.querySelector('.voiceButton')
-let menuGenderBackground = document.querySelector('.menuGenderBackground')
-let closeGenderSelector = document.querySelector('.closeGenderSelector')
-
-genderVoiceButton.addEventListener('click',()=>{
-  body.classList.toggle('noScroll')
-  container.classList.toggle('menuGenderToggle')
-  menuGenderBackground.classList.toggle('menuGenderBackgroundON')
-  voiceButton.classList.toggle('voiceButtonClose')
-
-})
-
-/////////////////////////////////logica Frases Guardadas////////////////////////////////
-saveButton.addEventListener("click",()=>{
-  
-  let textPrevious = document.querySelector('.textPrevious')
-
-  if(textPrevious.textContent == 'Tu frase aparecera aqui'){
-    Toastify({
-      text:'Recuerda ingresar una palabra',
-      duration: 2500,
-      gravity: "top",
-      position: "center", 
-      stopOnFocus: true, 
-      style: {
-        cursor:"default",
-        fontSize:"14px",
-        background: "#C9308C",
-        borderRadius: "7px"
-      },
-      onClick: function(){} // Callback after click
-    }).showToast();
-  }else{
-    addFrases(textPrevious.textContent)
-    optionFrases.push(textPrevious.textContent)
-
-
-      if(JSON.parse(localStorage.getItem('allFrases'))){
-        let frasesLS = JSON.parse(localStorage.getItem('allFrases'))
-        if(Array.isArray(frasesLS)){
-
-          frasesLS.forEach(el => {
-
-            optionFrases.push(el)
-          
+        header.style.backgroundColor="#1E1E1E";
+        header.style.boxShadow=" 0px 2px 10px rgba(0, 0, 0, 0.1)";
+        catalogButton.style.color="#fff"
+        homeButton.style.color="#fff"
+        liNavbar.forEach(el => {
+            el.style.color="#fff";
         });
+        if (window.matchMedia("(max-width: 600px)").matches) {
+            homeButton = document.querySelector('.homeButtonMobile')
+            catalogButton = document.querySelector('.sneakerSectionMobile')
+            myCartButton = document.querySelector('.myCartMobile')
 
-          let frasesFilter = optionFrases.filter((item, index)=>{
-            return optionFrases.indexOf(item)=== index;
-          })
-          optionFrases = frasesFilter
-          localStorage.setItem('allFrases',JSON.stringify(optionFrases))
+            logoContainer.innerHTML = `
+            <div class="closeSneakerCard"></div>
+    
+            <img class="logoHeader" src="./assets/svg/logo/yellowSneaky.svg" alt="">
+            `
+            myCartButton.innerHTML= `
+            <img src="./assets/svg/icons/cartWhite.svg" alt="">
+            `
+        }else{        
+            logoContainer.innerHTML = `
+            <div class="closeSneakerCard"></div>
+    
+            <img class="logoHeader" src="./assets/svg/logo/yellowSneaky.svg" alt="">
+            `
+            myCartButton.innerHTML= `
+            My Cart 
+            `
+}
+
+        mainSneakers.classList.add('mainSneakersOn')
+        main.classList.add('mainOn')
+        body.style.overflowY='hidden'
+
+    homeButton.addEventListener("click", ()=>{
+        let sneakerSelectedRemove = document.querySelector(".sneakerSelected")
+
+        mainSneakers.classList.remove('mainSneakersOn')
+        body.style.overflowY='auto'
+        main.classList.remove('mainOn')
+        if(!sneakerSelectedRemove.classList.contains("showSneakerSelected")){
+
+            body.style.overflowY='auto'
+            sneakerSelectedRemove.classList.remove("showSneakerSelected")
+    
         }
-      }else{
-              localStorage.setItem('allFrases',JSON.stringify(optionFrases))
+
+        if (window.scrollY>100) {
+            header.style.backgroundColor="#1E1E1E";
+            header.style.boxShadow=" 0px 2px 10px rgba(0, 0, 0, 0.1)";
+            catalogButton.style.color="#fff"
+            homeButton.style.color="#fff"
+            liNavbar.forEach(el => {
+                el.style.color="#fff";
+            });
+            if (window.matchMedia("(max-width: 600px)").matches) {
+                homeButton = document.querySelector('.homeButtonMobile')
+                catalogButton = document.querySelector('.sneakerSectionMobile')
+                myCartButton = document.querySelector('.myCartMobile')
+    
+                logoContainer.innerHTML = `
+                <div class="closeSneakerCard"></div>
+        
+                <img class="logoHeader" src="./assets/svg/logo/yellowSneaky.svg" alt="">
+                `
+                myCartButton.innerHTML= `
+                <img src="./assets/svg/icons/cartWhite.svg" alt="">
+                `
+            }else{        
+                logoContainer.innerHTML = `
+                <div class="closeSneakerCard"></div>
+        
+                <img class="logoHeader" src="./assets/svg/logo/yellowSneaky.svg" alt="">
+                `
+                myCartButton.innerHTML= `
+                My Cart 
+                `
+    }
+        }else{
+            header.style.backgroundColor="#FCEA1C";
+            header.style.boxShadow=" 0px 4px 10px rgba(0, 0, 0, 0.0)";
+            liNavbar.forEach(el => {
+                el.style.color="#373737";
+            });
+            catalogButton.style.color="#373737"
+            homeButton.style.color="#373737"
+
+    
+            if (window.matchMedia("(max-width: 600px)").matches) {
+                homeButton = document.querySelector('.homeButtonMobile')
+                catalogButton = document.querySelector('.sneakerSectionMobile')
+                myCartButton = document.querySelector('.myCartMobile')
+    
+                logoContainer.innerHTML = `
+                <div class="closeSneakerCard"></div>
+        
+                <img class="logoHeader" src="./assets/svg/logo/sneakyLogo.svg" alt="">
+                `
+                myCartButton.innerHTML= `
+                <img src="./assets/svg/icons/cartWhite.svg" alt="">
+                `
+            }else{        
+                logoContainer.innerHTML = `
+                <div class="closeSneakerCard"></div>
+        
+                <img class="logoHeader" src="./assets/svg/logo/sneakyLogo.svg" alt="">
+                `
+                myCartButton.innerHTML= `
+                My Cart 
+                `
+    }
+        }
+        })
+})
+function randomNumber() {
+    return Math.random() * (13 - 7) + 7;
+  }
+  
+  function randomNumberWithHalves() {
+    let number = Math.random() * (13 - 7) + 7;
+    number = (number % 1 < 0.5) ? Math.floor(number) : Math.ceil(number);
+    return parseFloat(number.toFixed(1));
+  }
+  
+  function randomSizes(){
+    for (let i = 0; i < 5; i++) {
+        let newArray = [randomNumberWithHalves(),randomNumberWithHalves(),randomNumberWithHalves(),randomNumberWithHalves()];
+        return(newArray)
       }
-
   }
-})
-function addFrases(string) {
-  let textFrases = document.querySelector('.textFrases')
-  if(!textFrases.textContent.length == 0){
-    textFrases.textContent = ""
+  function eliminaDuplicados(arr) {
+    return arr.filter((valor, indice) => arr.indexOf(valor) === indice);
   }
-  let newDiv = document.createElement("div")
+let allSneakers = [
 
-  let classSaved = string.split(" ")
-
-
-  newDiv.className = "savedWord savedWord" + "-" +   classSaved.join('-')
-
-  newDiv.innerHTML=
-  `
-  <p>${string}</p>
-  `
-  containerFrases.appendChild(newDiv)
-
-  let savedOption = document.querySelector('.savedWord' + "-" +   classSaved.join('-'))
-
-  savedOption.addEventListener("click",()=>{
-    
-    let textPrevious = document.querySelector('.textPrevious')
-    textPrevious.style.color ="#fff"
-    textPrevious.style.fontWeight ="500"
-    textPrevious.textContent = savedOption.textContent
-  })
-
-  Toastify({
-    text:'Agregada a frases',
-    duration: 2500,
-    gravity: "top",
-    position: "center", 
-    stopOnFocus: true, 
-    style: {
-      cursor:"default",
-      fontSize:"14px",
-      background: "#46B990",
-      borderRadius: "7px"
-    },
-    onClick: function(){} 
-  }).showToast();
-}
-buttonFrases.addEventListener("click",()=>{
-
-
-  buttonFrases.classList.add('headerFrasesOn')
-  buttonPalabras.classList.remove('headerPalabrasOn')
-  saveButton.style.opacity="0"
-  saveButton.style.pointerEvents="none"
-  containerFrases.classList.add('containerFrasesOn')
-  containerPalabras.classList.add('containerPalabrasOn')
-
-
-  let textPrevious = document.querySelector('.textPrevious')
-
-  textPrevious.textContent = "Tu frase aparecera aqui"
-  textPrevious.style.color ="rgba(255, 255, 255, 0.45)"
-  textPrevious.style.fontWeight ="300"
-
-  if(textPrevious.textContent != "Tu frase aparecera aqui"){
-    textPrevious.textContent= ""
-  }
-})
-buttonPalabras.addEventListener("click",()=>{
-
-  buttonFrases.classList.remove('headerFrasesOn')
-  buttonPalabras.classList.add('headerPalabrasOn')
-  saveButton.style.opacity="1"
-  saveButton.style.pointerEvents="all"
-  containerFrases.classList.remove('containerFrasesOn')
-  containerPalabras.classList.remove('containerPalabrasOn')
-
-
-
-
-  let textPrevious = document.querySelector('.textPrevious')
-
-  textPrevious.textContent = "Tu frase aparecera aqui"
-  textPrevious.style.color ="rgba(255, 255, 255, 0.45)"
-  textPrevious.style.fontWeight ="300"
-
-  if(textPrevious.textContent != "Tu frase aparecera aqui"){
-    textPrevious.textContent= ""
-  }
-
-})
-
-///////////////////logica Buscador
-function createOptions(array){
-  array.forEach(el => {
-    addFrases(el)
-  });
-}
-
-  searcher.addEventListener("click",()=>{
-    if(!JSON.parse(localStorage.getItem('allOptions'))){
-      Toastify({
-        text:'Primero crea una palabra',
-        duration: 2500,
-        gravity: "top",
-        position: "center", 
-        stopOnFocus: true, 
-        style: {
-          cursor:"default",
-          fontSize:"14px",
-          background: "#C9308C",
-          borderRadius: "7px"
-        },
-        onClick: function(){} // Callback after click
-      }).showToast();
-    }
-  })
-
-  searcher.addEventListener ("input", () =>{
-    
-    if(!searcher.value == ""){
-      searcherImage.classList.add('searcherImageClean')
-      searcherImage.addEventListener("click", ()=>{
-        searcher.value = ""
-        checkSearcher()
-      })
-    }
-    checkSearcher()
-  }
-  )
-  function Numeros(string){//solo letras y numeros
-    var out = '';
-    //Se añaden las letras validas
-    var filtro = 'abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890';//Caracteres validos
-	
-    for (var i=0; i<string.length; i++)
-       if (filtro.indexOf(string.charAt(i)) != -1) 
-	     out += string.charAt(i);
-    return out;
-}
-
-function checkSearcher(){
-  if (!searcher.value == ""){
-    
-    if(JSON.parse(localStorage.getItem('allOptions'))){
-      let optionsLS = JSON.parse(localStorage.getItem('allOptions'))
-      let optionsSearch = optionsLS.filter(el => el.includes(searcher.value))
-
-      containerOptions = document.querySelector('.containerOptions')
-
-  
-      containerOptions.innerHTML = ``
-
-      if(optionsSearch.length > 0){
-  
-      optionsSearch.forEach(el => {
-
-        inicioInfo = document.querySelector('.inicioInfo')
-
-        if(inicioInfo){
-          inicioInfo.innerHTML = ``;
+    {   
+        id: 1 ,
+        brand:'Nike',
+        name:'Air Max 1/97',
+        model:'Sean Watherspoon',
+        img: './assets/img/catalog/97SW.webp',
+        price: 1050,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
         }
-  
+    },   
+    {   
+        id:  2,
+        brand:'Nike',
+        name:'Air Max 270',
+        model:'Travis Scott Cactus',
+        img: './assets/img/catalog/270Travis.webp',
+        price: 6000,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id:  3,
+        brand:'Jordan',
+        name:'Air Jordan Retro 6',
+        model:"'Olive' Sample",
+        img: './assets/img/catalog/travisJordan6.webp',
+        price: 470,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id:  4,
+        brand:'Nike',
+        name:'Jordan 1 Low',
+        model:'Fragment x Travis Scott',
+        img: './assets/img/catalog/jordan1LowTravis.webp',
+        price: 1240,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id:  5,
+        brand:'Nike',
+        name:'SB Dunk Low',
+        model:"'Cactus Jack - Special Box'",
+        img: './assets/img/catalog/dunkTravis.webp',
+        price: 2100,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id: 6 ,
+        brand:'Nike',
+        name:'Jordan 1 Retro High',
+        model:"Travis Scott 'Mocha' Sample",
+        img: './assets/img/catalog/jordan1Travis.webp',
+        price: 1900,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id:  7,
+        brand:'Nike',
+        name:'Air Force 1 Low',
+        model:'Travis Scott Cactus Jack',
+        img: './assets/img/catalog/airForce1Travis.webp',
+        price: 455,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id: 8,
+        brand:'Nike',
+        name:'Air More Uptempo',
+        model:'University Blue',
+        img: './assets/img/catalog/uptempoUni.webp',
+        price: 683,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id:  9,
+        brand:'Nike',
+        name:'Dunk Low',
+        model:'Off-White Lot 1',
+        img: './assets/img/catalog/dunkOff.webp',
+        price: 1520,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id:  10,
+        brand:'Nike',
+        name:'Air Max 97',
+        model:'GS',
+        img: './assets/img/catalog/97GS.webp',
+        price: 110,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id:  11,
+        brand:'Nike',
+        name:'Air Max 97',
+        model:"Off-White 'The Ten' Sample",
+        img: './assets/img/catalog/97ow.webp',
+        price: 850,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id:  12,
+        brand:'Nike',
+        name:'Jordan 1 Retro High',
+        model:'Off-White Chicago',
+        img: './assets/img/catalog/j1chicago.webp',
+        price: 4000,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id:  13,
+        brand:'Nike',
+        name:'Jordan 1 Retro High',
+        model:'Off-White White',
+        img: './assets/img/catalog/j1whiteOW.webp',
+        price: 3800,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id:  14,
+        brand:'Nike',
+        name:'Jordan 1 Retro High',
+        model:'Off-White University Blue',
+        img: './assets/img/catalog/j1owub.webp',
+        price: 3700,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id:  15,
+        brand:'Nike',
+        name:'Blazer Mid 77',
+        model:'Vintage Reverse Logo',
+        img: './assets/img/catalog/blazerR.webp',
+        price: 400,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id:  16,
+        brand:'Nike',
+        name:'Blazer Mid',
+        model:'Off-White',
+        img: './assets/img/catalog/blazerow.webp',
+        price: 1140,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id:  17,
+        brand:'Nike',
+        name:'Blazer Mid',
+        model:'Off-White Wolf Grey Serena Queen',
+        img: './assets/img/catalog/blazerowgsq.webp',
+        price: 1000,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id:  18,
+        brand:'Adidas',
+        name:'Yeezy Boost 350 V2',
+        model:'Static Black (Reflective)',
+        img: './assets/img/catalog/yzySB.webp',
+        price: 320,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id:  19,
+        brand:'Adidas',
+        name:'Yeezy Boost 350 V2',
+        model:"'Beluga' Sample",
+        img: './assets/img/catalog/beluga.webp',
+        price: 420,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id:  20,
+        brand:'Nike',
+        name:'Dunk Low SB',
+        model:'Off-White x Futura',
+        img: './assets/img/catalog/dunkOW.webp',
+        price: 2000,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id:  21,
+        brand:'Nike',
+        name:'Dunk Low SB',
+        model:'Off-White x Futura',
+        img: './assets/img/catalog/dunkOW2.webp',
+        price: 2000,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id:  22,
+        brand:'Nike',
+        name:'SB Dunk Low',
+        model:"Ben & Jerry's Chunky Dunky",
+        img: './assets/img/catalog/dunkBJ.webp',
+        price: 5000,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id:  23,
+        brand:'Jordan',
+        name:'Jordan 4 Retro',
+        model:'Off-White Sail',
+        img: './assets/img/catalog/j4OW.webp',
+        price: 700,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id:  24,
+        brand:'Jordan',
+        name:'Jordan 4 Retro',
+        model:'Taupe Haze',
+        img: './assets/img/catalog/j4haze.webp',
+        price: 360,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id:  25,
+        brand:'Jordan',
+        name:'Jordan 4 Retro',
+        model:"'Guava Ice' Sample",
+        img: './assets/img/catalog/j4GI.webp',
+        price: 615,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id:  26,
+        brand:'Adidas',
+        name:'Yeezy Boost 700',
+        model:"'Inertia' Sample",
+        img: './assets/img/catalog/yzy700.webp',
+        price: 300,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id:  27,
+        brand:'Adidas',
+        name:'Yeezy 700 V3',
+        model:"'Azael' Sample",
+        img: './assets/img/catalog/yzy700v3.webp',
+        price: 550,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id:  28,
+        brand:'Adidas',
+        name:'Forum Low',
+        model:'Bad Bunny',
+        img: './assets/img/catalog/FBBMARRON.webp',
+        price: 1080,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id:  29,
+        brand:'Adidas',
+        name:'Forum Low',
+        model:'Bad Bunny Easter Egg',
+        img: './assets/img/catalog/BBR.webp',
+        price: 450,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id:  30,
+        brand:'Adidas',
+        name:'Forum Low',
+        model:'Bad Bunny Blue Tint',
+        img: './assets/img/catalog/BBCE.png',
+        price: 550,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id:  31,
+        brand:'Converse',
+        name:'Chuck Taylor',
+        model:'Hi Comme des Garcons',
+        img: './assets/img/catalog/converseGG.webp',
+        price: 125,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id:  33,
+        brand:'Converse',
+        name:'Chuck Taylor',
+        model:'Hi Comme des Garcons Multi-Heart White',
+        img: './assets/img/catalog/cnvW.webp',
+        price: 145,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },   
+    {   
+        id:  34,
+        brand:'Converse',
+        name:'Chuck Taylor',
+        model:'Hi Comme des Garcons Brown',
+        img: './assets/img/catalog/cnvBrown.webp',
+        price: 213,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    }
+]
+
+let sneakersRandom = allSneakers.sort(() => Math.random() - 0.5);
+
+let popularSneakers
+
+
+if (window.matchMedia("(max-width: 1000px)").matches) {
+    popularSneakers = sneakersRandom.slice(4,8)
+} else {
+    popularSneakers = sneakersRandom.slice(4,7)
+}
+
+createCards(popularSneakers, sneakersPopularContainer)
+
+createCards(allSneakers, allSneakersCon)
+
+let searcher = document.querySelector('.searcher')
+let brandFilter = document.querySelector('.filterByBrand')
+let filterByPrice = document.querySelector('.filterByPrice')
+
+searcher.addEventListener('input', ()=>{
+    brandFilter.value = 'all'
+    filterByPrice.value = ''
+
+    let searcherValue = searcher.value.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+        return letter.toUpperCase();
+      })
+    let searchResult = allSneakers.filter(el => el.allName().includes(searcherValue))
+    allSneakersCon.innerHTML = ``
+    if(searchResult.length == 0 ){
+        brandFilter.value = 'all'
+        filterByPrice.value = ''
+
+        allSneakersCon.innerHTML = `
+            <p class= "noResultSearch">No results found
+            </p>
+        `
+    }
+    createCards(searchResult,allSneakersCon)
+})
+brandFilter.addEventListener('input',()=>{
+    let brandFilterValue = brandFilter.value
+    searcher.value = ''
+    filterByPrice.value = ''
+
+    if(brandFilterValue == 'all'){
+        allSneakersCon.innerHTML = ``
+        createCards(allSneakers, allSneakersCon)
+
+    }else{
+        let brandResult = allSneakers.filter(el => el.brand.includes(brandFilterValue))
+        allSneakersCon.innerHTML = ``
+        if(brandResult.length == 0 ){
+
+            filterByPrice.value = ''
+            searcher.value = ''
+            allSneakersCon.innerHTML = `
+                <p class= "noResultSearch">No results found
+                </p>
+            `
+        }
+        createCards(brandResult,allSneakersCon)
+    }
+
+})
+
+filterByPrice.addEventListener('input',()=>{
+    let filterByPriceValue = filterByPrice.value
+    searcher.value = ''
+    brandFilter.value = 'all'
+
+    if(filterByPriceValue == ''){
+        allSneakersCon.innerHTML = ``
+        createCards(allSneakers, allSneakersCon)
+
+    }else{
+        let priceResult = allSneakers.filter(el => el.price < parseInt(filterByPriceValue))
+        allSneakersCon.innerHTML = ``
+        if(priceResult.length == 0 ){
+            brandFilter.value = 'all'            
+            searcher.value = ''
+            allSneakersCon.innerHTML = `
+                <p class= "noResultSearch">No results found
+                </p>
+            `
+        }
+        // console.log(priceResult);
+        createCards(priceResult,allSneakersCon)
+    }
+
+})
+
+function createCards(array,location){
+    array.forEach(el => {
+    
         let newDiv = document.createElement("div")
-        newDiv.className = "optionWord optionWord" + el
-  
+        newDiv.className = "sneakerCard"
+    
         newDiv.innerHTML=
         `
-        <p>${el}</p>
-        `
-        containerOptions.appendChild(newDiv)
-  
-        let wordSelected = document.querySelector('.optionWord'+ el)
-        wordSelected.addEventListener("click", ()=>{
-          let stringWordSelected = wordSelected.textContent.replace(/\s+/g, '') 
-          
-  
-          addFinalText(stringWordSelected)
-  
-  
-  
-        })
-      })
-    }else{
-      containerOptions = document.querySelector('.containerOptions')
-
-      containerOptions.innerHTML = `
-      <p class = "noResult" >No se encontraron resultados</p>
-      `
-    }
-    }else{
-      return;
-
-    }
-  }
-
-  else{
-    searcherImage.classList.remove('searcherImageClean')
-    containerOptions = document.querySelector('.containerOptions')
-  
-    containerOptions.innerHTML = ``
-    if(JSON.parse(localStorage.getItem('allOptions'))){
-      let optionsLS = JSON.parse(localStorage.getItem('allOptions'))
-      let optionsSearch = optionsLS.filter(el => el.includes(searcher.value))
-
-
-      containerOptions = document.querySelector('.containerOptions')
-  
-      containerOptions.innerHTML = ``
-
-      if(!optionsSearch.length <= 0){
-        let div = document.createElement("div")
-        div.className = "crearButton"
-        div.innerHTML = `
-        <p>Crear</p>
-        <img src="./assets/svg/icons/mas.svg" alt="">
-        `
-        containerOptions.appendChild(div)
-        let pushedLS = JSON.parse(localStorage.getItem('allOptions'))
-        pushedLS.forEach(el => {
-          inicioInfo = document.querySelector('.inicioInfo')
-
-          if(inicioInfo){
-            inicioInfo.innerHTML = ``;
-          }
+        <div class="sneakerImage" style="background-image:url(.${el.img}) ;">
+        <button class="buttonAddToCart buttonAddToCart${el.id}" > SEE MORE <img src="./assets/svg/icons/arrowRight.svg" alt=""></button>
     
-          let newDiv = document.createElement("div")
-          newDiv.className = "optionWord optionWord" + el
-    
-          newDiv.innerHTML=
-          `
-          <p>${el}</p>
-          `
-          containerOptions.appendChild(newDiv)
-  
-          let crearButton = document.querySelector('.crearButton')
+    </div>
+    <div class="cardContent">
+        <p class="sellerName">${el.brand}</p>
+        <p class="sneakerName sneakerName${el.id}">${el.name}</p>
+        <p class="sneakerPrice">$ ${Number(el.price).toLocaleString()}.00</p>
+    </div>
+        `
+        location.appendChild(newDiv)
 
-          crearButton.addEventListener("click", ()=>{
-            createToggle.classList.add('createToggleON')
-            createToggle.classList.add('createToggleONBackground')
-            body.classList.add('.noScroll')
-            createMainContainer.classList.add('mainContainerSmooth')
-            cancelButton.addEventListener("click",()=>{
-              body.classList.remove('.noScroll')
-              createMainContainer.classList.remove('mainContainerSmooth')
+        let buttonAddToCart = document.querySelector('.buttonAddToCart' + `${el.id}`)
+        let sneakerName = document.querySelector('.sneakerName' + `${el.id}`)
         
-              createToggle.classList.remove('createToggleON')
-              createToggle.classList.remove('createToggleONBackground')
+        buttonAddToCart.addEventListener("click", ()=>{
+
+            navBarMobile.classList.remove('navBarMobileON')
+            let closeSneakerCard = document.querySelector('.closeSneakerCard')
+            let logoHeader = document.querySelector('.logoHeader')
+            closeSneakerCard.classList.add('showHeaderCloseButton')
+            logoHeader.classList.add('showHeaderCloseLogo')
+
+            let body = document.querySelector('body')
+            body.style.overflowY='hidden'
+
+            closeSneakerCard.addEventListener("click", ()=>{
+                if(!main.classList.contains("mainOn")){
+                    body.style.overflowY='auto'
+
+                }
+                closeSneakerCard.classList.remove('showHeaderCloseButton')
+                logoHeader.classList.remove('showHeaderCloseLogo')
+                sneakerSelected.classList.remove('showSneakerSelected')
+
+            })
+
+            sneakerSelected.innerHTML = `
+            <div class="imageSneakerSelected">
+            <img src="${el.img}" alt="">
+        </div>
+        <div class="sectionInfoSneaker">
+            <div class="infoSneakerSelected">
+                <div class="nameComplete">
+                    <p class="brandName">${el.brand}</p>
+                    <h3>${el.name}</h3>
+                    <p class="modelName">${el.model}</p>
+                </div>
+                <div class="rateStars">
+                    <img src="./assets/svg/icons/4stars.svg" alt="">
+                </div>
+                <div class="priceSneaker">
+                    <p>$ ${Number(el.price).toLocaleString()}.00</p>
+                </div>
+                <div class="sizeSneaker">
+                    <p>Size</p>
+                    <ul class="ulSize">
+
+                    </ul>
+                </div>
+                <div class="amountSneaker">
+                    <p>Amount</p>
+                    <div class="amountComplete">
+                        <button class="reduceAmount">-</button>
+                        <input class="amount" step="1" type="number" value="1" min="1" max="5" maxlength="1">
+                        <button class="increaseAmount">+</button>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="addButtonCartSneakerSelected">
+                <button class="buttonATC">ADD TO CART <img src="./assets/svg/icons/arrowRight.svg" alt=""></button>
+
+            </div>
+        </div>
+            `
+            let ulSize = document.querySelector('.ulSize')
+            let amountContainer = document.querySelector('.amount')
+            let reduceAmount = document.querySelector('.reduceAmount')
+            let increaseAmount = document.querySelector('.increaseAmount')
+            let buttonATC = document.querySelector('.buttonATC')
+            let sizeSneak = 0
+
+            increaseAmount.addEventListener("click", ()=>{
+                let amountValue = amountContainer.value
+
+                if(amountValue < 6){
+                    amountValue = parseInt(amountValue) + 1 
+
+                    amountContainer.setAttribute('value', amountValue);
+                }
+            })
+            reduceAmount.addEventListener("click", ()=>{
+                let amountValue = amountContainer.value
+
+                if(amountValue > 1){
+                    amountValue = parseInt(amountValue) - 1 
+
+                    amountContainer.setAttribute('value', amountValue);
+                }
+            })
+            let arraySort = el.sizes.sort((a, b) => a - b);
+
+            arraySort.forEach((element,indice) => {
+                let li = document.createElement('li')
+                li.innerHTML = `
+                <button class= "buttonsSize positionSize${indice}">${element}</button>
+                `
+                ulSize.appendChild(li)
+
+                let positionSize = document.querySelector('.positionSize' + indice)
+                activeButtonSize(positionSize)
+
+                let valueSize = document.querySelector('.positionSize' + `${indice}`)
+                valueSize.addEventListener("click", ()=>{
+                    
+                    sizeSneak = parseInt(valueSize.textContent)
+                    console.log(valueSize.textContent);
+
+                     
+                
             })
             
+
+            });
+            let buttonsSize = document.querySelectorAll('.buttonsSize')
+
+            function activeButtonSize(query){
+                query.addEventListener("click", ()=>{
+
+                    let newbuttonsSize = Array.from(buttonsSize)
+    
+                    newbuttonsSize.forEach(ele => {
+                        ele.classList.remove('buttonSizeOn')
+                    })
+
+                    query.classList.add('buttonSizeOn')
+                })
+            }
+
+
+            sneakerSelected.classList.add('showSneakerSelected')
+
+            buttonATC.addEventListener("click",()=>{
+                console.log(sizeSneak);
+                if(JSON.parse(localStorage.getItem('cartAdd'))){
+                    let checkLS = JSON.parse(localStorage.getItem('cartAdd'))
+                    if(checkLS.some(ele => ele.id === `${el.id}`)){
+                        Toastify({
+                            text: "It's already in your cart",
+                            duration: 1500,
+                            gravity: "top", 
+                            position: "right",
+                            stopOnFocus: true, 
+                            style: {
+                              background: "#5E5E5E",
+                              borderRadius: "15px",
+                              color: "#DDDDDD",
+                              fontSize: "15px",
+                              zIndex: "100",
+                              fontWeight: "500",
+                              paddingInline: "30px",
+                              boxShadow: "0px 0px 0px 0px"
+
+                            },
+                            offset: {
+                                y: 75 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                              },
+                            onClick: function(){} 
+                          }).showToast();
+                    }else{
+                        if(sizeSneak == 0 ){
+                            Toastify({
+                                text: "Select a size",
+                                duration: 1500,
+                                gravity: "bottom", 
+                                position: "center",
+                                stopOnFocus: true, 
+                                style: {
+                                  background: "#2D2D2D",
+                                  borderRadius: "15px",
+                                  color: "#FFEC0C",
+                                  fontSize: "15px",
+                                  paddingInline: "30px",
+                                  boxShadow: "0px 0px 0px 0px"
+
+                                //   border: "solid 4px #FFEC0C"
+                                },
+                                onClick: function(){} 
+                              }).showToast();
+                        }else{
+                            Toastify({
+                                text: "Added to your cart!",
+                                duration: 1500,
+                                gravity: "top", 
+                                position: "right",
+                                stopOnFocus: true, 
+                                style: {
+                                  background: "#FFEC0C",
+                                  borderRadius: "15px",
+                                  color: "#2d2d2d",
+                                  fontSize: "15px",
+                                  zIndex: "100",
+                                  fontWeight: "500",
+                                  paddingInline: "30px",
+                                  boxShadow: "0px 0px 0px 0px"
+
+                                },
+                                offset: {
+                                    y: 75 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                                  },
+                                onClick: function(){} 
+                              }).showToast();
+                              
+                              let amountElement = document.querySelector('.amount')
         
-            
-          })
+                                let elementForAdd = {
+                                    id:  `${el.id}`,
+                                    brand:`${el.brand}`,
+                                    name:`${el.name}`,
+                                    model:`${el.model}`,
+                                    img: `${el.img}`,
+                                    price: `${el.price}`,
+                                    amount: amountElement.value,
+                                    //total:
+                                }
+                                cart.push(elementForAdd)
+                    
+                                let noDuplicates = cart.filter(function(item, index) {
+                                    let ids = cart.map(function(i) { return i.id });
+                                    return ids.indexOf(item.id) === index;
+                                });
+                    
+                                cart = noDuplicates
+                                        
+                                if(JSON.parse(localStorage.getItem('cartAdd'))){
+                                    let cartLS =  JSON.parse(localStorage.getItem('cartAdd'))
+                    
+                                    cartLS.push(elementForAdd)
+                    
+                                    let noDuplicatesLS = cartLS.filter(function(item, index) {
+                                        let ids = cartLS.map(function(i) { return i.id });
+                                        return ids.indexOf(item.id) === index;
+                                    });
+                    
+                                    cartLS = noDuplicatesLS
+                                    localStorage.setItem('cartAdd',JSON.stringify(cartLS))
+                    
+                                }else{
+                                    localStorage.setItem('cartAdd',JSON.stringify(cart))
+                                }
+                        }
+                    }
+                }else{
+                    if(sizeSneak == 0 ){
+                        Toastify({
+                            text: "Select a size",
+                            duration: 1500,
+                            gravity: "bottom", 
+                            position: "center",
+                            stopOnFocus: true, 
+                            style: {
+                              background: "#2D2D2D",
+                              borderRadius: "15px",
+                              color: "#FFEC0C",
+                              fontSize: "15px",
+                              paddingInline: "30px",
+                              boxShadow: "0px 0px 0px 0px"
+
+                            //   border: "solid 4px #FFEC0C"
+                            },
+                            onClick: function(){} 
+                          }).showToast();
+                    }else{
+                        Toastify({
+                            text: "Added to your cart!",
+                            duration: 1500,
+                            gravity: "top", 
+                            position: "right",
+                            stopOnFocus: true, 
+                            style: {
+                              background: "#FFEC0C",
+                              borderRadius: "15px",
+                              color: "#2d2d2d",
+                              fontSize: "15px",
+                              zIndex: "100",
+                              fontWeight: "500",
+                              paddingInline: "30px",
+                              boxShadow: "0px 0px 0px 0px"
+
+                            },
+                            offset: {
+                                y: 75 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                              },
+                            onClick: function(){} 
+                          }).showToast();
+                          
+                          let amountElement = document.querySelector('.amount')
     
-          let wordSelected = document.querySelector('.optionWord'+ el)
-          wordSelected.addEventListener("click", ()=>{
-            let stringWordSelected = wordSelected.textContent.replace(/\s+/g, '') 
-            
+                            let elementForAdd = {
+                                id:  `${el.id}`,
+                                brand:`${el.brand}`,
+                                name:`${el.name}`,
+                                model:`${el.model}`,
+                                img: `${el.img}`,
+                                price: `${el.price}`,
+                                amount: amountElement.value
+                                                        }
+                            cart.push(elementForAdd)
+                
+                            let noDuplicates = cart.filter(function(item, index) {
+                                let ids = cart.map(function(i) { return i.id });
+                                return ids.indexOf(item.id) === index;
+                            });
+                
+                            cart = noDuplicates
+                                    
+                            if(JSON.parse(localStorage.getItem('cartAdd'))){
+                                let cartLS =  JSON.parse(localStorage.getItem('cartAdd'))
+                
+                                cartLS.push(elementForAdd)
+                
+                                let noDuplicatesLS = cartLS.filter(function(item, index) {
+                                    let ids = cartLS.map(function(i) { return i.id });
+                                    return ids.indexOf(item.id) === index;
+                                });
+                
+                                cartLS = noDuplicatesLS
+                                localStorage.setItem('cartAdd',JSON.stringify(cartLS))
+                
+                            }else{
+                                localStorage.setItem('cartAdd',JSON.stringify(cart))
+                            }
+                    }
+                }
+
+                
+
     
-            addFinalText(stringWordSelected)
+                console.log(cart);
     
-    
-    
-          })
+                })
         })
-      }else{
-        containerOptions = document.querySelector('.containerOptions')
-
-        containerOptions.innerHTML  = ``
-
-      let div = document.createElement("div")
-      div.className = "crearButton"
-      div.innerHTML = `
-      <p>Crear</p>
-      <img src="./assets/svg/icons/mas.svg" alt="">
-      `
-      containerOptions.appendChild(div)
-      let div2 = document.createElement("div")
-      div2.className = 'inicioInfo'
-      div2.innerHTML = `
-      <p>Crea tu biblioteca de palabras para poder formar oraciones y reproducirlas.</p>
-      `
-      containerOptions.appendChild(div2)
-
-      let crearButton = document.querySelector('.crearButton')
-
-      crearButton.addEventListener("click", ()=>{
-        createToggle.classList.add('createToggleON')
-        createToggle.classList.add('createToggleONBackground')
-        body.classList.add('.noScroll')
-        createMainContainer.classList.add('mainContainerSmooth')
-        cancelButton.addEventListener("click",()=>{
-          body.classList.remove('.noScroll')
-          createMainContainer.classList.remove('mainContainerSmooth')
-    
-          createToggle.classList.remove('createToggleON')
-          createToggle.classList.remove('createToggleONBackground')
-        })
-    
         
-      })
-      }
-
-
-    }else{
-
-      containerOptions = document.querySelector('.containerOptions')
-
-    
-    containerOptions.innerHTML  = ``
-
-      let div = document.createElement("div")
-      div.className = "crearButton"
-      div.innerHTML = `
-      <p>Crear</p>
-      <img src="./assets/svg/icons/mas.svg" alt="">
-      `
-      containerOptions.appendChild(div)
-      let div2 = document.createElement("div")
-      div2.className = 'inicioInfo'
-      div2.innerHTML = `
-      <p>Crea tu biblioteca de palabras para poder formar oraciones y reproducirlas.</p>
-      `
-      containerOptions.appendChild(div2)
-
-      let crearButton = document.querySelector('.crearButton')
-
-      crearButton.addEventListener("click", ()=>{
-        createToggle.classList.add('createToggleON')
-        createToggle.classList.add('createToggleONBackground')
-        body.classList.add('.noScroll')
-        createMainContainer.classList.add('mainContainerSmooth')
-        cancelButton.addEventListener("click",()=>{
-          body.classList.remove('.noScroll')
-          createMainContainer.classList.remove('mainContainerSmooth')
-    
-          createToggle.classList.remove('createToggleON')
-          createToggle.classList.remove('createToggleONBackground')
-        })
-        
-    
-        
-      })
-
-
-  
-    
-    
-}}
-
-  
-
-  }
-  let textPrevious = document.querySelector('.textPrevious')
-  removeOption.addEventListener('click',()=>{
-
-    if(textPrevious.textContent == 'Tu frase aparecera aqui'){
-      Toastify({
-        text:'Nada para limpiar' ,
-        duration: 2500,
-        gravity: "top",
-        position: "center", 
-        stopOnFocus: true, 
-        style: {
-          cursor:"default",
-          fontSize:"14px",
-          background: "#C9308C",
-          borderRadius: "7px"
-        },
-        onClick: function(){} // Callback after click
-      }).showToast();
     }
-  
-  })
+    
+    )}
+
+    myCartButton.addEventListener("click", ()=>{
+        sectionCart.classList.add('cartON')
+        let body = document.querySelector('body')
+        body.style.overflowY='hidden'        
+        let buttonsCartContainer = document.querySelector('.buttonsCartContainer')
+        buttonsCartContainer.addEventListener('click', ()=>{
+            sectionCart.classList.remove('cartON')
+            if(!main.classList.contains("mainOn")){
+                body.style.overflowY='auto'
+
+            }       
+
+
+        })
+    })
+        
+    buttonPurchase.addEventListener('click', ()=>{
+    let body = document.querySelector('body')
+    let method = document.querySelectorAll('.method')
+    let summaryPrice1 = document.querySelector('.summaryPrice1')
+    let summaryPrice2 = document.querySelector('.summaryPrice2')
+    let summaryPrice3 = document.querySelector('.summaryPrice3')
+    let totalTextSecondStep = document.querySelector('.totalTextSecondStep')
+    document.querySelector('.cartContainerSecondStep').scrollTop = 0;
+    if(JSON.parse(localStorage.getItem('cartAdd'))){
+
+        if(JSON.parse(localStorage.getItem('cartAdd')).length > 0 ){
+            sectionCartSecondStep.classList.add('sectionCartSecondStepON')
+            
+            setTimeout(()=>{
+                let body = document.querySelector('body')
+                body.style.overflowY='hidden'
+
+            },00)
+            
+
+
+            let payMeth = ""
+            summaryPrice1.textContent = '$' + totalProductSummary.toLocaleString() + ".00"
+            summaryPrice2.textContent = '$' + parseInt(totalProductSummary*0.10).toLocaleString() + ".00"
+            console.log(totalProductSummary)
+            let totalFinish = (totalProductSummary + parseInt(totalProductSummary*0.10) + 10).toLocaleString()
+            totalTextSecondStep.textContent = '$' + totalFinish + '.00'
+            method.forEach(el => {
+                el.addEventListener('click',()=>{
+                    payMeth = el.textContent.trim()
+
+                    method.forEach(ele => {
+                        ele.style.boxShadow = "0px 0px 0px 0px"
+
+                    })
+                    
+                    el.style.boxShadow = "0px 0px 0px 3px  #FCEA1C"
+                        
+                    
+            })
+            });
+
+            buttonDiscount.addEventListener('click',()=>{
+                let totalFinish = (totalProductSummary + parseInt(totalProductSummary*0.10))
+                let discountInput = (document.querySelector('.discountInput').value).toUpperCase()
+                if (discountInput == "NEHUEN" || discountInput == "MESSI" || discountInput == "SNEAKY"){
+                    let discount25 = totalFinish * 0.25 
+                    let discountApply = totalFinish - discount25
+                    console.log(discountApply);
+                    totalTextSecondStep.textContent = '$' + parseInt(discountApply).toLocaleString()  + '.00'
+
+                    let discountButtonDisabled = document.querySelector('.discount')
+
+                    discountButtonDisabled.innerHTML = `
+                    <p>Add a discount coupon</p>
+                    <input type="text" name="" id="" class="discountInput" >
+                    <button class="buttonDiscount" disabled>Apply coupon</button>
+                    `
+
+                    let div = document.createElement("div")
+                    div.className = "discount25Apply"
+
+
+
+                    let summaryContainer = document.querySelector('.summaryContainer')
+
+                    summaryContainer.innerHTML = `
+                    <div>
+                    <p>Product</p>
+                    <p><strong class="summaryPrice1">$350.00</strong></p>
+                </div>
+                <div>
+                    <p>Taxes (10%)</p>
+                    <p><strong class="summaryPrice2">$35.00</strong></p>
+                </div>
+                <div>
+                    <p>Shipment</p>
+                    <p><strong class="summaryPrice3">$10.00</strong></p>
+                </div>
+                    `
+                    summaryPrice1 = document.querySelector('.summaryPrice1')
+                    summaryPrice2 = document.querySelector('.summaryPrice2')
+                    summaryPrice3 = document.querySelector('.summaryPrice3')
+
+                    summaryPrice1.textContent = '$' + totalProductSummary.toLocaleString() + ".00"
+                    summaryPrice2.textContent = '$' + parseInt(totalProductSummary*0.10).toLocaleString() + ".00"
+        
+
+                    div.innerHTML = `
+                    <p>Discount (25%)</p>
+                    <p><strong class="summaryPrice4">$${parseInt(discount25).toLocaleString()}.00</strong></p>
+
+                    `
+                    summaryContainer.appendChild(div)
+                }
+            })
+
+            purSecondStp.addEventListener('click', ()=>{
+                let discountInput = document.querySelector('.discountInput')
+                let emailStep2 = document.querySelector('.emailStep2')
+                if(emailCheck(emailStep2.value)){
+                    if(payMeth != ""){
+                        let finishBuy = document.querySelector('.finishBuy')
+                        let textFinish = document.querySelector('.textFinish')
+                        sectionCartSecondStep.classList.remove('sectionCartSecondStepON')
+                        payMeth = ""
+
+                        discountInput.value = ""
+                        if(document.querySelector('.discount25Apply')){
+                            let discount25Apply = document.querySelector('.discount25Apply')
+                            discount25Apply.innerHTML = ``
+                        }
+                        let discountButtonDisabled = document.querySelector('.discount')
+                        
+                        discountButtonDisabled.innerHTML = `
+                        <p>Add a discount coupon</p>
+                        <input type="text" name="" id="" class="discountInput" >
+                        <button class="buttonDiscount" >Apply coupon</button>
+                        `
+                        method.forEach(ele => {
+                            ele.style.boxShadow = "0px 0px 0px 0px"
+    
+                        })
+                        localStorage.setItem('cartAdd',JSON.stringify([]))
+
+                        buttonDiscount = document.querySelector('.discount')
+
+
+
+
+                        setTimeout(()=>{
+                            // emailStep2 = emailStep2.value
+                            finishBuy.classList.add('showFinishBuy')
+
+                            finishBuy.innerHTML = `
+                            <div class="modalFinish">
+            
+                            <img src="./assets/svg/icons/checkFinish.svg" alt="">
+                            <h1>Thank you!</h1>
+                            <p class="textFinish">We send the receipt and shipping data to <br>${emailStep2.value}</p>
+                            <button class="buttonFinish">OK</button>
+                        </div>
+                            `
+                            let buttonFinish = document.querySelector('.buttonFinish')
+                            buttonFinish.addEventListener('click', ()=>{
+                                finishBuy.classList.remove('showFinishBuy')
+    
+                            })
+
+                            emailStep2.value = ""
+                        },700)
+                        let sneakerSelectedFinish = document.querySelector('.sneakerSelected')
+                        let body = document.querySelector('.body')
+                        if(body.style.overflowY= 'hidden'){
+                            body.style.overflowY= 'auto'
+                        }
+                        //showSneakerSelected
+                        
+                        if(sneakerSelectedFinish.classList.contains('showSneakerSelected')){
+                            sneakerSelected.classList.remove('showSneakerSelected')
+                        }
+                        
+
+
+                    }else{
+                        Toastify({
+                            text: "Choose a payment method",
+                            duration: 1500,
+                            position: "center",
+                            stopOnFocus: true, 
+                            style: {
+                              background: "#C21515",
+                              borderRadius: "15px",
+                              color: "#fff",
+                              fontSize: "15px",
+                              zIndex: "102",
+                              fontWeight: "500",
+                              paddingInline: "30px",
+                              boxShadow: "0px 0px 0px 0px"
+                            },
+                
+                            onClick: function(){} 
+                          }).showToast();
+                    }
+
+                }else{
+                    Toastify({
+                        text: "Check the email",
+                        duration: 1500,
+                        position: "center",
+                        stopOnFocus: true, 
+                        style: {
+                          background: "#C21515",
+                          borderRadius: "15px",
+                          color: "#fff",
+                          fontSize: "15px",
+                          zIndex: "102",
+                          fontWeight: "500",
+                          paddingInline: "30px",
+                          boxShadow: "0px 0px 0px 0px"
+                        },
+            
+                        onClick: function(){} 
+                      }).showToast();
+                }
+
+            })
+
+
+            
+        }else{
+            Toastify({
+                text: "Add sneakers to your cart!",
+                duration: 1500,
+                position: "center",
+                stopOnFocus: true, 
+                style: {
+                  background: "#C21515",
+                  borderRadius: "15px",
+                  color: "#fff",
+                  fontSize: "15px",
+                  zIndex: "102",
+                  fontWeight: "500",
+                  paddingInline: "30px",
+                  boxShadow: "0px 0px 0px 0px"
+                },
+    
+                onClick: function(){} 
+              }).showToast();
+
+        }
+    }else{
+        Toastify({
+            text: "Add sneakers to your cart!",
+            duration: 1500,
+            position: "center",
+            stopOnFocus: true, 
+            style: {
+              background: "#C21515",
+              borderRadius: "15px",
+              color: "#fff",
+              fontSize: "15px",
+              zIndex: "102",
+              fontWeight: "500",
+              paddingInline: "30px",
+              boxShadow: "0px 0px 0px 0px"
+            },
+
+            onClick: function(){} 
+          }).showToast();
+    }
+})
+priceAndCart.addEventListener('click', ()=>{
+    
+})
+buttonBTSSecondStep.addEventListener('click',()=>{
+    let discountInput = document.querySelector('.discountInput')
+    let emailStep2 = document.querySelector('.emailStep2')
+    let method = document.querySelectorAll('.method')
+    if(document.querySelector('.discount25Apply')){
+        let discount25Apply = document.querySelector('.discount25Apply')
+        discount25Apply.innerHTML = ``
+    }
+    let discountButtonDisabled = document.querySelector('.discount')
+
+    discountButtonDisabled.innerHTML = `
+    <p>Add a discount coupon</p>
+    <input type="text" name="" id="" class="discountInput" >
+    <button class="buttonDiscount" >Apply coupon</button>
+    `
+    sectionCartSecondStep.classList.remove('sectionCartSecondStepON')
+    body.style.overflowY='auto'
+    sectionCartSecondStep.classList.remove('sectionCartSecondStepON')
+    payMeth = ""
+    emailStep2.value = ""
+    discountInput.value = ""
+    method.forEach(ele => {
+        ele.style.boxShadow = "0px 0px 0px 0px"
+
+    })
+
+})
+function emailCheck(string){
+    const regex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    return regex.test(string);
+
+
+}
+

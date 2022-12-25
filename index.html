@@ -7,126 +7,307 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">    
     
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="icon" type="image/png" href="assets/img/android-chrome-512x512.png"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
 
-    <title>Speako</title>
+    <title>sneaky</title>
 </head>
-<body class="body">
-    <!-- code base -->
-                            <!-- bienvenida -->
-                    <div class="welcomeSpeako">
-                        <img class="imgWelcome" src="./assets/svg/logo/speakoLogo.svg" alt="">
-                        <p>
-                            Bienvenido a <strong>speako</strong>, una página web desarrollada con el fin de ayudar a personas con problemas a la hora de comunicarse. <br><br>
-Aquí podrás crear frases de manera intuitiva y reproducirlas las veces que desees.
-<br><br>
-Esperamos que te sea de utilidad y que tengas una buena experiencia de usuario.
-                        </p>
-                        <button class="acceptWelcome">
-                            Aceptar
-                        </button>
-                        <a target="_blank" href="https://www.instagram.com/nehuennv/">Contacto</a>
-                    </div>
-                    <!-- menuGender -->
-                    <div class="menuGenderBackground">
-                        <div class="container">
-                            <div class="speakerVoice">
-                                <p>Configuracion de voz</p>
-                            </div>
+<body class="body" style="background-color: #181818;">
 
-                            <div class="containerConfig">
-                                <div class="containerRange">
-                                    <p>Velocidad</p>
-                                    <input type="range" min="0" max="2" value="1" step="0.1" id="rate" />
-    
-                                </div>
-                                <select name="" id="voces">
-                                </select>
-
-
-                            </div>
-                            
-
-                        </div>
-        
-                    </div>
-                    <!-- menuCreateButton -->
-                    <div class="createToggle">
-                        <div class="createMainContainer">
-                            <p>Escribe aqui la palabra que deseas
-                                agregar a la biblioteca.</p>
-                            <div>
-                                <input type="text" onkeyup="this.value=Numeros(this.value)" id="createWord">
-                                <button class="addButtonWord">Agregar</button>
-                            </div>
-                            <button class="cancelButton">
-                                <p>Cancelar</p>
-                            </button>
-                        </div>
-                    </div>
-                
-    <section class="sectionBase">    
-        <header>
-            <div class="logoHeader">
-               <img src="./assets/svg/logo/speakoLogo.svg" alt="">
-            </div>
-            <div class="navbarHeader">
-   
-                   <button class="buttonPalabras navbarSelected"></button>
-                   <button class="buttonFrases"></button>
-   
-            </div>
-       </header>
-
-       <main class="main">
-
-
-            <div class="containerPalabras">
-                <div class="searchContainer">
-                    <input type="text" name="" class="searcher" placeholder="Que palabra buscas?">
-                    <div class="searcherImage" "></div>
-                </div>
-                <div class="containerOptions">
-                    <div class="crearButton">
-                        <p>Crear</p>
-                        <img src="./assets/svg/icons/mas.svg" alt="">
-                    </div>
-                    <div class="inicioInfo">
-                        <p>Crea tu biblioteca de palabras para poder formar oraciones y reproducirlas.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="containerFrases">
-                <div class="frasesTitle">
-                    <p>Frases guardadas</p>
-                </div>
-                <p class="textFrases">Usa <img src="assets/svg/icons/saveFrases.svg" alt="">para agregar una frase.</p>
-            </div>
-
-            
-       </main>
-    </section>
-    <footer>
-        <div class="resultFraseContainer">
-            <p class="textPrevious">Tu frase aparecera aqui</p>
-            <button class="saveButton"></button>
-            <button class="removeOption"></button>
-            
+    <header class="header">
+        <div class="logoContainer">
+            <div class="closeSneakerCard"></div>
+            <img class="logoHeader" src="./assets/svg/logo/sneakyLogo.svg" alt="">
         </div>
-        <div class="playAndSaveContainer">
-            <div class="playButton">
-                <p>Reproducir</p>
-                <img src="./assets/svg/icons/Polygon 1.svg" alt="">
+        <div class="navbar">
+            <ul>
+                <li><button class="liNavbar"><button class="homeButton"  href="./index.html">Home</button></button></li>
+                <li><button class="liNavbar" ><button class="catalogButton" >Sneakers</button></button></li>
+                <li><button class="liNavbar myCartButton">My Cart <div></div></button></li>
+            </ul>
+        </div>
+    </header>
+    <section class="navBarMobile">
+        <ul>
+            <li class="homeButtonMobile"><img src="./assets/svg/icons/homeMobile.svg" alt=""></li>
+            <li class="sneakerSectionMobile"><img src="./assets/svg/icons/searchMobile.svg" alt=""></li>
+            <li class="myCartMobile"><img src="./assets/svg/icons/cartMobile.svg" alt=""></li>
+        </ul>
+    </section>
+    <section class="mainSneakers">
+        <div class="sectionSneakers">
+            <div class="filterContainer">
+                <div class="filtersContainer">
+                    <select name="" id="" class="filterByBrand">
+                        <option value="all" selected ">All</option>
+                        <option value="Nike">Nike</option>
+                        <option value="Adidas">Adidas</option>
+                        <option value="Jordan">Jordan</option>
+                        <option value="Converse">Converse</option>
+                    </select>
+                    <input type="number" maxlength="5" name="" placeholder="Maximum price" id="" class="filterByPrice">
+                </div>
+                <div class="searcherContainer">
+                    <input type="text" name="" class="searcher" placeholder="Search">
+                    <img src="./assets/svg/icons/searcher.svg" alt="">
+                </div>
             </div>
-            <div class="voiceButton">
+            <div class="allSneakers">
+
+            </div>
+        </div>
+    </section>
+    <section class="finishBuy">
+        <div class="modalFinish">
+            
+            <img src="./assets/svg/icons/checkFinish.svg" alt="">
+            <h1>Thank you!</h1>
+            <p class="textFinish">We send the receipt and shipping data to villavicencionehuen@gmail.com</p>
+            <button class="buttonFinish">OK</button>
+        </div>
+    </section>
+    <section class="sectionCart">
+        <div class="cartContainer">
+                <div class="myCartTitle">
+                    <p>My Cart</p>
+                </div>
+                <div class="MyCartObjets">
+                    <p style="text-align: center; position: relative; top: 40%; color: #aaa;">The cart is empty</p>
+                </div>
+                <div class="totalCountCart">
+                    <div class="totalAndClear">
+                        <div class="totalContainer">
+                            <p>Total:</p>
+                            <p class="totalText">$0.00</p>
+                        </div>
+                        <div class="clearButton" >
+                            <p>Clear cart</p>
+                            <img src="./assets/svg/icons/trash.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="buttonsCartContainer">
+                        <div class="buttonBTS">
+                            <div class="arrowCart"></div>                            
+                            <p>BACK TO SHOP</p>
+                            </div>
+                            <div class="buttonPurchase">
+                                <p>COMPLETE PURCHASE</p>
+                            </div>
+                    </div>
+                </div>
+        
+        </div>
+    </section>
+    <section class="sectionCartSecondStep">
+        <div class="cartContainerSecondStep">
+                <div class="myCartTitleSecondStep">
+                    <p>Finish the payment</p>
+                </div>
+                <div class="PayDataContainer">
+                    <div class="emailPayMethod">
+                        <div class="emailContainer">
+                            <input type="email" placeholder="Email" class="emailStep2">
+                        </div>
+                        <div class="payMethod">
+                            <p>Pay method</p>
+                            <div class="method">
+                                <img src="./assets/svg/icons/binance.svg" alt="">
+                                <p class="methodText">Binance</p>
+                            </div>
+                            <div class="method">
+                                <img src="./assets/svg/icons/Paypal.svg" alt="">
+                                <p class="methodText">PayPal</p>
+                            </div>
+                            <div class="method">
+                                <img src="./assets/svg/icons/ApplePay.svg" alt="">
+                                <p class="methodText">Apple Pay</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="discountAndSummary">
+                        <div class="discount">
+                            <p>Add a discount coupon</p>
+                            <input type="text" name="" id="" class="discountInput" >
+                            <button class="buttonDiscount" >Apply coupon</button>
+                        </div>
+                        <div class="paymentSum">
+                            <p>Payment summary</p>
+                            <div class="summaryContainer">
+                                <div>
+                                    <p>Product</p>
+                                    <p><strong class="summaryPrice1">$350.00</strong></p>
+                                </div>
+                                <div>
+                                    <p>Taxes (10%)</p>
+                                    <p><strong class="summaryPrice2">$35.00</strong></p>
+                                </div>
+                                <div>
+                                    <p>Shipment</p>
+                                    <p><strong class="summaryPrice3">$10.00</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="totalCountCartSecondStep">
+                    <div class="totalAndClearSecondStep">
+                        <div class="totalContainerSecondStep">
+                            <p>Total:</p>
+                            <p class="totalTextSecondStep">$0.00</p>
+                        </div>
+
+                    </div>
+                    <div class="buttonsCartContainer-SecondStep">
+                        <div class="buttonBTS-SecondStep">
+                           
+                            <p>CANCEL</p>
+                            </div>
+                            <div class="buttonPurchase-SecondStep">
+                                <p>COMPLETE PURCHASE</p>
+                            </div>
+                    </div>
+                </div>
+
+        
+        </div>
+    </section>
+    <section class="sneakerSelected">
+        <div class="imageSneakerSelected">
+            <img src="./assets/img/catalog/blazerR.webp" alt="">
+        </div>
+        <div class="sectionInfoSneaker">
+            <div class="infoSneakerSelected">
+                <div class="nameComplete">
+                    <h3>Air max 97</h3>
+                    <p>Sean Watherspoon</p>
+                </div>
+                <div class="rateStars">
+                    <img src="./assets/svg/icons/4stars.svg" alt="">
+                </div>
+                <div class="priceSneaker">
+                    <p>$ 185.00</p>
+                </div>
+                <div class="sizeSneaker">
+                    <p>Size</p>
+                    <ul class="ulAmount">
+                        <li><button>8</button></li>
+                        <li><button>9</button></li>
+                        <li><button>10</button></li>
+                        <li><button>11</button></li>
+                    </ul>
+                </div>
+                <div class="amountSneaker">
+                    <p>Amount</p>
+                    <div class="amountComplete">
+                        <button class="reduceAmount">-</button>
+                        <input class="amount" step="1" type="number" value="1" min="1" max="5" maxlength="1">
+                        <button class="increaseAmount">+</button>
+                    </div>
+                </div>
                 
             </div>
+            <div class="addButtonCartSneakerSelected">
+                <button>ADD TO CART <img src="./assets/svg/icons/arrowRight.svg" alt=""></button>
+
+            </div>
+        </div>
+    </section>
+    <main class="main">
+        <section class="section1">
+            <div class="section1Container">
+                <h1>welcome to the<br>house of your<br>favorite sneakers.</h1>
+                <img src="./assets/img/seanBG.png" alt="">
+            </div>
+        </section>
+        <section class="section2">
+            <div class="MPSCont">
+                <div class="MPSTitle" >
+                    <p>Most Popular Sneakers</p>
+                </div>
+                <div class="sneakersPopularContainer">
+
+                </div>
+            </div>
+        </section>
+        <section class="section3">
+            <div class="imageSOTW">
+
+            </div>
+            <div class="SOTWTextContent">
+                <div class="contentSOTW">
+                    <div>
+                        <p>
+                            <strong>Jordan 1 Retro High</strong>
+                        </p>
+                            <p>Travis Scott</p>
+                    </div>
+                        <div>
+                            <p class="textInfoSOTW">The first release as part of Travis Scott's monumental partnership with Nike, the Air Jordan 1 Travis Scott breaks the conventional rules of the Air Jordan 1 design. For starters, the side Swooshes are reversed, which each tailing facing the toe. Woven tongue tags are shifted and stitched to the side of the tongue instead of the top. Also, in the collar, there is a hidden stash pocket. A one-of-a-kind design fit for a one-of-a-kind artist. 
+                                 The Air Jordan 1 Travis Scott features a white leather upper with Mocha suede overlays and black leather reversed Swooshes. </p>
+                        </div>
+                        <div class="priceAndCart">
+                            <p>$ 1,800.00</p>
+                            <button class="buttonSOTW">NO STOCK</button>
+                        </div>
+                </div>
+            </div>
+        </section>
+        <section class="section4">
+            <div class="backgroundBenefit backgroundBenefit1">
+                <div class="textBenefit">
+                    <h3>ONE YEAR WARRANTY IN ALL PRODUCTS</h3>
+                    <p>Depending on whether the shoe breaks or wears out with use, we can claim its non- conformity and demand its repair or replacement during the legal warranty period of one year.</p>
+                </div>
+            </div>
+            <div class="backgroundBenefit backgroundBenefit2">
+                <div class="textBenefit">
+                    <h3>WORLDWIDE FREE SHIPPING
+
+                    </h3>
+                    <p>Let nothing prevent you from having your favorite sneakers! We have free shipping to any corner of the world on any of your purchases.</p>
+                </div>
+            </div>
+            <div class="backgroundBenefit backgroundBenefit3">
+                <div class="textBenefit">
+                    <h3>100% AUTHENTIC PRODUCTS</h3>
+                    <p>All our sneakers are authentic, including a certificate of legitimacy. Find your favorite and most exclusive products from Nike, Air Jordan, Air Max and Off-White.</p>
+                </div>
+            </div>
+        </section>
+        <section class="section5">
+            <div class="contentSuscribe">
+                <div >
+                    <h3>Suscribe to <strong>sneaky</strong></h3>
+                    <p>Don't forget to subscribe to receive news of the next income of the sneakers you are looking for and receive unique and unmissable offers.</p>
+                    <div class="suscribeInput">
+                        <input type="text" placeholder="email">
+                        <button><img src="./assets/svg/icons/arrowRight.svg" alt=""></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer">
+            <img src="./assets/svg/logo/yellowSneaky.svg" alt="">
+            <ul class="socialMedia">
+                <li><img src="./assets/svg/icons/Facebook - Dark.svg" alt=""></li>
+                <li><img src="./assets/svg/icons/Twitter - Dark.svg" alt=""></li>
+                <li><img src="./assets/svg/icons/Instagram - Dark.svg" alt=""></li>
+                <li><img src="./assets/svg/icons/YouTube - Dark.svg" alt=""></li>
+            </ul>
+            <ul class="addsFooter">
+                <li>about us</li>
+                <li>contact</li>
+            </ul>
+        </div>
+        <div class="credits">
+            <p>developed by nehuen villavicencio</p>
         </div>
     </footer>
     <script src="./js/main.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-
+    
 </body>
 </html>
