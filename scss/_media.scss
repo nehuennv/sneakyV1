@@ -139,7 +139,7 @@
     .sneakerSelected{
         .imageSneakerSelected{
             img{
-                width: 500px;
+
             }
         }
         .sectionInfoSneaker{
@@ -294,11 +294,15 @@
         }
         .section3{
             flex-direction: column;
+            height: auto;
             .imageSOTW{
                 width: 100%;
+                height: 90vh !important;
             }
             .SOTWTextContent{
                 width: 100%;
+                min-height: 70vh;
+                height: auto;
             }
         }
 
@@ -362,17 +366,19 @@
         flex-direction: column;
         .imageSneakerSelected{
             width: 100%;
-            height: 50%;
+            height: 40%;
         }
         .imageSneakerSelected{
             img{
-                // transform: translateY(8%);
+                height: 100%;
+                width: auto;
             }
         }
         .sectionInfoSneaker{
             width: 100%;
-            height: 50%;
+            height: 60%;
             .infoSneakerSelected{
+                justify-content: flex-start ;
                 height: 85%;
                 .rateStars{
                     display: none;
@@ -388,6 +394,7 @@
             .addButtonCartSneakerSelected{
                 height: 15%;
              .buttonATC{
+                font-size: 1rem;
              }
             }
 
@@ -411,12 +418,12 @@
                 }
                 img{
                     display: block !important;
-                    width: 15px;
+                    width: 12.5px;
                 }
             }
             .sneakerObjet{
                 flex-direction: column !important;
-                height: 20vh !important;
+                height: 30vh !important;
                 .sneakerDataCart{
                     justify-content: flex-start !important;
                     padding-left: 3%;
@@ -427,10 +434,10 @@
                     }
                     .sneakerCartName{
                         h3{
-                            font-size: 16px !important;
+                            font-size: 14px !important;
                         }
                         p{
-                            font-size: 14px !important;
+                            font-size: 12px !important;
                         }
                     }
                 }
@@ -445,7 +452,7 @@
     .buttonsCartContainer{
         .buttonPurchase{
             p{
-                font-size: 16px !important;
+                font-size: 14px !important;
             }
         }
     }
@@ -453,7 +460,7 @@
         .totalAndClear{
             .totalContainer{
                 p{
-                    font-size: 16px !important;
+                    font-size: 14px !important;
                 }
             }
         }
@@ -464,15 +471,15 @@
     .PayDataContainer{
         flex-direction: column;
         height: auto !important;
-        overflow-y: scroll;
         .emailPayMethod{
             width: 100% !important;
             .emailContainer{
-                height: 12vh !important;
+                height: 15vh !important;
                 border-radius: 30px 30px 0px 0px !important;
                 .emailStep2{
                     border-radius: 100px !important;
                     height: 50% !important;
+                    font-size: 14px !important;
                 }
             }
             .payMethod{
@@ -483,6 +490,12 @@
                     border-radius: 100px !important;
                     height: 22% !important;
                     padding-left: 6.5% !important;
+                    img{
+                        height: 20px;
+                    }
+                    p{
+                        font-size: 14px !important;
+                    }
                 }
             }
 
@@ -493,13 +506,13 @@
             .discount{
                 p{
                     width: 78%;
-                    font-family: 'Retroica';
                     font-size: 18px !important;
+                    font-weight: 600;
                     margin-bottom: 3%;
                 }
                 border-radius: 0px 0px 30px 30px !important;
                 padding-bottom: 5%;
-                height: 20vh !important;
+                height: 23vh !important;
                 input{
                     height: 40% !important;
                     border-radius: 100px !important;
@@ -517,6 +530,13 @@
                 padding-block: 0% !important;
                 padding-bottom: 8% !important;
                 padding-inline: 11% !important;
+                .summaryContainer{
+                    div{
+                        p{
+                            font-size: 14px !important;
+                        }
+                    }
+                }
             }
         }
     }
@@ -525,16 +545,38 @@
     }
     .buttonBTS-SecondStep{
         p{
-            font-size: 16px !important;
+            font-size: 14px !important;
         }
     }
     .finishBuy{
         .modalFinish{
             height: 40%;
             width: 80%;
+            img{
+                width: 25%;
+            }
+            h1{
+                font-size: 26px ;
+            }
+            p{
+                font-size: 16px;
+            }
+            button{
+                font-size: 16px ;
+                height: 17%;
+            }
         }
     }
-    
+    .totalContainerSecondStep{
+        padding-inline: 7% !important;
+        p{
+            font-size: 14px !important;
+            
+        }
+    }
+    .buttonPurchase-SecondStep{
+        font-size: 14px !important;
+    }
 }
 @media (max-width:677px){
 .MPSTitle{
@@ -542,13 +584,79 @@
     margin-top: 4vh;
 }
 @media (max-width:600px){
+    .mainSneakers{
+        margin-top: 4vh !important;
+        padding-bottom: 15vh !important;
+    }
+    .section3{
+        flex-direction: column;
+        height: auto;
+        .imageSOTW{
+
+        }
+        .SOTWTextContent{
+            width: 100%;
+            min-height: 70vh;
+            .contentSOTW{
+                width: 80%;
+                text-align: center;
+                .priceAndCart{
+                    flex-direction: column;
+                    gap: 20px;
+                }
+            }
+        }
+    }
 .navbar{
     opacity: 0;
     pointer-events: none;
 }
 
+.backgroundBenefit{
+    height: 100vh !important; 
+    .textBenefit{
+        width: 80% !important;
+        height: 30% !important;
+    }
+}
+.navBarMobile{
+    margin-bottom: 2%;
+    ul{
+        li{
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img{
+                height: 18px;
+            }
+        }
+    }
+}
+
 }
 @media (max-width:550px){
+    .section5{
+        .contentSuscribe{
+            border-radius: 0;
+            width: 100%;
+            height: 50vh;
+            div{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                div{
+                    flex-direction: row;
+                    height: 70px;
+                    input{
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
     .totalContainer{
         width: 83% !important;
     }
@@ -579,9 +687,163 @@
     .buttonPurchase{
         width: 68% !important;
         p{
-            font-size: 16px !important;
+            font-size: 12px !important;
         }
     }
     }
 }
+}
+@media (max-width:400px){
+    .mainSneakers{
+        margin-top: 0vh !important;
+        .filterContainer{
+            width: 100% !important;
+            border-radius: 0px !important;
+        }
+    }
+    body{
+        .sectionCart{
+            .cartContainer{
+                    .myCartTitle{
+                        p{
+                            margin-left: 10px !important;
+                            font-size: 16px !important;
+
+                        }
+                    }
+                    .sneakerObjet{
+                        .sneakerDataCart{
+    
+                                .sneakerCartName{
+                                    h3{
+                                        font-size: 14px !important;
+                                    }
+                                    p{
+                                        font-size: 12px !important;
+                                    }
+                                }
+                            
+                        }
+                        .ObjectDataCart{
+                            .dataCart{
+                                p{
+                                    font-size: 12px !important;
+                                }
+                        }
+                        }
+                    }
+                }
+                .totalCountCart{
+                    .totalAndClear{
+                        .totalContainer{
+                            padding-inline: 7%;
+                            p{
+                                font-size: 12px !important;
+                            }
+                        }
+                    }
+                }
+            
+        }
+    }
+    .sectionCartSecondStep{
+        .cartContainerSecondStep{
+            .myCartTitleSecondStep{
+                p{
+                    margin-left: 10px !important;
+                    font-size: 16px !important;
+                }
+            }
+            .PayDataContainer{
+                .discountAndSummary{
+                    .discount{
+                        p{
+                            font-size: 16px !important;
+                        }
+                        height: 22vh !important;
+                        button{
+                            margin-top: 2%;
+                        }
+                        input{
+                            font-size: 12px;
+                        }
+                        
+                        
+                    }
+                    .paymentSum{
+                        p{
+                            font-size: 16px !important;
+                        }
+                        .summaryContainer{
+                            div{
+                                p{
+                                    font-size: 12px !important;
+                                    strong{
+                                        font-size: 12px !important;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .emailPayMethod{
+                    .emailContainer{
+                        input{
+                            font-size: 12px !important;
+                            padding-left: 8%;
+                        }
+                    }
+                    .payMethod{
+                        p{
+                            font-size: 16px !important;
+                        }
+                        div{
+                            img{
+                                height: 20px;
+                            }
+                            p{
+                                font-size: 12px !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .totalContainerSecondStep{
+            padding-inline: 7% !important;
+            p{
+                font-size: 12px !important;
+            }
+        }
+        .buttonsCartContainer-SecondStep{
+            .buttonBTS-SecondStep{
+                p{
+                    font-size: 12px !important;
+                }
+            }
+            .buttonPurchase-SecondStep{
+                p{
+                    font-size: 12px !important;
+                }
+            }
+        }
+
+    }
+    .finishBuy{
+        .modalFinish{
+            height: 30% !important;
+            img{
+                transform: translateY(-120%);
+            }
+            h1{
+                font-size: 20px !important;
+            }
+            p{
+                font-size: 12px !important;
+            }
+            button{
+                font-size: 14px;
+            }
+        }
+    }
 }

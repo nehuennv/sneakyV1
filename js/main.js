@@ -20,13 +20,22 @@ let buttonPurchase = document.querySelector('.buttonPurchase')
 let navBarMobile = document.querySelector('.navBarMobile')
 
 
+if (window.matchMedia("(max-width: 800px)").matches) {
+    
+    
+  }
 if (window.matchMedia("(max-width: 600px)").matches) {
     homeButton = document.querySelector('.homeButtonMobile')
     catalogButton = document.querySelector('.sneakerSectionMobile')
     myCartButton = document.querySelector('.myCartMobile')
-    
-  }
 
+    window.addEventListener("scroll", ()=>{
+        if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
+            navBarMobile.classList.remove('navBarMobileON')
+        }
+    })
+  
+    }
 let cart = []
 
 clearButton.addEventListener("click", ()=>{
@@ -34,23 +43,44 @@ clearButton.addEventListener("click", ()=>{
         
         
         if (JSON.parse(localStorage.getItem('cartAdd')).length > 0 ){
-            Toastify({
-                text: "Cart successfully emptied",
-                duration: 1500,
-                position: "center",
-                stopOnFocus: true, 
-                style: {
-                  background: "#5E5E5E",
-                  borderRadius: "15px",
-                  color: "#DDDDDD",
-                  fontSize: "15px",
-                  zIndex: "101",
-                  fontWeight: "500",
-                  paddingInline: "30px",
-                  boxShadow: "0px 0px 0px 0px"
-                },
-                onClick: function(){} 
-              }).showToast();
+            if (window.matchMedia("(max-width: 800px)").matches) {
+                Toastify({
+                    text: "Cart successfully emptied",
+                    duration: 1500,
+                    position: "center",
+                    stopOnFocus: true, 
+                    style: {
+                      background: "#5E5E5E",
+                      borderRadius: "15px",
+                      color: "#DDDDDD",
+                      fontSize: "14px",
+                      zIndex: "101",
+                      fontWeight: "500",
+                      paddingInline: "30px",
+                      boxShadow: "0px 0px 0px 0px"
+                    },
+                    onClick: function(){} 
+                  }).showToast();
+            }else{
+                Toastify({
+                    text: "Cart successfully emptied",
+                    duration: 1500,
+                    position: "center",
+                    stopOnFocus: true, 
+                    style: {
+                      background: "#5E5E5E",
+                      borderRadius: "15px",
+                      color: "#DDDDDD",
+                      fontSize: "15px",
+                      zIndex: "101",
+                      fontWeight: "500",
+                      paddingInline: "30px",
+                      boxShadow: "0px 0px 0px 0px"
+                    },
+                    onClick: function(){} 
+                  }).showToast();
+            }
+
               localStorage.setItem('cartAdd',JSON.stringify([]))
               let MyCartObjets = document.querySelector('.MyCartObjets')
 
@@ -59,26 +89,45 @@ clearButton.addEventListener("click", ()=>{
               `
 
         }else{
-            Toastify({
-                text: "There is nothing to clean",
-                duration: 1500,
-    
-                position: "center",
-                stopOnFocus: true, 
-                style: {
-                  background: "#5E5E5E",
-                  borderRadius: "15px",
-                  color: "#DDDDDD",
-                  fontSize: "15px",
-                  zIndex: "101",
-                  fontWeight: "500",
-                  paddingInline: "30px",
-                  boxShadow: "0px 0px 0px 0px"
+            if (window.matchMedia("(max-width: 800px)").matches) {
+                Toastify({
+                    text: "There is nothing to clean",
+                    duration: 1500,
+                    position: "center",
+                    stopOnFocus: true, 
+                    style: {
+                      background: "#5E5E5E",
+                      borderRadius: "15px",
+                      color: "#DDDDDD",
+                      fontSize: "14px",
+                      zIndex: "101",
+                      fontWeight: "500",
+                      paddingInline: "30px",
+                      boxShadow: "0px 0px 0px 0px"
+                    },
+                    onClick: function(){} 
+                  }).showToast();
+            }else{
+                Toastify({
+                    text: "There is nothing to clean",
+                    duration: 1500,
+        
+                    position: "center",
+                    stopOnFocus: true, 
+                    style: {
+                      background: "#5E5E5E",
+                      borderRadius: "15px",
+                      color: "#DDDDDD",
+                      fontSize: "15px",
+                      zIndex: "101",
+                      fontWeight: "500",
+                      paddingInline: "30px",
+                      boxShadow: "0px 0px 0px 0px"
+                    },
+                    onClick: function(){} 
+                  }).showToast();
+            }
 
-                },
-    
-                onClick: function(){} 
-              }).showToast();
 
             localStorage.setItem('cartAdd',JSON.stringify([]))
             let MyCartObjets = document.querySelector('.MyCartObjets')
@@ -90,10 +139,28 @@ clearButton.addEventListener("click", ()=>{
 
         
     }else if (JSON.parse(localStorage.getItem('cartAdd')) == []){
+        if (window.matchMedia("(max-width: 800px)").matches) {
             Toastify({
                 text: "There is nothing to clean",
                 duration: 1500,
-    
+                position: "center",
+                stopOnFocus: true, 
+                style: {
+                  background: "#5E5E5E",
+                  borderRadius: "15px",
+                  color: "#DDDDDD",
+                  fontSize: "14px",
+                  zIndex: "101",
+                  fontWeight: "500",
+                  paddingInline: "30px",
+                  boxShadow: "0px 0px 0px 0px"
+                },
+                onClick: function(){} 
+              }).showToast();
+        }else{
+            Toastify({
+                text: "There is nothing to clean",
+                duration: 1500,
                 position: "center",
                 stopOnFocus: true, 
                 style: {
@@ -105,11 +172,11 @@ clearButton.addEventListener("click", ()=>{
                   fontWeight: "500",
                   paddingInline: "30px",
                   boxShadow: "0px 0px 0px 0px"
-
                 },
-    
                 onClick: function(){} 
               }).showToast();
+        }
+
               let MyCartObjets = document.querySelector('.MyCartObjets')
 
               MyCartObjets.innerHTML = `
@@ -122,30 +189,52 @@ clearButton.addEventListener("click", ()=>{
         MyCartObjets.innerHTML = `
         <p style="text-align: center; position: relative; top: 40%; color: #aaa;">The cart is empty</p>
         `
-        Toastify({
-            text: "There is nothing to clean",
-            duration: 1500,
+        if (window.matchMedia("(max-width: 800px)").matches) {
+            Toastify({
+                text: "There is nothing to clean",
+                duration: 1500,
+                position: "center",
+                stopOnFocus: true, 
+                style: {
+                  background: "#5E5E5E",
+                  borderRadius: "15px",
+                  color: "#DDDDDD",
+                  fontSize: "14px",
+                  zIndex: "101",
+                  fontWeight: "500",
+                  paddingInline: "30px",
+                  boxShadow: "0px 0px 0px 0px"
+    
+                },
+    
+                onClick: function(){} 
+              }).showToast();
+        }else{
+            Toastify({
+                text: "There is nothing to clean",
+                duration: 1500,
+                position: "center",
+                stopOnFocus: true, 
+                style: {
+                  background: "#5E5E5E",
+                  borderRadius: "15px",
+                  color: "#DDDDDD",
+                  fontSize: "15px",
+                  zIndex: "101",
+                  fontWeight: "500",
+                  paddingInline: "30px",
+                  boxShadow: "0px 0px 0px 0px"
+    
+                },
+    
+                onClick: function(){} 
+              }).showToast();
+        }
 
-            position: "center",
-            stopOnFocus: true, 
-            style: {
-              background: "#5E5E5E",
-              borderRadius: "15px",
-              color: "#DDDDDD",
-              fontSize: "15px",
-              zIndex: "101",
-              fontWeight: "500",
-              paddingInline: "30px",
-              boxShadow: "0px 0px 0px 0px"
-
-            },
-
-            onClick: function(){} 
-          }).showToast();
     }
 
 })
-    setInterval(() => {
+    setTimeout(() => {
 
         if(JSON.parse(localStorage.getItem('cartAdd'))){
         let cartCompleteLS = JSON.parse(localStorage.getItem('cartAdd'))
@@ -179,7 +268,7 @@ clearButton.addEventListener("click", ()=>{
         </div>
         <div class="ObjectDataCart">
             <div class="dataCart">
-                <p>Quantity</p>
+                <p>Amount</p>
                 <p class="dataBold">${el.amount}</p>
             </div>
             <div class="dataCart">
@@ -208,7 +297,7 @@ clearButton.addEventListener("click", ()=>{
         `
     }
 
-      }, 000);
+      }, 1000);
 
 let totalProductSummary = ""      
 
@@ -230,7 +319,14 @@ window.addEventListener("scroll", function(){
             homeButton = document.querySelector('.homeButtonMobile')
             catalogButton = document.querySelector('.sneakerSectionMobile')
             myCartButton = document.querySelector('.myCartMobile')
-            navBarMobile.classList.add('navBarMobileON')
+            if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
+                navBarMobile.classList.remove('navBarMobileON')
+            }else{
+                navBarMobile.classList.add('navBarMobileON')
+
+            }
+
+
             header.classList.add('hideHeader')
 
             logoContainer.innerHTML = `
@@ -251,6 +347,9 @@ window.addEventListener("scroll", function(){
             My Cart 
             `
 }
+    }else{
+        navBarMobile.classList.remove('navBarMobileON')
+
     }
     if (window.scrollY>100) {
         if (window.matchMedia("(max-width: 600px)").matches) {
@@ -814,7 +913,7 @@ let allSneakers = [
         id:  17,
         brand:'Nike',
         name:'Blazer Mid',
-        model:'Off-White Wolf Grey Serena Queen',
+        model:'Off-White Serena Queen',
         img: './assets/img/catalog/blazerowgsq.webp',
         price: 1000,
         sizes: eliminaDuplicados(randomSizes()),
@@ -996,7 +1095,7 @@ let allSneakers = [
         id:  31,
         brand:'Converse',
         name:'Chuck Taylor',
-        model:'Hi Comme des Garcons',
+        model:'Garcons',
         img: './assets/img/catalog/converseGG.webp',
         price: 125,
         sizes: eliminaDuplicados(randomSizes()),
@@ -1009,7 +1108,7 @@ let allSneakers = [
         id:  33,
         brand:'Converse',
         name:'Chuck Taylor',
-        model:'Hi Comme des Garcons Multi-Heart White',
+        model:'Garcons White',
         img: './assets/img/catalog/cnvW.webp',
         price: 145,
         sizes: eliminaDuplicados(randomSizes()),
@@ -1022,7 +1121,7 @@ let allSneakers = [
         id:  34,
         brand:'Converse',
         name:'Chuck Taylor',
-        model:'Hi Comme des Garcons Brown',
+        model:'Garcons Brown',
         img: './assets/img/catalog/cnvBrown.webp',
         price: 213,
         sizes: eliminaDuplicados(randomSizes()),
@@ -1030,7 +1129,254 @@ let allSneakers = [
             let nameSneaker = this.brand +" "+ this.name+ " " + this.model
             return nameSneaker
         }
-    }
+    },
+    {   
+        id:  35,
+        brand:'Converse',
+        name:'Chuck Taylor',
+        model:'Off-White',
+        img: './assets/img/catalog/cnvOffWhite.webp',
+        price: 1500,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },
+    {   
+        id:  36,
+        brand:'Nike',
+        name:'Air Force',
+        model:'Skeleton (2018)',
+        img: './assets/img/catalog/skeleton.webp',
+        price: 450,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },
+    {   
+        id:  37,
+        brand:'Nike',
+        name:'MAG',
+        model:'Back to the Future',
+        img: './assets/img/catalog/MAG.webp',
+        price: 150000,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },
+    {   
+        id:  38,
+        brand:'Nike',
+        name:'Dunk Low',
+        model:"Disrupt 2 'Panda'",
+        img: './assets/img/catalog/panda.webp',
+        price: 130,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },
+    {   
+        id:  39,
+        brand:'Adidas',
+        name:'Forum 84 High',
+        model:'Sun Devils',
+        img: './assets/img/catalog/sunde.webp',
+        price: 85,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },
+    {   
+        id:  40,
+        brand:'Adidas',
+        name:'Ozweego',
+        model:'Pride (2019)',
+        img: './assets/img/catalog/ozpride.webp',
+        price: 250,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },
+    {   
+        id:  41,
+        brand:'Adidas',
+        name:'Stan Smith',
+        model:'Marimekko Unikko',
+        img: './assets/img/catalog/unikko.webp',
+        price: 95,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },
+    {   
+        id:  42,
+        brand:'Nike',
+        name:'Zoom Vomero 5',
+        model:'Dark Grey',
+        img: './assets/img/catalog/vomero.webp',
+        price: 335,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },
+    {   
+        id:  43,
+        brand:'Adidas',
+        name:'Yeezy Boost 350',
+        model:'V2 Slate',
+        img: './assets/img/catalog/slate.webp',
+        price: 210,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },
+    {   
+        id:  44,
+        brand:'Nike',
+        name:'sacai x Blazer Mid',
+        model:"'Black Blue'",
+        img: './assets/img/catalog/sacaiBlz.webp',
+        price: 195,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },
+    {   
+        id:  45,
+        brand:'Nike',
+        name:'Vaporwaffle sacai',
+        model:'Black Gum',
+        img: './assets/img/catalog/gum.webp',
+        price: 295,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },
+    {   
+        id:  46,
+        brand:'Adidas',
+        name:'Forum High',
+        model:'Prada White',
+        img: './assets/img/catalog/adPrada.webp',
+        price: 3200,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },
+    {   
+        id:  47,
+        brand:'Nike',
+        name:'Air Force 1 x LV',
+        model:"'Monogram Damier'",
+        img: './assets/img/catalog/luivi.webp',
+        price: 7000,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },
+    {   
+        id:  48,
+        brand:'Nike',
+        name:'Jordan 1 Retro High',
+        model:"J Balvin",
+        img: './assets/img/catalog/balvin.webp',
+        price: 1300,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },
+    {   
+        id:  49,
+        brand:'Adidas',
+        name:'Forum 84',
+        model:"'Pigeon Lady'",
+        img: './assets/img/catalog/for84.webp',
+        price: 330,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },
+    {   
+        id:  50,
+        brand:'Adidas',
+        name:'Samba Classic OG',
+        model:"White Black",
+        img: './assets/img/catalog/samba.webp',
+        price: 330,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },
+    {   
+        id:  51,
+        brand:'Nike',
+        name:'Air VaporMax',
+        model:"Off-White",
+        img: './assets/img/catalog/vpmx.webp',
+        price: 950,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },
+    {   
+        id:  52,
+        brand:'Nike',
+        name:'Air VaporMax',
+        model:"Plus Obsidian",
+        img: './assets/img/catalog/vpmxPlus.webp',
+        price: 310,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },
+    {   
+        id:  53,
+        brand:'Nike',
+        name:'Air Force 1',
+        model:"Off-White Volt",
+        img: './assets/img/catalog/a1OW.webp',
+        price: 570,
+        sizes: eliminaDuplicados(randomSizes()),
+        allName: function(){
+            let nameSneaker = this.brand +" "+ this.name+ " " + this.model
+            return nameSneaker
+        }
+    },
 ]
 
 let sneakersRandom = allSneakers.sort(() => Math.random() - 0.5);
@@ -1148,7 +1494,11 @@ function createCards(array,location){
         let sneakerName = document.querySelector('.sneakerName' + `${el.id}`)
         
         buttonAddToCart.addEventListener("click", ()=>{
-
+            if (window.matchMedia("(max-width: 800px)").matches) {
+                let header = document.querySelector('.header')
+                header.classList.add('hideHeader')
+    
+            }
             navBarMobile.classList.remove('navBarMobileON')
             let closeSneakerCard = document.querySelector('.closeSneakerCard')
             let logoHeader = document.querySelector('.logoHeader')
@@ -1168,8 +1518,49 @@ function createCards(array,location){
                 sneakerSelected.classList.remove('showSneakerSelected')
 
             })
-
-            sneakerSelected.innerHTML = `
+            if (window.matchMedia("(max-width: 800px)").matches) {
+                sneakerSelected.innerHTML = `
+                <div class="imageSneakerSelected">
+                <img src="${el.img}" alt="">
+            </div>
+            <div class="sectionInfoSneaker">
+                <div class="infoSneakerSelected">
+                    <div class="nameComplete">
+                        <p class="brandName">${el.brand}</p>
+                        <h3>${el.name}</h3>
+                        <p class="modelName">${el.model}</p>
+                    </div>
+                    <div class="rateStars">
+                        <img src="./assets/svg/icons/4stars.svg" alt="">
+                    </div>
+                    <div class="priceSneaker">
+                        <p>$ ${Number(el.price).toLocaleString()}.00</p>
+                    </div>
+                    <div class="sizeSneaker">
+                        <p>Size</p>
+                        <ul class="ulSize">
+    
+                        </ul>
+                    </div>
+                    <div class="amountSneaker">
+                        <p>Amount</p>
+                        <div class="amountComplete">
+                            <button class="reduceAmount">-</button>
+                            <input class="amount" step="1" type="number" value="1" min="1" max="5" maxlength="1">
+                            <button class="increaseAmount">+</button>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="addButtonCartSneakerSelected">
+                    <button class="BTSSneakerSelected"> <img src="./assets/svg/icons/arrowLeftSneakerSelected.svg" alt=""></button>
+                    <button class="buttonATC">ADD TO CART</button>
+    
+                </div>
+            </div>
+                `
+              }else{
+                sneakerSelected.innerHTML = `
             <div class="imageSneakerSelected">
             <img src="${el.img}" alt="">
         </div>
@@ -1203,11 +1594,41 @@ function createCards(array,location){
                 
             </div>
             <div class="addButtonCartSneakerSelected">
-                <button class="buttonATC">ADD TO CART <img src="./assets/svg/icons/arrowRight.svg" alt=""></button>
-
+                <button class="buttonATC">ADD TO CART</button>
             </div>
         </div>
             `
+
+              }
+            if(document.querySelector('.BTSSneakerSelected')){
+                let backSS = document.querySelector('.BTSSneakerSelected')
+                backSS.style.width = `${backSS.offsetHeight}px`;
+                
+                let header = document.querySelector('.header')
+                let buttonAddToCart = document.querySelector('.buttonATC')
+                let addButtonCartSneakerSelected = document.querySelector('.addButtonCartSneakerSelected')
+                
+                buttonAddToCart.style.width = `${addButtonCartSneakerSelected.offsetWidth - backSS.offsetWidth -10}px`;
+                buttonAddToCart.style.marginLeft = '10px'
+
+                backSS.addEventListener('click', ()=>{
+                    if(!main.classList.contains("mainOn")){
+                        body.style.overflowY='auto'
+    
+                    }
+                    closeSneakerCard.classList.remove('showHeaderCloseButton')
+                    logoHeader.classList.remove('showHeaderCloseLogo')
+                    sneakerSelected.classList.remove('showSneakerSelected')
+                    if (window.matchMedia("(max-width: 600px)").matches) {
+                        navBarMobile.classList.add('navBarMobileON')
+                    }else{
+                        header.classList.remove('hideHeader')
+
+                    }
+
+                
+                })
+            }
             let ulSize = document.querySelector('.ulSize')
             let amountContainer = document.querySelector('.amount')
             let reduceAmount = document.querySelector('.reduceAmount')
@@ -1280,71 +1701,135 @@ function createCards(array,location){
                 if(JSON.parse(localStorage.getItem('cartAdd'))){
                     let checkLS = JSON.parse(localStorage.getItem('cartAdd'))
                     if(checkLS.some(ele => ele.id === `${el.id}`)){
-                        Toastify({
-                            text: "It's already in your cart",
-                            duration: 1500,
-                            gravity: "top", 
-                            position: "right",
-                            stopOnFocus: true, 
-                            style: {
-                              background: "#5E5E5E",
-                              borderRadius: "15px",
-                              color: "#DDDDDD",
-                              fontSize: "15px",
-                              zIndex: "100",
-                              fontWeight: "500",
-                              paddingInline: "30px",
-                              boxShadow: "0px 0px 0px 0px"
-
-                            },
-                            offset: {
-                                y: 75 // vertical axis - can be a number or a string indicating unity. eg: '2em'
-                              },
-                            onClick: function(){} 
-                          }).showToast();
-                    }else{
-                        if(sizeSneak == 0 ){
+                        if (window.matchMedia("(max-width: 800px)").matches) {
                             Toastify({
-                                text: "Select a size",
+                                text: "It's already in your cart",
                                 duration: 1500,
-                                gravity: "bottom", 
+                                gravity: "top", 
                                 position: "center",
                                 stopOnFocus: true, 
                                 style: {
-                                  background: "#2D2D2D",
+                                  background: "#5E5E5E",
                                   borderRadius: "15px",
-                                  color: "#FFEC0C",
-                                  fontSize: "15px",
+                                  color: "#DDDDDD",
+                                  fontSize: "14px",
+                                  zIndex: "100",
+                                  fontWeight: "500",
                                   paddingInline: "30px",
                                   boxShadow: "0px 0px 0px 0px"
-
-                                //   border: "solid 4px #FFEC0C"
                                 },
                                 onClick: function(){} 
                               }).showToast();
+    
                         }else{
                             Toastify({
-                                text: "Added to your cart!",
+                                text: "It's already in your cart",
                                 duration: 1500,
                                 gravity: "top", 
                                 position: "right",
                                 stopOnFocus: true, 
                                 style: {
-                                  background: "#FFEC0C",
+                                  background: "#5E5E5E",
                                   borderRadius: "15px",
-                                  color: "#2d2d2d",
+                                  color: "#DDDDDD",
                                   fontSize: "15px",
                                   zIndex: "100",
                                   fontWeight: "500",
                                   paddingInline: "30px",
                                   boxShadow: "0px 0px 0px 0px"
-
+    
                                 },
                                 offset: {
-                                    y: 75 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                                    y: 75 
                                   },
                                 onClick: function(){} 
                               }).showToast();
+                        }
+
+                    }else{
+                        if(sizeSneak == 0 ){
+                            if (window.matchMedia("(max-width: 800px)").matches) {
+                                Toastify({
+                                    text: "Select a size",
+                                    duration: 1500,
+                                    gravity: "top", 
+                                    position: "center",
+                                    stopOnFocus: true, 
+                                    style: {
+                                      background: "#2D2D2D",
+                                      borderRadius: "15px",
+                                      color: "#FFEC0C",
+                                      fontSize: "14px",
+                                      paddingInline: "30px",
+                                      boxShadow: "0px 0px 0px 0px"
+                                    },
+                                    onClick: function(){} 
+                                  }).showToast();
+                            }
+                            else{
+                                Toastify({
+                                    text: "Select a size",
+                                    duration: 1500,
+                                    gravity: "bottom", 
+                                    position: "center",
+                                    stopOnFocus: true, 
+                                    style: {
+                                      background: "#2D2D2D",
+                                      borderRadius: "15px",
+                                      color: "#FFEC0C",
+                                      fontSize: "15px",
+                                      paddingInline: "30px",
+                                      boxShadow: "0px 0px 0px 0px"
+                                    },
+                                    onClick: function(){} 
+                                  }).showToast();
+                            }
+
+                        }else{
+                            if (window.matchMedia("(max-width: 800px)").matches) {
+                                Toastify({
+                                    text: "Added to your cart!",
+                                    duration: 1500,
+                                    gravity: "top", 
+                                    position: "center",
+                                    stopOnFocus: true, 
+                                    style: {                    
+                                      background: "#2d2d2d",
+                                      borderRadius: "15px",
+                                      color: "#FFEC0C",
+                                      fontSize: "14px",
+                                      zIndex: "100",
+                                      fontWeight: "500",
+                                      paddingInline: "30px",
+                                      boxShadow: "0px 0px 0px 0px"
+                                    },
+                                    onClick: function(){} 
+                                  }).showToast();
+                            }else{
+                                Toastify({
+                                    text: "Added to your cart!",
+                                    duration: 1500,
+                                    gravity: "top", 
+                                    position: "right",
+                                    stopOnFocus: true, 
+                                    style: {                    
+                                      background: "#FFEC0C",
+                                      borderRadius: "15px",
+                                      color: "#2d2d2d",
+                                      fontSize: "15px",
+                                      zIndex: "100",
+                                      fontWeight: "500",
+                                      paddingInline: "30px",
+                                      boxShadow: "0px 0px 0px 0px"
+    
+                                    },
+                                    offset: {
+                                        y: 75 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                                      },
+                                    onClick: function(){} 
+                                  }).showToast();
+                            }
+
                               
                               let amountElement = document.querySelector('.amount')
         
@@ -1387,47 +1872,88 @@ function createCards(array,location){
                     }
                 }else{
                     if(sizeSneak == 0 ){
-                        Toastify({
-                            text: "Select a size",
-                            duration: 1500,
-                            gravity: "bottom", 
-                            position: "center",
-                            stopOnFocus: true, 
-                            style: {
-                              background: "#2D2D2D",
-                              borderRadius: "15px",
-                              color: "#FFEC0C",
-                              fontSize: "15px",
-                              paddingInline: "30px",
-                              boxShadow: "0px 0px 0px 0px"
+                        if (window.matchMedia("(max-width: 800px)").matches) {
+                            Toastify({
+                                text: "Select a size",
+                                duration: 1500,
+                                gravity: "top", 
+                                position: "center",
+                                stopOnFocus: true, 
+                                style: {
+                                  background: "#2D2D2D",
+                                  borderRadius: "15px",
+                                  color: "#FFEC0C",
+                                  fontSize: "14px",
+                                  paddingInline: "30px",
+                                  boxShadow: "0px 0px 0px 0px"
+                                },
+                                onClick: function(){} 
+                              }).showToast();
+                        }else{
+                            Toastify({
+                                text: "Select a size",
+                                duration: 1500,
+                                gravity: "bottom", 
+                                position: "center",
+                                stopOnFocus: true, 
+                                style: {
+                                  background: "#2D2D2D",
+                                  borderRadius: "15px",
+                                  color: "#FFEC0C",
+                                  fontSize: "15px",
+                                  paddingInline: "30px",
+                                  boxShadow: "0px 0px 0px 0px"
+                                },
+                                onClick: function(){} 
+                              }).showToast();
+                        }
 
-                            //   border: "solid 4px #FFEC0C"
-                            },
-                            onClick: function(){} 
-                          }).showToast();
                     }else{
-                        Toastify({
-                            text: "Added to your cart!",
-                            duration: 1500,
-                            gravity: "top", 
-                            position: "right",
-                            stopOnFocus: true, 
-                            style: {
-                              background: "#FFEC0C",
-                              borderRadius: "15px",
-                              color: "#2d2d2d",
-                              fontSize: "15px",
-                              zIndex: "100",
-                              fontWeight: "500",
-                              paddingInline: "30px",
-                              boxShadow: "0px 0px 0px 0px"
+                        if (window.matchMedia("(max-width: 800px)").matches) {
+                            Toastify({
+                                text: "Added to your cart!",
+                                duration: 1500,
+                                gravity: "top", 
+                                position: "center",
+                                stopOnFocus: true, 
+                                style: {
+                                  background: "#2d2d2d",
+                                  borderRadius: "15px",
+                                  color: "#FFEC0C",
+                                  fontSize: "14px",
+                                  zIndex: "100",
+                                  fontWeight: "500",
+                                  paddingInline: "30px",
+                                  boxShadow: "0px 0px 0px 0px"
+    
+                                },
+                                onClick: function(){} 
+                              }).showToast();
+                        }else{
+                            Toastify({
+                                text: "Added to your cart!",
+                                duration: 1500,
+                                gravity: "top", 
+                                position: "right",
+                                stopOnFocus: true, 
+                                style: {
+                                  background: "#FFEC0C",
+                                  borderRadius: "15px",
+                                  color: "#2d2d2d",
+                                  fontSize: "15px",
+                                  zIndex: "100",
+                                  fontWeight: "500",
+                                  paddingInline: "30px",
+                                  boxShadow: "0px 0px 0px 0px"
+    
+                                },
+                                offset: {
+                                    y: 75 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                                  },
+                                onClick: function(){} 
+                              }).showToast();
+                        }
 
-                            },
-                            offset: {
-                                y: 75 // vertical axis - can be a number or a string indicating unity. eg: '2em'
-                              },
-                            onClick: function(){} 
-                          }).showToast();
                           
                           let amountElement = document.querySelector('.amount')
     
@@ -1661,8 +2187,72 @@ function createCards(array,location){
 
 
                     }else{
+                        if (window.matchMedia("(max-width: 800px)").matches) {
+                            Toastify({
+                                text: "Choose a payment method",
+                                duration: 1500,
+                                position: "center",
+                                stopOnFocus: true, 
+                                style: {
+                                  background: "#C21515",
+                                  borderRadius: "15px",
+                                  color: "#fff",
+                                  fontSize: "14px",
+                                  zIndex: "102",
+                                  fontWeight: "500",
+                                  paddingInline: "30px",
+                                  boxShadow: "0px 0px 0px 0px"
+                                },
+                    
+                                onClick: function(){} 
+                              }).showToast();
+                        }else{
+                            Toastify({
+                                text: "Choose a payment method",
+                                duration: 1500,
+                                position: "center",
+                                stopOnFocus: true, 
+                                style: {
+                                  background: "#C21515",
+                                  borderRadius: "15px",
+                                  color: "#fff",
+                                  fontSize: "15px",
+                                  zIndex: "102",
+                                  fontWeight: "500",
+                                  paddingInline: "30px",
+                                  boxShadow: "0px 0px 0px 0px"
+                                },
+                    
+                                onClick: function(){} 
+                              }).showToast();
+                        }
+
+                    }
+
+                }else{
+                    if (window.matchMedia("(max-width: 800px)").matches) {
                         Toastify({
-                            text: "Choose a payment method",
+                            text: "Check the email",
+                            duration: 1500,
+                            position: "center",
+                            stopOnFocus: true, 
+                            style: {
+                              background: "#C21515",
+                              borderRadius: "15px",
+                              color: "#fff",
+                              fontSize: "14px",
+                              zIndex: "102",
+                              fontWeight: "500",
+                              paddingInline: "30px",
+                              boxShadow: "0px 0px 0px 0px"
+                            },
+                
+                            onClick: function(){} 
+                          }).showToast();
+                    }
+                    else{
+                        Toastify({
+                            text: "Check the email",
                             duration: 1500,
                             position: "center",
                             stopOnFocus: true, 
@@ -1681,31 +2271,73 @@ function createCards(array,location){
                           }).showToast();
                     }
 
-                }else{
-                    Toastify({
-                        text: "Check the email",
-                        duration: 1500,
-                        position: "center",
-                        stopOnFocus: true, 
-                        style: {
-                          background: "#C21515",
-                          borderRadius: "15px",
-                          color: "#fff",
-                          fontSize: "15px",
-                          zIndex: "102",
-                          fontWeight: "500",
-                          paddingInline: "30px",
-                          boxShadow: "0px 0px 0px 0px"
-                        },
-            
-                        onClick: function(){} 
-                      }).showToast();
                 }
 
             })
 
 
             
+        }else{
+            if (window.matchMedia("(max-width: 800px)").matches) {
+                Toastify({
+                    text: "Add sneakers to your cart!",
+                    duration: 1500,
+                    position: "center",
+                    stopOnFocus: true, 
+                    style: {
+                      background: "#C21515",
+                      borderRadius: "15px",
+                      color: "#fff",
+                      fontSize: "14px",
+                      zIndex: "102",
+                      fontWeight: "500",
+                      paddingInline: "30px",
+                      boxShadow: "0px 0px 0px 0px"
+                    },
+                    onClick: function(){} 
+                  }).showToast();
+            }else{
+                Toastify({
+                    text: "Add sneakers to your cart!",
+                    duration: 1500,
+                    position: "center",
+                    stopOnFocus: true, 
+                    style: {
+                      background: "#C21515",
+                      borderRadius: "15px",
+                      color: "#fff",
+                      fontSize: "15px",
+                      zIndex: "102",
+                      fontWeight: "500",
+                      paddingInline: "30px",
+                      boxShadow: "0px 0px 0px 0px"
+                    },
+                    onClick: function(){} 
+                  }).showToast();
+            }
+
+
+        }
+    }else{
+        if (window.matchMedia("(max-width: 800px)").matches) {
+            Toastify({
+                text: "Add sneakers to your cart!",
+                duration: 1500,
+                position: "center",
+                stopOnFocus: true, 
+                style: {
+                  background: "#C21515",
+                  borderRadius: "15px",
+                  color: "#fff",
+                  fontSize: "14px",
+                  zIndex: "102",
+                  fontWeight: "500",
+                  paddingInline: "30px",
+                  boxShadow: "0px 0px 0px 0px"
+                },
+    
+                onClick: function(){} 
+              }).showToast();
         }else{
             Toastify({
                 text: "Add sneakers to your cart!",
@@ -1725,27 +2357,8 @@ function createCards(array,location){
     
                 onClick: function(){} 
               }).showToast();
-
         }
-    }else{
-        Toastify({
-            text: "Add sneakers to your cart!",
-            duration: 1500,
-            position: "center",
-            stopOnFocus: true, 
-            style: {
-              background: "#C21515",
-              borderRadius: "15px",
-              color: "#fff",
-              fontSize: "15px",
-              zIndex: "102",
-              fontWeight: "500",
-              paddingInline: "30px",
-              boxShadow: "0px 0px 0px 0px"
-            },
 
-            onClick: function(){} 
-          }).showToast();
     }
 })
 priceAndCart.addEventListener('click', ()=>{

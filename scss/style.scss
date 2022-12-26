@@ -239,7 +239,7 @@ header{
         color: #fff;
         width: min-content;
         white-space: nowrap;
-        margin-bottom: 5vh;
+        margin-block: 5vh;
         text-shadow: 0px 0px 10px #1515157b;
     }
     .sneakersPopularContainer{
@@ -248,11 +248,12 @@ header{
         justify-content: center;
         width: 100vw;
         align-items: center;
+        gap: 40px;
+        margin-bottom: 2vh;
         flex-direction: row-reverse;
     }
     .sneakerCard{
         box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.11);
-        margin: 20px;
         height: 460px;
         width: 360px;
         transition: all .5s;
@@ -684,7 +685,9 @@ footer{
         background-repeat: no-repeat;
         background: $yellowGradient;
         background-position: center;
-        img{    
+        img{   
+            width: 70%;
+            height: auto;
             transition: all .5s;
             filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.25));
             &:hover{
@@ -831,13 +834,27 @@ footer{
     display: flex;
     justify-content: center;
     align-items: center;
-    button{
+    .BTSSneakerSelected{
+        width:  50px;
+        height:100%;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #3B3B3B;
+        img{
+            width: 25%;
+        }
+    }
+    .buttonATC{
         display: flex;
         justify-content: center;
         align-items: center;
         background:$yellowSneaky;
-        width: 100%;
+        width: 100% ;
         height: 100%;
+        letter-spacing: 0.1em;
+
         border-radius: 100px;
         font-weight: 600;
         font-size: 16px;
@@ -848,6 +865,8 @@ footer{
         }
     }
 }
+
+
 
 .buttonSizeOn{
     color: $blackSneaky !important;
@@ -1104,8 +1123,8 @@ footer{
                 align-items: center;
 
                 p{
-                    font-family: 'Retroica';
                     font-size: 150%;
+                    font-weight: 600;
                     margin-left: 20px;
                 }
 
@@ -1134,7 +1153,7 @@ footer{
                     width: 100%;
                     display: flex;
                     height: 15vh;
-                    margin-bottom: 20px;
+                    margin-block: 15px;
 
                     .sneakerDataCart{
                         display: flex;
@@ -1283,7 +1302,7 @@ footer{
                         height: 30%;
                         background-repeat: no-repeat;
                         background-position: center;
-
+                        background-size: contain;
                     }
                     p{
                         color: #aaa;
@@ -1349,8 +1368,9 @@ footer{
 
             p{
                 padding-left: 7%;
-                font-family: 'Retroica';
-                font-size: 150%;
+                font-weight: 600;
+                font-size: 100%;
+                margin-left: 20px;
             }
         }
         .PayDataContainer{
@@ -1672,7 +1692,7 @@ footer{
         height: 100%;
         background-image: url(../assets/svg/icons/sneakyBackground.svg);
         width: 90%;
-        border-radius: 15px;
+        border-radius: 30px;
         display: flex;
         justify-content: center;
         align-items: center;

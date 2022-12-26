@@ -187,7 +187,7 @@ header {
     color: #fff;
     width: min-content;
     white-space: nowrap;
-    margin-bottom: 5vh;
+    margin-block: 5vh;
     text-shadow: 0px 0px 10px #1515157b; }
   .section2 .sneakersPopularContainer {
     display: flex;
@@ -195,10 +195,11 @@ header {
     justify-content: center;
     width: 100vw;
     align-items: center;
+    gap: 40px;
+    margin-bottom: 2vh;
     flex-direction: row-reverse; }
   .section2 .sneakerCard {
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.11);
-    margin: 20px;
     height: 460px;
     width: 360px;
     transition: all .5s;
@@ -521,6 +522,8 @@ footer .credits {
     background: radial-gradient(49.23% 49.23% at 50.18% 50.77%, #F8EE7B 0%, #FFEB00 100%);
     background-position: center; }
     .sneakerSelected .imageSneakerSelected img {
+      width: 70%;
+      height: auto;
       transition: all .5s;
       filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.25)); }
       .sneakerSelected .imageSneakerSelected img:hover {
@@ -624,18 +627,29 @@ footer .credits {
   display: flex;
   justify-content: center;
   align-items: center; }
-  .addButtonCartSneakerSelected button {
+  .addButtonCartSneakerSelected .BTSSneakerSelected {
+    width: 50px;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3B3B3B; }
+    .addButtonCartSneakerSelected .BTSSneakerSelected img {
+      width: 25%; }
+  .addButtonCartSneakerSelected .buttonATC {
     display: flex;
     justify-content: center;
     align-items: center;
     background: #FCEA1C;
     width: 100%;
     height: 100%;
+    letter-spacing: 0.1em;
     border-radius: 100px;
     font-weight: 600;
     font-size: 16px;
     cursor: pointer; }
-    .addButtonCartSneakerSelected button img {
+    .addButtonCartSneakerSelected .buttonATC img {
       width: 15px;
       margin-left: 5px; }
 
@@ -843,8 +857,8 @@ footer .credits {
       display: flex;
       align-items: center; }
       .sectionCart .cartContainer .myCartTitle p {
-        font-family: 'Retroica';
         font-size: 150%;
+        font-weight: 600;
         margin-left: 20px; }
     .sectionCart .cartContainer .MyCartObjets {
       height: 70%;
@@ -864,7 +878,7 @@ footer .credits {
         width: 100%;
         display: flex;
         height: 15vh;
-        margin-bottom: 20px; }
+        margin-block: 15px; }
         .sectionCart .cartContainer .MyCartObjets .sneakerObjet .sneakerDataCart {
           display: flex;
           justify-content: center;
@@ -975,7 +989,8 @@ footer .credits {
             width: 20%;
             height: 30%;
             background-repeat: no-repeat;
-            background-position: center; }
+            background-position: center;
+            background-size: contain; }
           .sectionCart .cartContainer .totalCountCart .buttonsCartContainer .buttonBTS p {
             color: #aaa;
             font-weight: 500;
@@ -1029,8 +1044,9 @@ footer .credits {
       padding-right: 5%; }
       .sectionCartSecondStep .cartContainerSecondStep .myCartTitleSecondStep p {
         padding-left: 7%;
-        font-family: 'Retroica';
-        font-size: 150%; }
+        font-weight: 600;
+        font-size: 100%;
+        margin-left: 20px; }
     .sectionCartSecondStep .cartContainerSecondStep .PayDataContainer {
       display: flex;
       height: 70%;
@@ -1291,7 +1307,7 @@ footer .credits {
     height: 100%;
     background-image: url(../assets/svg/icons/sneakyBackground.svg);
     width: 90%;
-    border-radius: 15px;
+    border-radius: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1359,8 +1375,6 @@ footer .credits {
       width: 30px; }
   footer .credits {
     font-size: 14px; }
-  .sneakerSelected .imageSneakerSelected img {
-    width: 500px; }
   .sneakerSelected .sectionInfoSneaker {
     padding-inline: 40px;
     padding-block: 30px; }
@@ -1435,11 +1449,15 @@ footer .credits {
       body .section1 .section1Container img {
         width: 100%; }
   body .section3 {
-    flex-direction: column; }
+    flex-direction: column;
+    height: auto; }
     body .section3 .imageSOTW {
-      width: 100%; }
+      width: 100%;
+      height: 90vh !important; }
     body .section3 .SOTWTextContent {
-      width: 100%; }
+      width: 100%;
+      min-height: 70vh;
+      height: auto; }
   .section4 {
     display: grid;
     grid-template-columns: 1fr;
@@ -1477,11 +1495,15 @@ footer .credits {
     flex-direction: column; }
     .sneakerSelected .imageSneakerSelected {
       width: 100%;
-      height: 50%; }
+      height: 40%; }
+    .sneakerSelected .imageSneakerSelected img {
+      height: 100%;
+      width: auto; }
     .sneakerSelected .sectionInfoSneaker {
       width: 100%;
-      height: 50%; }
+      height: 60%; }
       .sneakerSelected .sectionInfoSneaker .infoSneakerSelected {
+        justify-content: flex-start;
         height: 85%; }
         .sneakerSelected .sectionInfoSneaker .infoSneakerSelected .rateStars {
           display: none; }
@@ -1491,6 +1513,8 @@ footer .credits {
           margin-top: 2.5%; }
       .sneakerSelected .sectionInfoSneaker .addButtonCartSneakerSelected {
         height: 15%; }
+        .sneakerSelected .sectionInfoSneaker .addButtonCartSneakerSelected .buttonATC {
+          font-size: 1rem; }
   .sectionCart .cartContainer {
     width: 100%; }
     .sectionCart .cartContainer .totalContainer {
@@ -1503,10 +1527,10 @@ footer .credits {
         display: none; }
       .sectionCart .cartContainer .clearButton img {
         display: block !important;
-        width: 15px; }
+        width: 12.5px; }
     .sectionCart .cartContainer .sneakerObjet {
       flex-direction: column !important;
-      height: 20vh !important; }
+      height: 30vh !important; }
       .sectionCart .cartContainer .sneakerObjet .sneakerDataCart {
         justify-content: flex-start !important;
         padding-left: 3%;
@@ -1515,31 +1539,31 @@ footer .credits {
         .sectionCart .cartContainer .sneakerObjet .sneakerDataCart .imageSneakerCart {
           width: auto !important; }
         .sectionCart .cartContainer .sneakerObjet .sneakerDataCart .sneakerCartName h3 {
-          font-size: 16px !important; }
-        .sectionCart .cartContainer .sneakerObjet .sneakerDataCart .sneakerCartName p {
           font-size: 14px !important; }
+        .sectionCart .cartContainer .sneakerObjet .sneakerDataCart .sneakerCartName p {
+          font-size: 12px !important; }
       .sectionCart .cartContainer .sneakerObjet .ObjectDataCart {
         width: 100% !important;
         border-radius: 0px 0px 30px 30px !important;
         height: 60%; }
   .buttonsCartContainer .buttonPurchase p {
-    font-size: 16px !important; }
+    font-size: 14px !important; }
   .totalCountCart .totalAndClear .totalContainer p {
-    font-size: 16px !important; }
+    font-size: 14px !important; }
   .cartContainerSecondStep {
     overflow-y: scroll; }
   .PayDataContainer {
     flex-direction: column;
-    height: auto !important;
-    overflow-y: scroll; }
+    height: auto !important; }
     .PayDataContainer .emailPayMethod {
       width: 100% !important; }
       .PayDataContainer .emailPayMethod .emailContainer {
-        height: 12vh !important;
+        height: 15vh !important;
         border-radius: 30px 30px 0px 0px !important; }
         .PayDataContainer .emailPayMethod .emailContainer .emailStep2 {
           border-radius: 100px !important;
-          height: 50% !important; }
+          height: 50% !important;
+          font-size: 14px !important; }
       .PayDataContainer .emailPayMethod .payMethod {
         height: 37vh !important;
         border-radius: 0px !important;
@@ -1548,17 +1572,21 @@ footer .credits {
           border-radius: 100px !important;
           height: 22% !important;
           padding-left: 6.5% !important; }
+          .PayDataContainer .emailPayMethod .payMethod .method img {
+            height: 20px; }
+          .PayDataContainer .emailPayMethod .payMethod .method p {
+            font-size: 14px !important; }
     .PayDataContainer .discountAndSummary {
       width: 100% !important;
       flex-direction: column-reverse !important; }
       .PayDataContainer .discountAndSummary .discount {
         border-radius: 0px 0px 30px 30px !important;
         padding-bottom: 5%;
-        height: 20vh !important; }
+        height: 23vh !important; }
         .PayDataContainer .discountAndSummary .discount p {
           width: 78%;
-          font-family: 'Retroica';
           font-size: 18px !important;
+          font-weight: 600;
           margin-bottom: 3%; }
         .PayDataContainer .discountAndSummary .discount input {
           height: 40% !important;
@@ -1574,13 +1602,30 @@ footer .credits {
         padding-block: 0% !important;
         padding-bottom: 8% !important;
         padding-inline: 11% !important; }
+        .PayDataContainer .discountAndSummary .paymentSum .summaryContainer div p {
+          font-size: 14px !important; }
   .buttonPurchase-SecondStep {
     border-radius: 100px !important; }
   .buttonBTS-SecondStep p {
-    font-size: 16px !important; }
+    font-size: 14px !important; }
   .finishBuy .modalFinish {
     height: 40%;
-    width: 80%; } }
+    width: 80%; }
+    .finishBuy .modalFinish img {
+      width: 25%; }
+    .finishBuy .modalFinish h1 {
+      font-size: 26px; }
+    .finishBuy .modalFinish p {
+      font-size: 16px; }
+    .finishBuy .modalFinish button {
+      font-size: 16px;
+      height: 17%; }
+  .totalContainerSecondStep {
+    padding-inline: 7% !important; }
+    .totalContainerSecondStep p {
+      font-size: 14px !important; }
+  .buttonPurchase-SecondStep {
+    font-size: 14px !important; } }
 
 @media (max-width: 677px) {
   .MPSTitle {
@@ -1588,11 +1633,55 @@ footer .credits {
     margin-top: 4vh; } }
 
 @media (max-width: 677px) and (max-width: 600px) {
+  .mainSneakers {
+    margin-top: 4vh !important;
+    padding-bottom: 15vh !important; }
+  .section3 {
+    flex-direction: column;
+    height: auto; }
+    .section3 .SOTWTextContent {
+      width: 100%;
+      min-height: 70vh; }
+      .section3 .SOTWTextContent .contentSOTW {
+        width: 80%;
+        text-align: center; }
+        .section3 .SOTWTextContent .contentSOTW .priceAndCart {
+          flex-direction: column;
+          gap: 20px; }
   .navbar {
     opacity: 0;
-    pointer-events: none; } }
+    pointer-events: none; }
+  .backgroundBenefit {
+    height: 100vh !important; }
+    .backgroundBenefit .textBenefit {
+      width: 80% !important;
+      height: 30% !important; }
+  .navBarMobile {
+    margin-bottom: 2%; }
+    .navBarMobile ul li {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      .navBarMobile ul li img {
+        height: 18px; } }
 
 @media (max-width: 677px) and (max-width: 550px) {
+  .section5 .contentSuscribe {
+    border-radius: 0;
+    width: 100%;
+    height: 50vh; }
+    .section5 .contentSuscribe div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center; }
+      .section5 .contentSuscribe div div {
+        flex-direction: row;
+        height: 70px; }
+        .section5 .contentSuscribe div div input {
+          font-size: 12px; }
   .totalContainer {
     width: 83% !important; }
   .totalCountCart .totalAndClear .totalContainer p {
@@ -1606,4 +1695,68 @@ footer .credits {
   .buttonsCartContainer .buttonPurchase {
     width: 68% !important; }
     .buttonsCartContainer .buttonPurchase p {
-      font-size: 16px !important; } }
+      font-size: 12px !important; } }
+
+@media (max-width: 400px) {
+  .mainSneakers {
+    margin-top: 0vh !important; }
+    .mainSneakers .filterContainer {
+      width: 100% !important;
+      border-radius: 0px !important; }
+  body .sectionCart .cartContainer .myCartTitle p {
+    margin-left: 10px !important;
+    font-size: 16px !important; }
+  body .sectionCart .cartContainer .sneakerObjet .sneakerDataCart .sneakerCartName h3 {
+    font-size: 14px !important; }
+  body .sectionCart .cartContainer .sneakerObjet .sneakerDataCart .sneakerCartName p {
+    font-size: 12px !important; }
+  body .sectionCart .cartContainer .sneakerObjet .ObjectDataCart .dataCart p {
+    font-size: 12px !important; }
+  body .sectionCart .totalCountCart .totalAndClear .totalContainer {
+    padding-inline: 7%; }
+    body .sectionCart .totalCountCart .totalAndClear .totalContainer p {
+      font-size: 12px !important; }
+  .sectionCartSecondStep .cartContainerSecondStep .myCartTitleSecondStep p {
+    margin-left: 10px !important;
+    font-size: 16px !important; }
+  .sectionCartSecondStep .cartContainerSecondStep .PayDataContainer .discountAndSummary .discount {
+    height: 22vh !important; }
+    .sectionCartSecondStep .cartContainerSecondStep .PayDataContainer .discountAndSummary .discount p {
+      font-size: 16px !important; }
+    .sectionCartSecondStep .cartContainerSecondStep .PayDataContainer .discountAndSummary .discount button {
+      margin-top: 2%; }
+    .sectionCartSecondStep .cartContainerSecondStep .PayDataContainer .discountAndSummary .discount input {
+      font-size: 12px; }
+  .sectionCartSecondStep .cartContainerSecondStep .PayDataContainer .discountAndSummary .paymentSum p {
+    font-size: 16px !important; }
+  .sectionCartSecondStep .cartContainerSecondStep .PayDataContainer .discountAndSummary .paymentSum .summaryContainer div p {
+    font-size: 12px !important; }
+    .sectionCartSecondStep .cartContainerSecondStep .PayDataContainer .discountAndSummary .paymentSum .summaryContainer div p strong {
+      font-size: 12px !important; }
+  .sectionCartSecondStep .cartContainerSecondStep .PayDataContainer .emailPayMethod .emailContainer input {
+    font-size: 12px !important;
+    padding-left: 8%; }
+  .sectionCartSecondStep .cartContainerSecondStep .PayDataContainer .emailPayMethod .payMethod p {
+    font-size: 16px !important; }
+  .sectionCartSecondStep .cartContainerSecondStep .PayDataContainer .emailPayMethod .payMethod div img {
+    height: 20px; }
+  .sectionCartSecondStep .cartContainerSecondStep .PayDataContainer .emailPayMethod .payMethod div p {
+    font-size: 12px !important; }
+  .sectionCartSecondStep .totalContainerSecondStep {
+    padding-inline: 7% !important; }
+    .sectionCartSecondStep .totalContainerSecondStep p {
+      font-size: 12px !important; }
+  .sectionCartSecondStep .buttonsCartContainer-SecondStep .buttonBTS-SecondStep p {
+    font-size: 12px !important; }
+  .sectionCartSecondStep .buttonsCartContainer-SecondStep .buttonPurchase-SecondStep p {
+    font-size: 12px !important; }
+  .finishBuy .modalFinish {
+    height: 30% !important; }
+    .finishBuy .modalFinish img {
+      transform: translateY(-120%); }
+    .finishBuy .modalFinish h1 {
+      font-size: 20px !important; }
+    .finishBuy .modalFinish p {
+      font-size: 12px !important; }
+    .finishBuy .modalFinish button {
+      font-size: 14px; } }
