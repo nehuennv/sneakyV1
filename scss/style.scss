@@ -280,6 +280,7 @@ header{
         }
         button{
             display: flex;
+            color: #353330;
             cursor: pointer;
             justify-content: center;
             align-items: center;
@@ -854,7 +855,7 @@ footer{
         width: 100% ;
         height: 100%;
         letter-spacing: 0.1em;
-
+        color: #353330;
         border-radius: 100px;
         font-weight: 600;
         font-size: 16px;
@@ -1470,9 +1471,10 @@ footer{
                 }
                 button{
                     transition: all .5s;
-
+                    color: #353330;
                     cursor: pointer;
-                    font-weight: 500;
+                    letter-spacing: 0.15rem;
+                    font-weight: 600;
                     font-size: 14px;
                     background: $yellowSneaky;
                     height: 20%;
@@ -1674,7 +1676,7 @@ footer{
 
 }
 .navBarMobile{
-    z-index: 100;
+    z-index: 98;
     position: fixed;
     bottom: 0;
     width: 100%;

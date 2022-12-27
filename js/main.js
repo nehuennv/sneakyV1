@@ -234,7 +234,7 @@ clearButton.addEventListener("click", ()=>{
     }
 
 })
-    setTimeout(() => {
+    setInterval(() => {
 
         if(JSON.parse(localStorage.getItem('cartAdd'))){
         let cartCompleteLS = JSON.parse(localStorage.getItem('cartAdd'))
@@ -297,7 +297,7 @@ clearButton.addEventListener("click", ()=>{
         `
     }
 
-      }, 1000);
+      }, 000);
 
 let totalProductSummary = ""      
 
@@ -2078,7 +2078,7 @@ function createCards(array,location){
                     discountButtonDisabled.innerHTML = `
                     <p>Add a discount coupon</p>
                     <input type="text" name="" id="" class="discountInput" >
-                    <button class="buttonDiscount" disabled>Apply coupon</button>
+                    <button class="buttonDiscount" disabled>APPLY</button>
                     `
 
                     let div = document.createElement("div")
@@ -2139,7 +2139,7 @@ function createCards(array,location){
                         discountButtonDisabled.innerHTML = `
                         <p>Add a discount coupon</p>
                         <input type="text" name="" id="" class="discountInput" >
-                        <button class="buttonDiscount" >Apply coupon</button>
+                        <button class="buttonDiscount" >APPLY</button>
                         `
                         method.forEach(ele => {
                             ele.style.boxShadow = "0px 0px 0px 0px"
@@ -2377,7 +2377,7 @@ buttonBTSSecondStep.addEventListener('click',()=>{
     discountButtonDisabled.innerHTML = `
     <p>Add a discount coupon</p>
     <input type="text" name="" id="" class="discountInput" >
-    <button class="buttonDiscount" >Apply coupon</button>
+    <button class="buttonDiscount" >APPLY</button>
     `
     sectionCartSecondStep.classList.remove('sectionCartSecondStepON')
     body.style.overflowY='auto'
