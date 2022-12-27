@@ -1478,7 +1478,7 @@ function createCards(array,location){
     
         newDiv.innerHTML=
         `
-        <div class="sneakerImage" style="background-image:url(.${el.img}) ;">
+        <div class="sneakerImage" style="background-image:url(${el.img}) ;">
         <button class="buttonAddToCart buttonAddToCart${el.id}" > SEE MORE <img src="./assets/svg/icons/arrowRight.svg" alt=""></button>
     
     </div>
