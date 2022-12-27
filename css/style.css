@@ -509,7 +509,7 @@ footer .credits {
   transform: translateY(-100vh);
   z-index: 99;
   position: fixed;
-  height: 100vh;
+  height: 100%;
   display: flex;
   width: 100vw; }
   .sneakerSelected .imageSneakerSelected {
@@ -833,7 +833,7 @@ footer .credits {
   transition: all .5s;
   background-color: #181818;
   z-index: 100;
-  height: 100vh;
+  height: 100%;
   width: 100vw;
   position: fixed;
   display: flex;
@@ -1026,7 +1026,7 @@ footer .credits {
   width: 100vw;
   transition: all .5s;
   background-color: #181818;
-  height: 100vh;
+  height: 100%;
   color: #fff;
   display: flex;
   justify-content: center;
