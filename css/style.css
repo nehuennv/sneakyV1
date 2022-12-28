@@ -147,21 +147,20 @@ header {
   .section1 .section1Container {
     display: flex;
     width: 100%;
+    -webkit-animation: text-focus-in 2s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+    animation: text-focus-in 2s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
     align-items: center;
     justify-content: space-around; }
     .section1 .section1Container h1 {
       font-family: 'Retroica';
       font-weight: 100;
       font-size: 5vw;
-      color: #373737;
-      -webkit-animation: text-focus-in 2s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
-      animation: text-focus-in 2s cubic-bezier(0.55, 0.085, 0.68, 0.53) both; }
+      color: #373737; }
     .section1 .section1Container img {
       transition: all .5s;
       width: 30%;
-      -webkit-animation: text-focus-in 2s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
-      animation: text-focus-in 2s cubic-bezier(0.55, 0.085, 0.68, 0.53) both, float 5s ease-in-out infinite;
-      filter: drop-shadow(30px 10px 25px #39350e56); }
+      filter: drop-shadow(30px 10px 25px #39350e56);
+      animation: float 5s ease-in-out infinite; }
       .section1 .section1Container img:hover {
         transform: scale(1.1); }
 
@@ -1300,17 +1299,16 @@ footer .credits {
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 10%;
+  height: 10vh;
   margin-bottom: 5%;
   display: flex;
   transition: all .5s;
   transform: translateY(50vh);
   justify-content: center; }
   .navBarMobile ul {
-    background-color: #333333;
+    background: linear-gradient(180deg, #333333 0%, #272727 100%);
     box-shadow: 0px 0px 42px rgba(0, 0, 0, 0.38);
     height: 100%;
-    background-image: url(../assets/svg/icons/sneakyBackground.svg);
     width: 90%;
     border-radius: 30px;
     display: flex;
